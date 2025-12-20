@@ -1,0 +1,45 @@
+body {
+    font-family: 'Arial' sans-serif;
+    background: rgb(20,22,25);
+    min-height: 100dvh;
+    color: white
+}
+
+header {
+    display: flex;
+    align-items: center;
+    background: rgb(25,28,32);
+    position: relative;
+    padding : 20px 60px;
+    z-index: 10;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.hero {
+    font-family: Arial, Impact;
+    text-align: center;
+}
+.main-title {
+    font-size: 45px
+}
+
+.subtitle {
+    font-size: 25px;
+}
+
+.window-title {
+    font-size: 25px;
+}
+
+.bottom-text {
+    font-size: 45px;
+}
+
+.nav {
+    gap: 20px
+
+}
