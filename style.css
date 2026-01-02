@@ -8,7 +8,9 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
-/* ===== Header ===== */
+/* ===================================================== */
+/* ======================= HEADER ====================== */
+/* ===================================================== */
 
 header {
     position: sticky;
@@ -17,7 +19,6 @@ header {
 
     height: 80px;
     background-color: #191C20;
-
     position: relative;
 }
 
@@ -32,14 +33,14 @@ header {
     justify-content: space-between;
 }
 
-/* Logo */
+/* ======================= LOGO ======================== */
 
 .header-logo img {
     height: 96px;
     display: block;
 }
 
-/* Navigation */
+/* ==================== NAVIGATION ===================== */
 
 .nav-list {
     list-style: none;
@@ -61,20 +62,14 @@ header {
     color: #FFFFFF;
     text-decoration: none;
 
-    position: relative;
-    display: inline-block;
     transition: opacity 0.2s ease;
-}
-
-.nav-item > a:visited {
-    color: #FFFFFF;
 }
 
 .nav-item > a:hover {
     opacity: 0.85;
 }
 
-/* ===== Bandeau GLOBAL du header ===== */
+/* =================== HEADER PANEL ==================== */
 
 .header-panel {
     position: absolute;
@@ -94,29 +89,145 @@ header {
         transform 0.25s ease;
 }
 
-/* Contenu du bandeau */
-.header-panel ul {
+/* UL racine du panel uniquement */
+.header-panel > ul {
     list-style: none;
     margin: 0;
     padding: 16px 32px;
 }
 
-.panel-item {
-    display: none;
-}
+/* =================== PANEL ITEMS ===================== */
 
-.panel-item a {
-    color: #FFFFFF;
-    text-decoration: none;
-    font-size: 15px;
+.panel-item {
+    opacity: 0;
+    transform: translateY(40px);
+    pointer-events: none;
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
 }
 
 .panel-item.is-active {
-    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
-/* ===== Page Content ===== */
-/* Préparation du flou du contenu (inactif par défaut) */
+/* ================= RESSOURCES PANEL ================= */
+
+.resources-panel {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 96px;
+}
+
+/* ===================== COLONNES ====================== */
+
+.resources-column {
+    display: flex;
+    flex-direction: column;
+    padding-top: 8px;
+}
+
+/* ====================== TITRES ======================= */
+
+.resources-title {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #9AA0A6;
+
+    margin: 0;
+}
+
+/* ====================== LISTES ======================= */
+
+.resources-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* Espace contrôlé titre → premier item */
+.resources-list li:first-child {
+    margin-top: 8px;
+}
+
+/* ========== COLONNE GAUCHE : APPRENDRE =============== */
+
+.resources-column:first-child .resources-list {
+    gap: 20px;
+}
+
+.resources-column:first-child .resources-list a {
+    display: inline-flex;
+    align-items: center;
+
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+
+    color: #FFFFFF;
+    text-decoration: none;
+    opacity: 0.95;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.resources-column:first-child .resources-list a:hover {
+    opacity: 1;
+    transform: translateX(6px);
+}
+
+/* ========= COLONNE DROITE : PRATIQUER ================ */
+
+.resources-column:last-child .resources-list {
+    gap: 16px;
+}
+
+.resources-column:last-child .resources-list a {
+    display: inline-flex;
+    align-items: center;
+
+    font-size: 15px;
+    font-weight: 400;
+
+    color: #FFFFFF;
+    text-decoration: none;
+    opacity: 0.85;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.resources-column:last-child .resources-list a:hover {
+    opacity: 1;
+    transform: translateX(3px);
+}
+
+/* ================= PANEL OPEN STATE ================= */
+
+.header-panel.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* ===================== PAGE ========================== */
+
 .page-content {
     transition:
         filter 0.35s ease,
@@ -125,10 +236,4 @@ header {
 
 .page-content.is-blurred {
     filter: blur(4px);
-}
-
-.header-panel.is-open {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
 }
