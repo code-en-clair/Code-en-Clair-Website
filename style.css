@@ -1,0 +1,302 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #141619;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ===================================================== */
+/* ======================= HEADER ====================== */
+/* ===================================================== */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    height: 80px;
+    background-color: #191C20;
+    position: relative;
+}
+
+.header-container {
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* ======================= LOGO ======================== */
+
+.header-logo img {
+    height: 96px;
+    display: block;
+}
+
+/* ==================== NAVIGATION ===================== */
+
+.nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    gap: 32px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+}
+
+.nav-item > a {
+    font-size: 15px;
+    font-weight: 400;
+    color: #FFFFFF;
+    text-decoration: none;
+
+    transition: opacity 0.2s ease;
+}
+
+.nav-item > a:hover {
+    opacity: 0.85;
+}
+
+/* =================== HEADER PANEL ==================== */
+
+.header-panel {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    padding: 48px 0;
+
+    background-color: #191C20;
+
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+/* UL racine du panel uniquement */
+.header-panel > ul {
+    list-style: none;
+    margin: 0;
+    padding: 16px 32px;
+}
+
+/* =================== PANEL ITEMS ===================== */
+
+.panel-item {
+    opacity: 0;
+    transform: translateY(40px);
+    pointer-events: none;
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.panel-item.is-active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* ================= RESSOURCES PANEL ================= */
+
+.resources-panel {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 96px;
+}
+
+/* ===================== COLONNES ====================== */
+
+.resources-column {
+    display: flex;
+    flex-direction: column;
+    padding-top: 8px;
+}
+
+/* ====================== TITRES ======================= */
+
+.resources-title {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #9AA0A6;
+
+    margin: 0;
+}
+
+/* ====================== LISTES ======================= */
+
+.resources-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* Espace contrôlé titre → premier item */
+.resources-list li:first-child {
+    margin-top: 8px;
+}
+
+/* ========== COLONNE GAUCHE : APPRENDRE =============== */
+
+.resources-column:first-child .resources-list {
+    gap: 20px;
+}
+
+.resources-column:first-child .resources-list a {
+    display: inline-flex;
+    align-items: center;
+
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+
+    color: #FFFFFF;
+    text-decoration: none;
+    opacity: 0.95;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.resources-column:first-child .resources-list a:hover {
+    opacity: 1;
+    transform: translateX(6px);
+}
+
+/* ========= COLONNE DROITE : PRATIQUER ================ */
+
+.resources-column:last-child .resources-list {
+    gap: 16px;
+}
+
+.resources-column:last-child .resources-list a {
+    display: inline-flex;
+    align-items: center;
+
+    font-size: 15px;
+    font-weight: 400;
+
+    color: #FFFFFF;
+    text-decoration: none;
+    opacity: 0.85;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.resources-column:last-child .resources-list a:hover {
+    opacity: 1;
+    transform: translateX(3px);
+}
+
+/* ================= PANEL OPEN STATE ================= */
+
+.header-panel.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* ===================== PAGE ========================== */
+
+.page-content {
+    transition:
+        filter 0.35s ease,
+        opacity 0.35s ease;
+}
+
+.page-content.is-blurred {
+    filter: blur(4px);
+}
+
+/* ===================================================== */
+/* ==================== HERO SECTION =================== */
+/* ===================================================== */
+
+.hero-section {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 120px 32px 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Pattern topographique en arrière-plan */
+.hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('assets/img/pattern.png');
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    opacity: 0.15;
+    filter: sepia(100%) hue-rotate(250deg) saturate(10) brightness(1);
+    z-index: 0;
+    pointer-events: none;
+}
+
+
+/* Gradient violet/bleu au centre */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1000px;
+    height: 1000px;
+    background: radial-gradient(
+        circle, 
+        rgba(124, 58, 237, 0.3) 0%, 
+        rgba(59, 130, 246, 0.2) 40%, 
+        transparent 70%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Contenu au premier plan */
+.hero-content {
+    text-align: center;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

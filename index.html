@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code en Clair</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="header.js"></script>
+    <style>
+      /* ===================================================== */
+      /* =================== CUSTOM FONT ===================== */
+      /* ===================================================== */
+
+      @font-face {
+        font-family: 'Organetto';
+        src: url('fonts/Fontspring-DEMO-organetto-extlight.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background-color: #141619;
+        font-family: 'Inter', sans-serif;
+      }
+
+      /* ===================================================== */
+      /* ======================= HEADER ====================== */
+      /* ===================================================== */
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        height: 80px;
+        background-color: #191C20;
+      }
+
+      .header-container {
+        max-width: 1200px;
+        height: 100%;
+        margin: 0 auto;
+        padding: 0 32px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .header-logo {
+        margin-right: auto;
+      }
+
+      /* ======================= LOGO ======================== */
+
+      .header-logo img {
+        height: 96px;
+        display: block;
+        margin-left: -32px;
+      }
+
+      /* Ajustement pour écrans larges */
+      @media (min-width: 768px) {
+        .header-logo img {
+          margin-left: -150px;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .header-logo img {
+          margin-left: -300px;
+        }
+      }
+
+      /* ==================== NAVIGATION ===================== */
+
+      .nav-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 32px;
+      }
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-item > a {
+        font-size: 15px;
+        font-weight: 400;
+        color: #FFFFFF;
+        text-decoration: none;
+        transition: opacity 0.2s ease;
+      }
+
+      .nav-item > a:hover {
+        opacity: 0.85;
+      }
+
+      /* =================== HEADER PANEL ==================== */
+
+      .header-panel {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        padding: 48px 0;
+        background-color: #191C20;
+        opacity: 0;
+        transform: translateY(-8px);
+        pointer-events: none;
+        transition: opacity 0.25s ease, transform 0.25s ease;
+      }
+
+      .header-panel > ul {
+        list-style: none;
+        margin: 0;
+        padding: 16px 32px;
+      }
+
+      /* =================== PANEL ITEMS ===================== */
+
+      .panel-item {
+        opacity: 0;
+        transform: translateY(40px);
+        pointer-events: none;
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+
+      .panel-item.is-active {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      /* ================= RESSOURCES PANEL ================= */
+
+      .resources-panel {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 32px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 96px;
+      }
+
+      .resources-column {
+        display: flex;
+        flex-direction: column;
+        padding-top: 8px;
+      }
+
+      .resources-title {
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #9AA0A6;
+        margin: 0;
+      }
+
+      .resources-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .resources-list li:first-child {
+        margin-top: 8px;
+      }
+
+      .resources-column:first-child .resources-list {
+        gap: 20px;
+      }
+
+      .resources-column:first-child .resources-list a {
+        display: inline-flex;
+        align-items: center;
+        font-size: 19px;
+        font-weight: 600;
+        line-height: 1.35;
+        letter-spacing: -0.01em;
+        color: #FFFFFF;
+        text-decoration: none;
+        opacity: 0.95;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      .resources-column:first-child .resources-list a:hover {
+        opacity: 1;
+        transform: translateX(6px);
+      }
+
+      .resources-column:last-child .resources-list {
+        gap: 16px;
+      }
+
+      .resources-column:last-child .resources-list a {
+        display: inline-flex;
+        align-items: center;
+        font-size: 15px;
+        font-weight: 400;
+        color: #FFFFFF;
+        text-decoration: none;
+        opacity: 0.85;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      .resources-column:last-child .resources-list a:hover {
+        opacity: 1;
+        transform: translateX(3px);
+      }
+
+      .header-panel.is-open {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      /* ===================== PAGE ========================== */
+
+      .page-content {
+        transition: filter 0.35s ease, opacity 0.35s ease;
+      }
+
+      .page-content.is-blurred {
+        filter: blur(4px);
+      }
+
+      /* ===================================================== */
+      /* ===================== HERO SECTION ================== */
+      /* ===================================================== */
+
+      .hero-section {
+        min-height: calc(100vh - 80px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 120px 32px 60px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Background gradient effect */
+      .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+        pointer-events: none;
+      }
+
+      .hero-content {
+        text-align: center;
+        z-index: 1;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* Reset text-align pour le terminal */
+      .terminal-container {
+        text-align: left;
+      }
+
+      .hero-title {
+        font-size: clamp(48px, 8vw, 96px);
+        font-weight: 700;
+        font-family: 'Organetto', sans-serif;
+        letter-spacing: 0.02em;
+        color: #FFFFFF;
+        margin: 0;
+        margin-bottom: 24px;
+        line-height: 1.1;
+      }
+
+      /* Titre sur une ligne uniquement sur desktop */
+      @media (min-width: 768px) {
+        .hero-title {
+          white-space: nowrap;
+        }
+      }
+
+      .hero-subtitle {
+        font-size: clamp(18px, 2.5vw, 28px);
+        font-weight: 300;
+        font-family: 'Organetto', sans-serif;
+        letter-spacing: 0.05em;
+        color: #B0B8C1;
+        margin: 0;
+        line-height: 1.5;
+      }
+
+      /* Animation d'apparition */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-title {
+        animation: fadeInUp 0.8s ease-out;
+      }
+
+      .hero-subtitle {
+        animation: fadeInUp 0.8s ease-out 0.2s backwards;
+      }
+
+      /* ===================================================== */
+      /* =================== TERMINAL ======================== */
+      /* ===================================================== */
+
+      .terminal-container {
+        margin-top: 60px;
+        animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .terminal-window {
+        width: 100%;
+        max-width: 700px;
+        background: #1e1e1e;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        border: 1px solid #2d2d2d;
+      }
+
+      /* Barre de titre macOS */
+      .terminal-header {
+        background: #2d2d2d;
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #1a1a1a;
+      }
+
+      .terminal-buttons {
+        display: flex;
+        gap: 8px;
+      }
+
+      .terminal-button {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+
+      .terminal-button.red {
+        background: #ff5f57;
+      }
+
+      .terminal-button.yellow {
+        background: #ffbd2e;
+      }
+
+      .terminal-button.green {
+        background: #28ca42;
+      }
+
+      .terminal-title {
+        font-size: 13px;
+        color: #8b8b8b;
+        font-weight: 500;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      /* Contenu du terminal */
+      .terminal-body {
+        background: #1e1e1e;
+        padding: 20px;
+        min-height: 300px;
+        display: flex;
+        text-align: left;
+      }
+
+      .terminal-line-numbers {
+        color: #4a4a4a;
+        font-family: 'Courier New', monospace;
+        font-size: 14px;
+        line-height: 1.6;
+        padding-right: 20px;
+        border-right: 1px solid #2d2d2d;
+        margin-right: 20px;
+        user-select: none;
+      }
+
+      .terminal-content {
+        flex: 1;
+        color: #d4d4d4;
+        font-family: 'Courier New', monospace;
+        font-size: 14px;
+        line-height: 1.6;
+        padding-right: 20px;
+      }
+
+      .terminal-filename {
+        color: #d4d4d4;
+        margin-bottom: 16px;
+        font-weight: 600;
+      }
+
+      .terminal-line {
+        opacity: 0;
+        animation: typeLine 0.5s ease-out forwards;
+        padding-left: 20px;
+      }
+
+      .terminal-line.comment {
+        color: #6a9955;
+      }
+
+      .terminal-line.command {
+        color: #4ec9b0;
+      }
+
+      .terminal-line.error {
+        color: #f48771;
+      }
+
+      .terminal-line.init {
+        color: #569cd6;
+      }
+
+      .terminal-line.ok {
+        color: #4ec9b0;
+      }
+
+      .terminal-line.write {
+        color: #c586c0;
+      }
+
+      .terminal-line.build {
+        color: #dcdcaa;
+      }
+
+      .terminal-line.link {
+        color: #4fc1ff;
+      }
+
+      .terminal-line.warn {
+        color: #ce9178;
+      }
+
+      .terminal-line.run {
+        color: #f48771;
+      }
+
+      .terminal-line.done {
+        color: #c586c0;
+      }
+
+      .terminal-line.white {
+        color: #d4d4d4;
+      }
+
+      .terminal-cursor {
+        display: inline-block;
+        width: 8px;
+        height: 16px;
+        background: #d4d4d4;
+        margin-left: 2px;
+        animation: blink 1s infinite;
+      }
+
+      @keyframes typeLine {
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes blink {
+        0%, 50% {
+          opacity: 1;
+        }
+        51%, 100% {
+          opacity: 0;
+        }
+      }
+
+      /* Responsive terminal */
+      @media (max-width: 768px) {
+        .terminal-window {
+          max-width: 100%;
+        }
+
+        .terminal-body {
+          padding: 16px;
+          font-size: 12px;
+        }
+
+        .terminal-content {
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <!-- Logo -->
+        <div class="header-logo">
+          <a href="/">
+            <img src="assets/img/white_logo_cec.png" alt="Code en Clair" />
+          </a>
+        </div>
+
+        <!-- Navigation principale -->
+        <nav aria-label="Navigation principale">
+          <ul class="nav-list">
+            <li class="nav-item" data-panel="resources">
+              <a href="#">Ressources</a>
+            </li>
+            <li class="nav-item" data-panel="contact">
+              <a href="#">Contact</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Bandeau GLOBAL du header -->
+      <div class="header-panel">
+        <li class="panel-item" data-panel="resources">
+          <div class="resources-panel">
+            <!-- Colonne 1 -->
+            <div class="resources-column">
+              <h4 class="resources-title">Apprendre</h4>
+              <ul class="resources-list">
+                <li><a href="#">Développement Python</a></li>
+                <li><a href="#">Fondamentaux du Web</a></li>
+                <li><a href="#">Algorithmique (C)</a></li>
+              </ul>
+            </div>
+
+            <!-- Colonne 2 -->
+            <div class="resources-column">
+              <h4 class="resources-title">Pratiquer</h4>
+              <ul class="resources-list">
+                <li><a href="#">Exercices</a></li>
+                <li><a href="#">Projets guidés</a></li>
+                <li><a href="#">Challenges</a></li>
+                <li><a href="#">Katas & entraînement</a></li>
+                <li><a href="#">Ressources externes</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </div>
+    </header>
+
+    <main class="page-content">
+      <!-- HERO SECTION -->
+      <section class="hero-section">
+        <div class="hero-content">
+          <h1 class="hero-title">CODE EN CLAIR</h1>
+          <p class="hero-subtitle">LE LIEU IDÉAL POUR APPRENDRE ET CRÉER</p>
+
+          <!-- Terminal -->
+          <div class="terminal-container">
+            <div class="terminal-window">
+              <!-- Header macOS -->
+              <div class="terminal-header">
+                <div class="terminal-buttons">
+                  <div class="terminal-button red"></div>
+                  <div class="terminal-button yellow"></div>
+                  <div class="terminal-button green"></div>
+                </div>
+                <div class="terminal-title">Code_en_Clair.exe</div>
+              </div>
+
+              <!-- Body -->
+              <div class="terminal-body">
+                <div class="terminal-line-numbers" id="lineNumbers">
+                  1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24
+                </div>
+                <div class="terminal-content">
+                  <div id="terminalOutput"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Reste du contenu de la page -->
+      <div style="height: 100vh; padding: 40px;">
+        <p style="color: white;">
+          Contenu additionnel de votre page...
+        </p>
+      </div>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const headerPanel = document.querySelector(".header-panel");
+        const navItems = document.querySelectorAll(".nav-item");
+        const panelItems = document.querySelectorAll(".panel-item");
+        const pageContent = document.querySelector(".page-content");
+
+        /* ===== OUVERTURE DU BANDEAU ===== */
+        navItems.forEach(item => {
+          item.addEventListener("mouseenter", () => {
+            const target = item.getAttribute("data-panel");
+
+            /* 1. Reset de tous les panels */
+            panelItems.forEach(panel => {
+              panel.classList.remove("is-active");
+            });
+
+            /* 2. Ouverture du bandeau */
+            headerPanel.classList.add("is-open");
+            pageContent.classList.add("is-blurred");
+
+            /* 3. Activation du bon panel */
+            requestAnimationFrame(() => {
+              panelItems.forEach(panel => {
+                if (panel.getAttribute("data-panel") === target) {
+                  panel.classList.add("is-active");
+                }
+              });
+            });
+          });
+        });
+
+        /* ===== FERMETURE DU BANDEAU ===== */
+        headerPanel.addEventListener("mouseleave", () => {
+          headerPanel.classList.remove("is-open");
+          pageContent.classList.remove("is-blurred");
+
+          /* Reset pour rejouer l'animation */
+          panelItems.forEach(panel => {
+            panel.classList.remove("is-active");
+          });
+        });
+
+        /* ===== ANIMATION DU TERMINAL ===== */
+        const terminalOutput = document.getElementById("terminalOutput");
+        
+        const codeSequences = [
+          { text: "Booting Fake OS...", class: "comment", delay: 0 },
+          { text: "[INIT] Loading compiler...", class: "init", delay: 400 },
+          { text: "[OK]   Compiler found: gcc 13.2.0", class: "ok", delay: 700 },
+          { text: "", class: "", delay: 1000 },
+          { text: "[WRITE] Creating file: main.c", class: "write", delay: 1200 },
+          { text: "// Début du code C", class: "comment", delay: 1500 },
+          { text: "int main() {", class: "white", delay: 1700 },
+          { text: '    printf("Hello, Code en Clair!\\n");', class: "white", delay: 1900 },
+          { text: '    printf("Compilation réussie !\\n");', class: "white", delay: 2100 },
+          { text: "    return 0;", class: "white", delay: 2300 },
+          { text: "}", class: "white", delay: 2500 },
+          { text: "[OK]   File main.c saved.", class: "ok", delay: 2800 },
+          { text: "", class: "", delay: 3100 },
+          { text: "[BUILD] Running: gcc main.c -o main", class: "build", delay: 3300 },
+          { text: "[LINK] Linking objects...", class: "link", delay: 3600 },
+          { text: "[WARN]  Unused variable detected.", class: "warn", delay: 3900 },
+          { text: "[OK]   Build finished: 0 error(s), 1 warning(s).", class: "ok", delay: 4200 },
+          { text: "", class: "", delay: 4500 },
+          { text: "[RUN]  ./main", class: "run", delay: 4700 },
+          { text: "Hello, Code en Clair!", class: "white", delay: 5000 },
+          { text: "Compilation réussie !", class: "white", delay: 5200 },
+          { text: "", class: "", delay: 5400 },
+          { text: "[DONE] Process finished successfully.", class: "done", delay: 5700 },
+          { text: ">", class: "white", delay: 6000 }
+        ];
+
+        let currentSequence = 0;
+        let loopCount = 0;
+
+        function typeNextLine() {
+          if (currentSequence >= codeSequences.length) {
+            loopCount++;
+            
+            // Après 1 boucle complète, reset
+            if (loopCount >= 1) {
+              setTimeout(() => {
+                terminalOutput.innerHTML = "";
+                currentSequence = 0;
+                loopCount = 0;
+                typeNextLine();
+              }, 3000);
+              return;
+            }
+            
+            // Sinon, recommence la séquence
+            setTimeout(() => {
+              terminalOutput.innerHTML = "";
+              currentSequence = 0;
+              typeNextLine();
+            }, 3000);
+            return;
+          }
+
+          const line = codeSequences[currentSequence];
+          const lineElement = document.createElement("div");
+          lineElement.className = `terminal-line ${line.class}`;
+          lineElement.textContent = line.text || " ";
+          
+          terminalOutput.appendChild(lineElement);
+          currentSequence++;
+
+          setTimeout(typeNextLine, line.delay);
+        }
+
+        // Démarre l'animation après 1 seconde
+        setTimeout(typeNextLine, 1000);
+      });
+    </script>
+  </body>
+</html>
