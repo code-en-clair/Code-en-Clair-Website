@@ -1,0 +1,83 @@
+/* ===================================================== */
+/* ======================= HEADER ====================== */
+/* ===================================================== */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header);
+    height: 80px;
+    background-color: var(--bg-secondary);
+    position: relative;
+}
+
+.header-container {
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* ======================= LOGO ======================== */
+
+.header-logo img {
+    height: 96px;
+    display: block;
+}
+
+/* ==================== NAVIGATION ===================== */
+
+.nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: var(--spacing-lg);
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+}
+
+.nav-item > a {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: opacity var(--transition-fast);
+}
+
+.nav-item > a:hover {
+    opacity: 0.85;
+}
+
+/* =================== HEADER PANEL ==================== */
+
+.header-panel {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    padding: var(--spacing-xl) 0;
+    background-color: var(--bg-secondary);
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.header-panel > ul {
+    list-style: none;
+    margin: 0;
+    padding: var(--spacing-sm) var(--spacing-lg);
+}
+
+.header-panel.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}

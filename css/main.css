@@ -1,0 +1,21 @@
+/* ===================================================== */
+/* ==================== MAIN CSS ====================== */
+/* =================== ENTRY POINT ==================== */
+/* ===================================================== */
+
+/* Variables et tokens globaux */
+@import url('./variables.css');
+
+/* Animations réutilisables */
+@import url('./utils/animations.css');
+
+/* Base et reset */
+@import url('./layouts/base.css');
+
+/* Composants */
+@import url('./components/header.css');
+@import url('./components/panels.css');
+@import url('./components/terminal.css');
+
+/* Layouts spécifiques */
+@import url('./layouts/hero.css');

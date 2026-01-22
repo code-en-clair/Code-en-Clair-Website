@@ -1,0 +1,53 @@
+/* ===================================================== */
+/* =================== CSS VARIABLES ================== */
+/* ===================================================== */
+
+:root {
+    /* Couleurs */
+    --bg-primary: #141619;
+    --bg-secondary: #191C20;
+    --text-primary: #FFFFFF;
+    --text-secondary: #B0B8C1;
+    --text-muted: #9AA0A6;
+    
+    /* Terminal */
+    --terminal-bg: #1e1e1e;
+    --terminal-border: #2d2d2d;
+    --terminal-text: #d4d4d4;
+    --terminal-line-numbers: #4a4a4a;
+    --terminal-comment: #6a9955;
+    --terminal-ok: #4ec9b0;
+    --terminal-error: #f48771;
+    --terminal-init: #569cd6;
+    --terminal-write: #c586c0;
+    --terminal-build: #dcdcaa;
+    --terminal-link: #4fc1ff;
+    --terminal-warn: #ce9178;
+    --terminal-run: #f48771;
+    --terminal-done: #c586c0;
+    
+    /* Espacements */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 32px;
+    --spacing-xl: 48px;
+    --spacing-2xl: 60px;
+    --spacing-3xl: 96px;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.35s ease;
+    --transition-slow: 0.8s ease;
+    
+    /* Z-index */
+    --z-header: 1000;
+    --z-modal: 2000;
+    
+    /* Border radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    
+    /* Shadows */
+    --shadow-md: 0 20px 60px rgba(0, 0, 0, 0.5);
+}

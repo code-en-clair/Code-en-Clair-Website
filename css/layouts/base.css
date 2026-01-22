@@ -1,0 +1,35 @@
+/* ===================================================== */
+/* ===================== BASE ========================== */
+/* ===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg-primary);
+    font-family: 'Inter', sans-serif;
+}
+
+/* ===================== PAGE ========================== */
+
+.page-content {
+    transition: filter var(--transition-normal), opacity var(--transition-normal);
+}
+
+.page-content.is-blurred {
+    filter: blur(4px);
+}
+
+/* ===================================================== */
+/* ===================== CUSTOM FONT =================== */
+/* ===================================================== */
+
+@font-face {
+    font-family: 'Organetto';
+    src: url('../../fonts/Fontspring-DEMO-organetto-extlight.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}

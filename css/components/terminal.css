@@ -1,0 +1,177 @@
+/* ===================================================== */
+/* =================== TERMINAL ======================== */
+/* ===================================================== */
+
+.terminal-container {
+    margin-top: var(--spacing-2xl);
+    animation: fadeInUp 0.8s ease-out 0.4s backwards;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.terminal-window {
+    width: 100%;
+    max-width: 700px;
+    background: var(--terminal-bg);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--terminal-border);
+}
+
+/* Barre de titre macOS */
+.terminal-header {
+    background: var(--terminal-border);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.terminal-buttons {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.terminal-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.terminal-button.red {
+    background: #ff5f57;
+}
+
+.terminal-button.yellow {
+    background: #ffbd2e;
+}
+
+.terminal-button.green {
+    background: #28ca42;
+}
+
+.terminal-title {
+    font-size: 13px;
+    color: #8b8b8b;
+    font-weight: 500;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Contenu du terminal */
+.terminal-body {
+    background: var(--terminal-bg);
+    padding: var(--spacing-sm);
+    min-height: 300px;
+    display: flex;
+    text-align: left;
+}
+
+.terminal-line-numbers {
+    color: var(--terminal-line-numbers);
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    padding-right: var(--spacing-sm);
+    border-right: 1px solid var(--terminal-border);
+    margin-right: var(--spacing-sm);
+    user-select: none;
+}
+
+.terminal-content {
+    flex: 1;
+    color: var(--terminal-text);
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    padding-right: var(--spacing-sm);
+}
+
+.terminal-filename {
+    color: var(--terminal-text);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+}
+
+.terminal-line {
+    opacity: 0;
+    animation: typeLine 0.5s ease-out forwards;
+    padding-left: var(--spacing-sm);
+}
+
+.terminal-line.comment {
+    color: var(--terminal-comment);
+}
+
+.terminal-line.command {
+    color: var(--terminal-ok);
+}
+
+.terminal-line.error {
+    color: var(--terminal-error);
+}
+
+.terminal-line.init {
+    color: var(--terminal-init);
+}
+
+.terminal-line.ok {
+    color: var(--terminal-ok);
+}
+
+.terminal-line.write {
+    color: var(--terminal-write);
+}
+
+.terminal-line.build {
+    color: var(--terminal-build);
+}
+
+.terminal-line.link {
+    color: var(--terminal-link);
+}
+
+.terminal-line.warn {
+    color: var(--terminal-warn);
+}
+
+.terminal-line.run {
+    color: var(--terminal-run);
+}
+
+.terminal-line.done {
+    color: var(--terminal-done);
+}
+
+.terminal-line.white {
+    color: var(--terminal-text);
+}
+
+.terminal-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background: var(--terminal-text);
+    margin-left: 2px;
+    animation: blink 1s infinite;
+}
+
+/* Responsive terminal */
+@media (max-width: 768px) {
+    .terminal-window {
+        max-width: 100%;
+    }
+
+    .terminal-body {
+        padding: var(--spacing-sm);
+        font-size: 12px;
+    }
+
+    .terminal-content {
+        font-size: 12px;
+    }
+}

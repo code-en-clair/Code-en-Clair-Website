@@ -1,0 +1,71 @@
+/* ===================================================== */
+/* ===================== HERO SECTION ================== */
+/* ===================================================== */
+
+.hero-section {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 120px var(--spacing-lg) var(--spacing-2xl);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background gradient effect */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Reset text-align pour le terminal */
+.terminal-container {
+    text-align: left;
+}
+
+.hero-title {
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 700;
+    font-family: 'Organetto', sans-serif;
+    letter-spacing: 0.02em;
+    color: var(--text-primary);
+    margin: 0;
+    margin-bottom: var(--spacing-md);
+    line-height: 1.1;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+/* Titre sur une ligne uniquement sur desktop */
+@media (min-width: 768px) {
+    .hero-title {
+        white-space: nowrap;
+    }
+}
+
+.hero-subtitle {
+    font-size: clamp(18px, 2.5vw, 28px);
+    font-weight: 300;
+    font-family: 'Organetto', sans-serif;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+    animation: fadeInUp 0.8s ease-out 0.2s backwards;
+}
