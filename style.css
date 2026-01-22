@@ -99,16 +99,20 @@ header {
 /* =================== PANEL ITEMS ===================== */
 
 .panel-item {
+    max-height: 0;
+    overflow: hidden;
     opacity: 0;
     transform: translateY(40px);
     pointer-events: none;
 
     transition:
+        max-height 0.8s ease,
         opacity 0.8s ease,
         transform 0.8s ease;
 }
 
 .panel-item.is-active {
+    max-height: 1000px;
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
@@ -218,7 +222,111 @@ header {
     transform: translateX(3px);
 }
 
-/* ================= PANEL OPEN STATE ================= */
+/* ================= CONTACT PANEL ================= */
+
+.contact-panel {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 96px;
+}
+
+/* ===================== COLONNES ====================== */
+
+.contact-column {
+    display: flex;
+    flex-direction: column;
+    padding-top: 8px;
+}
+
+/* ====================== TITRES ======================= */
+
+.contact-title {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #9AA0A6;
+
+    margin: 0;
+}
+
+/* ====================== LISTES ======================= */
+
+.contact-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* Espace contrôlé titre → premier item */
+.contact-list li:first-child {
+    margin-top: 8px;
+}
+
+/* ========== COLONNE GAUCHE : NOUS CONTACTER =============== */
+
+.contact-column:first-child .contact-list {
+    gap: 20px;
+}
+
+.contact-column:first-child .contact-list a {
+    display: inline-flex;
+    align-items: center;
+
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+
+    color: #FFFFFF;
+    text-decoration: none;
+    opacity: 0.95;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.contact-column:first-child .contact-list a:hover {
+    opacity: 1;
+    transform: translateX(6px);
+}
+
+/* ========= COLONNE DROITE : SUIVEZ-NOUS ================ */
+
+.contact-column:last-child .contact-list {
+    gap: 16px;
+}
+
+.contact-column:last-child .contact-list a {
+    display: inline-flex;
+    align-items: center;
+
+    font-size: 15px;
+    font-weight: 400;
+
+    color: #FFFFFF;
+    text-decoration: none;
+    opacity: 0.85;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.contact-column:last-child .contact-list a:hover {
+    opacity: 1;
+    transform: translateX(3px);
+}
+
+
 
 .header-panel.is-open {
     opacity: 1;
