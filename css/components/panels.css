@@ -33,7 +33,7 @@
 .resources-column {
     display: flex;
     flex-direction: column;
-    padding-top: var(--spacing-xs);
+    padding-top: var(--spacing-md);
 }
 
 .resources-title {
@@ -54,13 +54,13 @@
 }
 
 .resources-list li:first-child {
-    margin-top: var(--spacing-xs);
+    margin-top: var(--spacing-md);
 }
 
 /* ========== COLONNE GAUCHE : APPRENDRE =============== */
 
 .resources-column:first-child .resources-list {
-    gap: 20px;
+    gap: 24px;
 }
 
 .resources-column:first-child .resources-list a {
@@ -84,7 +84,7 @@
 /* ========= COLONNE DROITE : PRATIQUER ================ */
 
 .resources-column:last-child .resources-list {
-    gap: 16px;
+    gap: 24px;
 }
 
 .resources-column:last-child .resources-list a {
@@ -103,9 +103,9 @@
     transform: translateX(3px);
 }
 
-/* ================= CONTACT PANEL ================= */
+/* ================= SUPPORT PANEL ================= */
 
-.contact-panel {
+.support-panel {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--spacing-lg);
@@ -114,13 +114,13 @@
     gap: var(--spacing-3xl);
 }
 
-.contact-column {
+.support-column {
     display: flex;
     flex-direction: column;
-    padding-top: var(--spacing-xs);
+    padding-top: var(--spacing-md);
 }
 
-.contact-title {
+.support-title {
     font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.08em;
@@ -129,7 +129,7 @@
     margin: 0;
 }
 
-.contact-list {
+.support-list {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -137,17 +137,17 @@
     flex-direction: column;
 }
 
-.contact-list li:first-child {
-    margin-top: var(--spacing-xs);
+.support-list li:first-child {
+    margin-top: var(--spacing-md);
 }
 
 /* ========== COLONNE GAUCHE : NOUS CONTACTER =============== */
 
-.contact-column:first-child .contact-list {
-    gap: 20px;
+.support-column:first-child .support-list {
+    gap: 28px;
 }
 
-.contact-column:first-child .contact-list a {
+.support-column:first-child .support-list a {
     display: inline-flex;
     align-items: center;
     font-size: 19px;
@@ -160,18 +160,18 @@
     transition: opacity var(--transition-fast), transform var(--transition-fast);
 }
 
-.contact-column:first-child .contact-list a:hover {
+.support-column:first-child .support-list a:hover {
     opacity: 1;
     transform: translateX(6px);
 }
 
-/* ========= COLONNE DROITE : SUIVEZ-NOUS ================ */
+/* ========= COLONNE DROITE : AIDE & COMMUNAUTÉ ================ */
 
-.contact-column:last-child .contact-list {
-    gap: 16px;
+.support-column:last-child .support-list {
+    gap: 24px;
 }
 
-.contact-column:last-child .contact-list a {
+.support-column:last-child .support-list a {
     display: inline-flex;
     align-items: center;
     font-size: 15px;
@@ -182,7 +182,7 @@
     transition: opacity var(--transition-fast), transform var(--transition-fast);
 }
 
-.contact-column:last-child .contact-list a:hover {
+.support-column:last-child .support-list a:hover {
     opacity: 1;
     transform: translateX(3px);
 }

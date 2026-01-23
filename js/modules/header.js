@@ -46,4 +46,11 @@ export function initHeader() {
             panel.classList.remove("is-active");
         });
     });
+
+    /* ===== GARDER LE BANDEAU OUVERT AU SURVOL ===== */
+    headerPanel.addEventListener("mouseenter", () => {
+        // Maintenir l'état ouvert quand on survole le panel
+        headerPanel.classList.add("is-open");
+        if (pageContent) pageContent.classList.add("is-blurred");
+    });
 }

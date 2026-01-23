@@ -6,7 +6,7 @@
 import { initHeader } from './modules/header.js';
 import { initTerminal } from './modules/terminal.js';
 
-// Initialiser tous les modules au chargement du DOM
+// Initialiser au chargement du DOM
 document.addEventListener("DOMContentLoaded", () => {
     console.log("🎯 Initializing Code en Clair...");
     

@@ -28,7 +28,7 @@ body {
 
 @font-face {
     font-family: 'Organetto';
-    src: url('../../fonts/Fontspring-DEMO-organetto-extlight.woff2') format('woff2');
+    src: url('../../assets/font/Fontspring-DEMO-organetto-extlight.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
