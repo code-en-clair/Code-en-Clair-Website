@@ -1,0 +1,165 @@
+/* ===================================================== */
+/* =============== LEARNING SECTION ================== */
+/* ===================================================== */
+
+.learning-section {
+    padding: 100px var(--spacing-lg);
+    background-color: var(--bg-primary);
+    position: relative;
+}
+
+.learning-container {
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.learning-title {
+    font-family: 'Organetto', sans-serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    text-align: center;
+    margin-bottom: 80px;
+    color: var(--text-primary);
+}
+
+/* =============== CARDS GRID (UNE LIGNE) ============ */
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* =============== LEARNING CARDS ==================== */
+
+.learning-card {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+    border: 1px solid #2a2a2a;
+    border-radius: 16px;
+    padding: 48px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.learning-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at top, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.learning-card:hover {
+    transform: translateY(-8px);
+    border-color: #7c3aed;
+    box-shadow: 0 20px 60px rgba(124, 58, 237, 0.2);
+}
+
+.learning-card:hover::before {
+    opacity: 1;
+}
+
+/* =============== CARD ICONS ======================== */
+
+.card-icon {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.card-icon svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Python Icon */
+.python-icon {
+    background: linear-gradient(135deg, #3776ab 0%, #ffd343 100%);
+    border-radius: 20px;
+    padding: 24px;
+}
+
+/* HTML Icon */
+.html-icon {
+    background: linear-gradient(135deg, #e34c26 0%, #f06529 100%);
+    border-radius: 20px;
+    padding: 24px;
+}
+
+/* C Icon */
+.c-icon {
+    background: linear-gradient(135deg, #00599c 0%, #004482 100%);
+    border-radius: 20px;
+    padding: 24px;
+}
+
+/* =============== CARD TEXT ========================= */
+
+.card-title {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+    position: relative;
+    z-index: 1;
+}
+
+.card-description {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    max-width: 320px;
+    position: relative;
+    z-index: 1;
+}
+
+/* =============== RESPONSIVE ======================== */
+
+@media (max-width: 1200px) {
+    .cards-grid {
+        gap: 24px;
+    }
+    
+    .learning-card {
+        padding: 40px 24px;
+    }
+}
+
+@media (max-width: 968px) {
+    .learning-section {
+        padding: 60px var(--spacing-md);
+    }
+    
+    .learning-title {
+        margin-bottom: 48px;
+    }
+    
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    .card-icon {
+        width: 100px;
+        height: 100px;
+    }
+}

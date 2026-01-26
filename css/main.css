@@ -20,3 +20,4 @@
 
 /* Layouts spécifiques */
 @import url('./layouts/hero.css');
+@import url('./components/learning.css');
