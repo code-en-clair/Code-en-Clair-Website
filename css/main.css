@@ -8,6 +8,7 @@
 
 /* Animations réutilisables */
 @import url('./utils/animations.css');
+@import url('./utils/waves.css');
 
 /* Base et reset */
 @import url('./layouts/base.css');
