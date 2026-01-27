@@ -13,7 +13,7 @@
 }
 
 .learning-title {
-    font-size: clamp(48px, 8vw, 16px);
+    font-size: clamp(35px, 8vw, 16px);
     font-weight: 700;
     font-family: 'Organetto', sans-serif;
     letter-spacing: 0.1em;
