@@ -1,0 +1,151 @@
+
+
+/* ===================================================== */
+/* ======================= FOOTER ====================== */
+/* ===================================================== */
+
+.site-footer {
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+    background-color: var(--bg-secondary);
+    color: #FFFFFF;
+}
+
+/* ================ SECTION SUPÉRIEURE ================ */
+
+.footer-top {
+    padding: 40px 0;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* ================ LIENS SOCIAUX ===================== */
+
+.footer-social {
+    display: flex;
+    gap: 24px;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #FFFFFF;
+    opacity: 0.7;
+    
+    transition: opacity 0.2s ease;
+}
+
+.social-link:hover {
+    opacity: 1;
+}
+
+.social-link svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* ================ NAVIGATION FOOTER ================= */
+
+.footer-nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    gap: 32px;
+}
+
+.footer-nav-list a {
+    font-size: 14px;
+    font-weight: 400;
+    color: #FFFFFF;
+    text-decoration: none;
+    opacity: 0.85;
+
+    transition: opacity 0.2s ease;
+}
+
+.footer-nav-list a:hover {
+    opacity: 1;
+}
+
+/* ================ LOGO FOOTER ======================= */
+
+.footer-logo img {
+    height: 96px;
+    display: block;
+}
+
+/* ================ SÉPARATEUR ======================== */
+
+.footer-separator {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 0 32px;
+}
+
+/* ================ SECTION INFÉRIEURE ================ */
+
+.footer-bottom {
+    padding: 24px 0;
+}
+
+.footer-bottom .footer-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-legal a {
+    font-size: 13px;
+    font-weight: 400;
+    color: #FFFFFF;
+    text-decoration: none;
+    opacity: 0.7;
+
+    transition: opacity 0.2s ease;
+}
+
+.footer-legal a:hover {
+    opacity: 1;
+}
+
+.footer-copyright {
+    font-size: 13px;
+    font-weight: 400;
+    color: #FFFFFF;
+    opacity: 0.7;
+}
+
+/* ================ RESPONSIVE ======================== */
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        gap: 24px;
+        text-align: center;
+    }
+
+    .footer-nav-list {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .footer-bottom .footer-container {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
