@@ -5,9 +5,25 @@
 .learning-section {
     padding: 80px 32px;
     background-color: #10131371;
+    position: relative; /* Important pour le positionnement du ::before */
+}
+
+.learning-section::before {
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(59, 125, 246, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -2; /* Pour que le gradient soit derrière le contenu */
 }
 
 .learning-container {
+    position: relative;
+    z-index: 1; /* Pour que le contenu soit au-dessus du gradient */
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -68,9 +84,8 @@
 /* ==================== CARD ICON ====================== */
 
 .card-icon {
-    width: 96px;
-    height: 96px;
-    background-color: #252931;
+    width: 196px;
+    height: 196px;
     border-radius: 12px;
     
     display: flex;
@@ -81,15 +96,15 @@
 }
 
 .card-icon img {
-    width: 64px;
-    height: 64px;
+    width: 164px;
+    height: 164px;
     object-fit: contain;
 }
 
 /* ==================== CARD TITLE ===================== */
 
 .card-title {
-    font-size: 16px;
+    font-size: 35px;
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -121,3 +136,4 @@
         padding: 60px 24px;
     }
 }
+
