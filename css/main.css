@@ -17,7 +17,7 @@
 @import url('./components/header.css');
 @import url('./components/panels.css');
 @import url('./components/terminal.css');
+@import url('./components/learning.css');
 
 /* Layouts spécifiques */
 @import url('./layouts/hero.css');
-@import url('./components/learning.css');

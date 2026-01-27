@@ -1,0 +1,123 @@
+/* ===================================================== */
+/* ============== LEARNING SECTION ===================== */
+/* ===================================================== */
+
+.learning-section {
+    padding: 80px 32px;
+    background-color: #10131371;
+}
+
+.learning-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.learning-title {
+    font-size: clamp(48px, 8vw, 16px);
+    font-weight: 700;
+    font-family: 'Organetto', sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    text-align: center;
+    margin: 0 0 64px 0;
+}
+
+/* =================== LEARNING CARDS ================== */
+
+.learning-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+.learning-card {
+    /* Fond glass avec dégradé semi-transparent */
+    background: linear-gradient(
+        135deg,
+        rgba(66, 60, 148, 0.466) 0%,
+        rgba(255, 255, 255, 0.05) 100%
+    );
+
+    /* Bordure et rayon */
+    border-radius: 16px;
+    border: 2px solid rgba(38, 0, 255, 0.2);
+
+    /* Effet de flou */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    /* Padding & flex (comme avant) */
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    /* Transition hover */
+    transition: 
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.learning-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+}
+
+/* ==================== CARD ICON ====================== */
+
+.card-icon {
+    width: 96px;
+    height: 96px;
+    background-color: #252931;
+    border-radius: 12px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    margin-bottom: 24px;
+}
+
+.card-icon img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+}
+
+/* ==================== CARD TITLE ===================== */
+
+.card-title {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    
+    margin: 0 0 16px 0;
+}
+
+/* ================= CARD DESCRIPTION ================== */
+
+.card-description {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #B8BCC2;
+    
+    margin: 0;
+}
+
+/* =================== RESPONSIVE ====================== */
+
+@media (max-width: 968px) {
+    .learning-cards {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    .learning-section {
+        padding: 60px 24px;
+    }
+}
