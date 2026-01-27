@@ -3,6 +3,22 @@
  * Gère l'animation canvas des lignes ondulantes
  */
 
+const mouse = {
+    x: -9999,
+    y: -9999,
+    radius: 520 
+};
+
+window.addEventListener("mousemove", (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY + window.scrollY; // IMPORTANT pour le scroll
+});
+
+window.addEventListener("mouseleave", () => {
+    mouse.x = -9999;
+    mouse.y = -9999;
+});
+
 class WaveLine {
     constructor(canvasWidth, canvasHeight) {
         this.canvasWidth = canvasWidth;
@@ -11,11 +27,12 @@ class WaveLine {
         this.numPoints = 150;
         this.amplitude = Math.random() * 150 + 100;
         this.frequency = Math.random() * 0.008 + 0.002;
-        this.speed = Math.random() * 0.1 + 0.3;
+        this.speed = 0.15;
         this.offset = Math.random() * Math.PI * 2;
         this.yBase = Math.random() * canvasHeight;
         this.opacity = Math.random() * 0.15 + 0.08; 
         this.direction = Math.random() > 0.5 ? 1 : -1;
+        this.lineWidth = Math.random() * 2 + 0.5;
         
         // Type de ligne: horizontal ou vertical
         this.isHorizontal = Math.random() > 0.3;
@@ -36,30 +53,39 @@ class WaveLine {
     update(time) {
         for (let i = 0; i < this.numPoints; i++) {
             const t = i / this.numPoints;
-            
+
+            const wave1 = Math.sin(t * Math.PI * 4 + time * this.speed + this.offset) * this.amplitude * 0.5;
+            const wave2 = Math.cos(t * Math.PI * 6 - time * this.speed * 0.7) * this.amplitude * 0.3;
+            const wave3 = Math.sin(t * Math.PI * 2 + time * this.speed * 1.2) * this.amplitude * 0.2;
+
+            let px, py;
             if (this.isHorizontal) {
-                // Lignes horizontales ondulantes
-                const x = t * this.canvasWidth;
-                const wave1 = Math.sin(t * Math.PI * 4 + time * this.speed + this.offset) * this.amplitude * 0.5;
-                const wave2 = Math.cos(t * Math.PI * 6 - time * this.speed * 0.7) * this.amplitude * 0.3;
-                const wave3 = Math.sin(t * Math.PI * 2 + time * this.speed * 1.2) * this.amplitude * 0.2;
-                const y = this.yBase + wave1 + wave2 + wave3;
-                
-                this.points[i].x = x;
-                this.points[i].y = y;
+            px = t * this.canvasWidth;
+            py = this.yBase + wave1 + wave2 + wave3;
             } else {
-                // Lignes verticales ondulantes
-                const y = t * this.canvasHeight;
-                const wave1 = Math.sin(t * Math.PI * 4 + time * this.speed + this.offset) * this.amplitude * 0.5;
-                const wave2 = Math.cos(t * Math.PI * 6 - time * this.speed * 0.7) * this.amplitude * 0.3;
-                const wave3 = Math.sin(t * Math.PI * 2 + time * this.speed * 1.2) * this.amplitude * 0.2;
-                const x = this.xBase + wave1 + wave2 + wave3;
-                
-                this.points[i].x = x;
-                this.points[i].y = y;
+            px = this.xBase + wave1 + wave2 + wave3;
+            py = t * this.canvasHeight;
+            }
+
+            /* ===== Interaction curseur ===== */
+
+            const dx = px - mouse.x;
+            const dy = py - mouse.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+
+            if (dist > 0 && dist < mouse.radius) {
+            const force = (mouse.radius - dist) / mouse.radius;
+            const strength = force * 35;
+
+            px += (dx / dist) * strength;
+            py += (dy / dist) * strength;
+            }
+
+            this.points[i].x = px;
+            this.points[i].y = py;
             }
         }
-    }
     
     draw(ctx) {
         ctx.beginPath();
@@ -81,8 +107,8 @@ class WaveLine {
         );
         
         // Couleur violette pour correspondre au thème
-        ctx.strokeStyle = `rgba(124, 58, 237, ${this.opacity})`;
-        ctx.lineWidth = 1.5;
+        ctx.strokeStyle = `rgba(70, 10, 174, ${this.opacity})`;
+        ctx.lineWidth = this.lineWidth;
         ctx.stroke();
     }
     
@@ -100,13 +126,14 @@ export function initWaves() {
     if (!canvas) return;
     
     const ctx = canvas.getContext('2d');
-    
+    const pageHeight = document.documentElement.scrollHeight;
+
     canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.height = pageHeight;
 
     // Création de nombreuses lignes
     const lines = [];
-    const numLines = 25; // Réduit à 25 pour de meilleures performances
+    const numLines = 30;
     
     for (let i = 0; i < numLines; i++) {
         lines.push(new WaveLine(canvas.width, canvas.height));
@@ -134,7 +161,7 @@ export function initWaves() {
     // Gestion du redimensionnement
     window.addEventListener('resize', () => {
         canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        canvas.height = document.documentElement.scrollHeight;
         
         // Réinitialisation des lignes avec les nouvelles dimensions
         lines.forEach(line => {
