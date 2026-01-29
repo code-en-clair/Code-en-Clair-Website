@@ -62,8 +62,9 @@ header {
     top: 80px;
     left: 0;
     width: 100%;
-    padding: var(--spacing-xl) 0;
+    padding: var(--spacing-sm) 0 var(--spacing-lg);
     background-color: var(--bg-secondary);
+    
     opacity: 0;
     transform: translateY(-8px);
     pointer-events: none;
@@ -73,11 +74,13 @@ header {
 .header-panel > ul {
     list-style: none;
     margin: 0;
-    padding: var(--spacing-sm) var(--spacing-lg);
+    padding: 0 var(--spacing-lg);
 }
 
 .header-panel.is-open {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+    box-shadow: var(--shadow-panel-bottom);
     pointer-events: auto;
 }
