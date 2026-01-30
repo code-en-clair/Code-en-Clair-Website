@@ -19,6 +19,10 @@ window.addEventListener("mouseleave", () => {
     mouse.y = -9999;
 });
 
+const MAX_WIDTH = 1920;
+const MAX_HEIGHT = 2731;
+
+
 class WaveLine {
     constructor(canvasWidth, canvasHeight) {
         this.canvasWidth = canvasWidth;
@@ -128,8 +132,9 @@ export function initWaves() {
     const ctx = canvas.getContext('2d');
     const pageHeight = document.documentElement.scrollHeight;
 
-    canvas.width = window.innerWidth;
-    canvas.height = pageHeight;
+    canvas.width = Math.min(window.innerWidth, MAX_WIDTH);
+    canvas.height = Math.min(pageHeight, MAX_HEIGHT);
+
 
     // Création de nombreuses lignes
     const lines = [];
@@ -160,9 +165,9 @@ export function initWaves() {
 
     // Gestion du redimensionnement
     window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = document.documentElement.scrollHeight;
-        
+        canvas.width = Math.min(window.innerWidth, MAX_WIDTH);
+        canvas.height = Math.min(document.documentElement.scrollHeight, MAX_HEIGHT);
+
         // Réinitialisation des lignes avec les nouvelles dimensions
         lines.forEach(line => {
             line.resize(canvas.width, canvas.height);
