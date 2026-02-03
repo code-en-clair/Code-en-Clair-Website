@@ -34,7 +34,7 @@ class WaveLine {
         this.speed = 0.15;
         this.offset = Math.random() * Math.PI * 2;
         this.yBase = Math.random() * canvasHeight;
-        this.opacity = Math.random() * 0.15 + 0.08; 
+        this.opacity = Math.random() * 0.35 + 0.15; 
         this.direction = Math.random() > 0.5 ? 1 : -1;
         this.lineWidth = Math.random() * 2 + 0.5;
         
