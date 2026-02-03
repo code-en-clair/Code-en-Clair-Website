@@ -1,27 +1,11 @@
 /**
  * Module d'animation des vagues
  * Gère l'animation canvas des lignes ondulantes
+ * (Version sans interaction souris)
  */
-
-const mouse = {
-    x: -9999,
-    y: -9999,
-    radius: 520 
-};
-
-window.addEventListener("mousemove", (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY + window.scrollY; // IMPORTANT pour le scroll
-});
-
-window.addEventListener("mouseleave", () => {
-    mouse.x = -9999;
-    mouse.y = -9999;
-});
 
 const MAX_WIDTH = 1920;
 const MAX_HEIGHT = 2731;
-
 
 class WaveLine {
     constructor(canvasWidth, canvasHeight) {
@@ -63,33 +47,21 @@ class WaveLine {
             const wave3 = Math.sin(t * Math.PI * 2 + time * this.speed * 1.2) * this.amplitude * 0.2;
 
             let px, py;
+            
+            // Calcul de la position de base avec les ondes
             if (this.isHorizontal) {
-            px = t * this.canvasWidth;
-            py = this.yBase + wave1 + wave2 + wave3;
+                px = t * this.canvasWidth;
+                py = this.yBase + wave1 + wave2 + wave3;
             } else {
-            px = this.xBase + wave1 + wave2 + wave3;
-            py = t * this.canvasHeight;
+                px = this.xBase + wave1 + wave2 + wave3;
+                py = t * this.canvasHeight;
             }
 
-            /* ===== Interaction curseur ===== */
-
-            const dx = px - mouse.x;
-            const dy = py - mouse.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-
-
-            if (dist > 0 && dist < mouse.radius) {
-            const force = (mouse.radius - dist) / mouse.radius;
-            const strength = force * 35;
-
-            px += (dx / dist) * strength;
-            py += (dy / dist) * strength;
-            }
-
+            // Assignation directe sans calcul de force souris
             this.points[i].x = px;
             this.points[i].y = py;
-            }
         }
+    }
     
     draw(ctx) {
         ctx.beginPath();
@@ -134,7 +106,6 @@ export function initWaves() {
 
     canvas.width = Math.min(window.innerWidth, MAX_WIDTH);
     canvas.height = Math.min(pageHeight, MAX_HEIGHT);
-
 
     // Création de nombreuses lignes
     const lines = [];
