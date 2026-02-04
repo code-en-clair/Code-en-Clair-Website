@@ -1,0 +1,37 @@
+/* ===================================================== */
+/* ======================= FONTS ======================= */
+/* ===================================================== */
+
+/* ===================== INTER VARIABLE ===================== */
+@font-face {
+  font-family: "InterVar";
+  src: url("/assets/fonts/inter/Inter-Variable.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ======================= ORGANETTO ======================== */
+@font-face {
+  font-family: "Organetto";
+  src: url("/assets/fonts/organetto/Organetto-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Organetto";
+  src: url("/assets/fonts/organetto/Organetto-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Organetto";
+  src: url("/assets/fonts/organetto/Organetto-ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}

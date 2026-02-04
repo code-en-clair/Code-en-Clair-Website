@@ -11,6 +11,9 @@
     padding: 120px var(--spacing-lg) var(--spacing-2xl);
     position: relative;
     overflow: hidden;
+
+    /* Assure un stacking propre au-dessus des backgrounds (waves/canvas) */
+    isolation: isolate;
 }
 
 .hero-content {
@@ -20,19 +23,29 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    /* Important pour que le z-index prenne effet */
+    position: relative;
 }
 
 /* Reset text-align pour le terminal */
 .terminal-container {
     text-align: left;
+
+    /* Important pour rester au-dessus des backgrounds */
+    position: relative;
+    z-index: 1;
 }
 
 .hero-title {
     font-size: clamp(48px, 8vw, 96px);
+    font-family: "Organetto", sans-serif;
     font-weight: 700;
-    font-family: 'Organetto', sans-serif;
     letter-spacing: 0.02em;
-    color: var(--text-primary);
+
+    /* Fallback pour éviter un texte invisible si la variable change */
+    color: var(--text-primary, #0b0d12);
+
     margin: 0;
     margin-bottom: var(--spacing-md);
     line-height: 1.1;
@@ -48,10 +61,22 @@
 
 .hero-subtitle {
     font-size: clamp(18px, 2.5vw, 28px);
-    font-weight: 300;
-    font-family: 'Organetto', sans-serif;
-    letter-spacing: 0.05em;
-    color: var(--text-secondary);
+    font-family: "Organetto", sans-serif;
+
+    /*
+      AVANT: font-weight: 300 (n'existe plus chez toi)
+      => On recrée le même rendu "léger" sans dépendre de la synthèse:
+      - on utilise 400 (dispo)
+      - on baisse légèrement l'opacité
+      - on augmente un peu le letter-spacing
+    */
+    font-weight: 400;
+    letter-spacing: 0.06em;
+
+    /* Fallback + rendu "light" proche du 300 d'avant */
+    color: var(--text-secondary, rgba(11, 13, 18, 0.72));
+    opacity: 0.85;
+
     margin: 0;
     line-height: 1.5;
     animation: fadeInUp 0.8s ease-out 0.2s backwards;

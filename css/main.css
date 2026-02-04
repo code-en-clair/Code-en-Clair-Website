@@ -1,25 +1,28 @@
 /* ===================================================== */
-/* ==================== MAIN CSS ====================== */
-/* =================== ENTRY POINT ==================== */
+/* ====================== MAIN CSS ===================== */
+/* ===================== ENTRY POINT =================== */
 /* ===================================================== */
 
 /* Variables et tokens globaux */
-@import url('./variables.css');
+@import url("./variables.css");
+
+/* Polices */
+@import url("./utils/fonts.css");
 
 /* Animations réutilisables */
-@import url('./utils/animations.css');
-@import url('./utils/waves.css');
+@import url("./utils/animations.css");
+@import url("./utils/waves.css");
 
 /* Base et reset */
-@import url('./layouts/base.css');
+@import url("./layouts/base.css");
 
 /* Composants */
-@import url('./components/header.css');
-@import url('./components/panels.css');
-@import url('./components/terminal.css');
-@import url('./components/learning.css');
-@import url('./components/learning-paths.css');
-@import url('./components/footer.css');
+@import url("./components/header.css");
+@import url("./components/panels.css");
+@import url("./components/terminal.css");
+@import url("./components/learning.css");
+@import url("./components/learning-paths.css");
+@import url("./components/footer.css");
 
 /* Layouts spécifiques */
-@import url('./layouts/hero.css');
+@import url("./layouts/hero.css");

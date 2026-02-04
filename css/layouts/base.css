@@ -9,7 +9,7 @@
 body {
     margin: 0;
     background-color: var(--bg-primary);
-    font-family: 'Inter', sans-serif;
+    font-family: "InterVar", Arial, sans-serif;
 }
 
 /* ===================== PAGE ========================== */
@@ -26,10 +26,3 @@ body {
 /* ===================== CUSTOM FONT =================== */
 /* ===================================================== */
 
-@font-face {
-    font-family: 'Organetto';
-    src: url('../../assets/font/Fontspring-DEMO-organetto-extlight.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}

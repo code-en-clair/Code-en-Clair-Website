@@ -1,14 +1,10 @@
-
-
 /* ===================================================== */
 /* ======================= FOOTER ====================== */
 /* ===================================================== */
 
 .site-footer {
-    font-family: 'Inter', sans-serif;
-    box-sizing: border-box;
     background-color: var(--bg-secondary);
-    color: #FFFFFF;
+    text-transform: uppercase;
 }
 
 /* ================ SECTION SUPÉRIEURE ================ */
@@ -68,18 +64,26 @@
     gap: 32px;
 }
 
+/* UNIQUEMENT LES 4 LIENS */
 .footer-nav-list a {
+    font-family: "InterVar", Arial, sans-serif;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 700;
+    line-height: 1;
+
     color: #FFFFFF;
     text-decoration: none;
-    opacity: 0.85;
+    opacity: 1;
+
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
+    text-rendering: auto;
 
     transition: opacity 0.2s ease;
 }
 
 .footer-nav-list a:hover {
-    opacity: 1;
+    opacity: 0.85;
 }
 
 /* ================ LOGO FOOTER ======================= */

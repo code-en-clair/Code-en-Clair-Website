@@ -21,7 +21,7 @@
 
 /* ================= RESSOURCES PANEL ================= */
 
-.resources-panel {
+.formations-panel {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--spacing-lg);
@@ -30,13 +30,13 @@
     gap: var(--spacing-3xl);
 }
 
-.resources-column {
+.formations-column {
     display: flex;
     flex-direction: column;
     padding-top: var(--spacing-md);
 }
 
-.resources-title {
+.formations-title {
     font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.08em;
@@ -45,7 +45,7 @@
     margin: 0;
 }
 
-.resources-list {
+.formations-list {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -53,17 +53,17 @@
     flex-direction: column;
 }
 
-.resources-list li:first-child {
+.formations-list li:first-child {
     margin-top: var(--spacing-md);
 }
 
 /* ========== COLONNE GAUCHE : APPRENDRE =============== */
 
-.resources-column:first-child .resources-list {
+.formations-column:first-child .formations-list {
     gap: 24px;
 }
 
-.resources-column:first-child .resources-list a {
+.formations-column:first-child .formations-list a {
     display: inline-flex;
     align-items: center;
     font-size: 19px;
@@ -76,18 +76,18 @@
     transition: opacity var(--transition-fast), transform var(--transition-fast);
 }
 
-.resources-column:first-child .resources-list a:hover {
+.formations-column:first-child .formations-list a:hover {
     opacity: 1;
     transform: translateX(6px);
 }
 
 /* ========= COLONNE DROITE : PRATIQUER ================ */
 
-.resources-column:last-child .resources-list {
+.formations-column:last-child .formations-list {
     gap: 24px;
 }
 
-.resources-column:last-child .resources-list a {
+.formations-column:last-child .formations-list a {
     display: inline-flex;
     align-items: center;
     font-size: 15px;
@@ -98,7 +98,7 @@
     transition: opacity var(--transition-fast), transform var(--transition-fast);
 }
 
-.resources-column:last-child .resources-list a:hover {
+.formations-column:last-child .formations-list a:hover {
     opacity: 1;
     transform: translateX(3px);
 }
