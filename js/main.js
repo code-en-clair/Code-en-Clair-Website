@@ -6,6 +6,7 @@
 import { initHeader } from './modules/header.js';
 import { initTerminal } from './modules/terminal.js';
 import { initWaves } from './modules/waves.js';
+import { initScrollReveal } from './modules/scroll-reveal.js';
 
 // Initialiser au chargement du DOM
 document.addEventListener("DOMContentLoaded", () => {
@@ -14,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initHeader();
     initTerminal();
     initWaves();
-    
+    initScrollReveal();
+
     console.log("✅ All modules initialized");
 });

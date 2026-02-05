@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test V2 - Editorial Horizontal Scroll</title>
+    <link rel="stylesheet" href="v2-style.css" />
+  </head>
+  <body>
+
+    <!-- Debug overlay -->
+    <div id="debug">Loading...</div>
+
+    <!-- Spacer hero -->
+    <section class="spacer">
+      Scroll vers le bas pour decouvrir les formations
+    </section>
+
+    <!-- HORIZONTAL SCROLL SECTION -->
+    <div class="horizontal-scroll-track" id="track">
+      <section class="pinned-section">
+        <div class="horizontal-strip" id="strip">
+
+          <!-- =========================================================
+               CANVAS 1 — PYTHON
+               Composition : logo grand en haut a droite,
+               titre massif en bas a gauche, texte au centre-droit
+               ========================================================= -->
+          <div class="canvas">
+            <!-- Decorative -->
+            <div class="section-number" style="top: 5%; left: 6%;">01</div>
+            <div class="deco-circle" style="width: 400px; height: 400px; bottom: -10%; right: 15%;"></div>
+            <div class="deco-line" style="width: 1px; height: 180px; top: 12%; left: 52%;"></div>
+
+            <!-- Logo — grand, haut-droite -->
+            <div class="floating-logo" style="top: 8%; right: 12%;">
+              <img src="../../assets/img/python-logo.png" alt="Python" style="width: 200px; height: 200px;" />
+            </div>
+
+            <!-- Tagline -->
+            <div class="tagline" style="top: 15%; left: 8%;">Formation 01</div>
+
+            <!-- Huge title — bas-gauche -->
+            <div class="display-title" style="bottom: 12%; left: 8%; font-size: clamp(60px, 10vw, 130px);">
+              PYTHON
+            </div>
+
+            <!-- Body text — centre-droit -->
+            <p class="body-text" style="top: 40%; left: 54%;">
+              Apprends a coder avec Python, le langage polyvalent ideal pour debuter en programmation et creer tes premieres applications.
+            </p>
+
+            <!-- Topics — centre-gauche -->
+            <ul class="topic-list" style="top: 42%; left: 8%;">
+              <li>Variables, boucles et fonctions</li>
+              <li>Listes, dictionnaires, tuples</li>
+              <li>Programmation orientee objet</li>
+              <li>Manipulation de fichiers</li>
+              <li>Mini-projets concrets</li>
+            </ul>
+
+            <!-- Level tag -->
+            <div class="level-tag" style="bottom: 10%; right: 10%;">Debutant</div>
+
+            <div class="canvas-separator"></div>
+          </div>
+
+          <!-- =========================================================
+               CANVAS 2 — WEB / FRONT-END
+               Composition : logo petit en bas-gauche,
+               titre massif en haut-droite, texte au centre-gauche
+               ========================================================= -->
+          <div class="canvas">
+            <!-- Decorative -->
+            <div class="section-number" style="bottom: 5%; right: 6%;">02</div>
+            <div class="deco-circle" style="width: 300px; height: 300px; top: 5%; left: 30%;"></div>
+            <div class="deco-line" style="width: 200px; height: 1px; bottom: 35%; left: 8%;"></div>
+            <div class="deco-line" style="width: 1px; height: 120px; top: 20%; right: 38%;"></div>
+
+            <!-- Logo — petit, bas-gauche -->
+            <div class="floating-logo" style="bottom: 12%; left: 8%;">
+              <img src="../../assets/img/html-logo.png" alt="HTML" style="width: 120px; height: 120px;" />
+            </div>
+
+            <!-- Tagline -->
+            <div class="tagline" style="top: 10%; right: 8%;">Formation 02</div>
+
+            <!-- Huge title — haut-droite -->
+            <div class="display-title" style="top: 14%; right: 8%; font-size: clamp(50px, 9vw, 110px); text-align: right;">
+              FRONT<br>END
+            </div>
+
+            <!-- Body text — centre-gauche -->
+            <p class="body-text" style="top: 35%; left: 8%;">
+              Deviens developpeur Front-End en maitrisant la creation de sites modernes avec HTML, CSS et JavaScript.
+            </p>
+
+            <!-- Topics — droite, milieu-bas -->
+            <ul class="topic-list" style="top: 55%; right: 8%; text-align: right;">
+              <li>HTML semantique et accessibilite</li>
+              <li>CSS Flexbox, Grid, responsive</li>
+              <li>Animations et transitions</li>
+              <li>JavaScript DOM et events</li>
+              <li>Projet : portfolio interactif</li>
+            </ul>
+
+            <!-- Level tag -->
+            <div class="level-tag" style="bottom: 14%; left: 42%;">Debutant / Intermediaire</div>
+
+            <div class="canvas-separator"></div>
+          </div>
+
+          <!-- =========================================================
+               CANVAS 3 — ALGORITHMIQUE EN C
+               Composition : logo moyen au centre-haut,
+               titre massif split gauche, texte bas-droite
+               ========================================================= -->
+          <div class="canvas">
+            <!-- Decorative -->
+            <div class="section-number" style="top: 10%; right: 10%;">03</div>
+            <div class="deco-circle" style="width: 500px; height: 500px; top: -15%; left: -8%;"></div>
+            <div class="deco-line" style="width: 1px; height: 250px; bottom: 10%; right: 25%;"></div>
+            <div class="deco-line" style="width: 140px; height: 1px; top: 48%; left: 5%;"></div>
+
+            <!-- Logo — moyen, centre-haut decale droite -->
+            <div class="floating-logo" style="top: 10%; left: 50%; transform: translateX(-50%);">
+              <img src="../../assets/img/c-logo.png" alt="C" style="width: 160px; height: 160px;" />
+            </div>
+
+            <!-- Tagline -->
+            <div class="tagline" style="bottom: 18%; left: 8%;">Formation 03</div>
+
+            <!-- Huge title — gauche, milieu -->
+            <div class="display-title" style="top: 38%; left: 5%; font-size: clamp(45px, 8vw, 100px);">
+              ALGO<br>RITHMIQUE
+            </div>
+
+            <!-- Body text — bas-droite -->
+            <p class="body-text" style="bottom: 18%; right: 8%;">
+              Maitrise les fondements de l'informatique : structures de donnees, algorithmes et gestion memoire avec le langage C.
+            </p>
+
+            <!-- Topics — haut-droite -->
+            <ul class="topic-list" style="top: 15%; right: 8%;">
+              <li>Pointeurs et allocation memoire</li>
+              <li>Listes chainees, piles, files</li>
+              <li>Algorithmes de tri et recherche</li>
+              <li>Recursivite et complexite</li>
+              <li>Projet : mini-shell</li>
+            </ul>
+
+            <!-- Level tag -->
+            <div class="level-tag" style="top: 52%; right: 12%;">Intermediaire</div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- Spacer apres -->
+    <section class="spacer">
+      Section suivante (scroll normal repris)
+    </section>
+
+    <script src="v2-script.js"></script>
+  </body>
+</html>

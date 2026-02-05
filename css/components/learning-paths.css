@@ -1,16 +1,9 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-
 .learning-paths {
     min-height: 70vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0px 0px;
+    padding: 80px 32px;
 }
 
 .learning-paths-container {
@@ -19,10 +12,10 @@
 }
 
 .learning-paths-title {
-    font-size: clamp(53px, 8vw, 24px);
+    font-size: clamp(24px, 8vw, 53px);
     font-weight: 700;
     font-family: 'Organetto', sans-serif;
-    color: #FFFFFF;
+    color: var(--text-primary);
     letter-spacing: 0.02em;
     line-height: 1.1;
     margin-bottom: 32px;
@@ -38,7 +31,7 @@
     font-size: clamp(1rem, 2vw, 1.25rem);
     font-weight: 400;
     line-height: 1.6;
-    color: #b8bdc8;
+    color: var(--text-secondary);
     margin-bottom: 48px;
     max-width: 800px;
     margin-left: auto;
@@ -46,26 +39,46 @@
 }
 
 .learning-paths-cta {
+    display: inline-block;
+    font-family: "InterVar", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-primary);
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
+    text-rendering: auto;
+
     background: linear-gradient(135deg, #2376d4 0%, #0d3563 100%);
-    color: #ffffff;
-    font-size: 1.125rem;
-    font-weight: 500;
     padding: 18px 42px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s ease;
     box-shadow: 0 4px 16px rgba(91, 159, 239, 0.3);
+    transition: all 0.3s ease;
+    animation: cta-glow 3s ease-in-out infinite;
 }
 
 .learning-paths-cta:hover {
-    background: linear-gradient(135deg, #2376d4 0%, #0d3563 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 24px rgba(91, 159, 239, 0.4);
+    background: linear-gradient(135deg, #3a8be6 0%, #1a4a8a 100%);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 24px rgba(91, 159, 239, 0.5);
+    animation: none;
 }
 
 .learning-paths-cta:active {
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+}
+
+@keyframes cta-glow {
+    0%, 100% {
+        box-shadow: 0 4px 16px rgba(91, 159, 239, 0.3);
+    }
+    50% {
+        box-shadow: 0 4px 24px rgba(91, 159, 239, 0.5);
+    }
 }
 
 /* Responsive adjustments */

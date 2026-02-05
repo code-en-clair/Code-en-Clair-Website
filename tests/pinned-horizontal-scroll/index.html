@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test - Pinned Horizontal Scroll</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <!-- Debug overlay -->
+    <div id="debug">Loading...</div>
+
+    <!-- Spacer hero -->
+    <section class="spacer">
+      Scroll vers le bas pour voir l'animation
+    </section>
+
+    <!-- HORIZONTAL SCROLL SECTION -->
+    <div class="horizontal-scroll-track" id="track">
+      <section class="pinned-section">
+        <div class="pinned-layout">
+          <div class="pinned-left">
+            <h2>CE QUE TU VAS APPRENDRE</h2>
+          </div>
+
+          <div class="pinned-cards-wrapper">
+            <div class="pinned-cards" id="pinnedCards">
+
+              <div class="card">
+                <div class="card-icon">
+                  <img src="../../assets/img/python-logo.png" alt="Python" />
+                </div>
+                <h3>Python & Developpement</h3>
+                <p>Apprends a coder avec Python, le langage polyvalent ideal pour debuter en programmation.</p>
+              </div>
+
+              <div class="card">
+                <div class="card-icon">
+                  <img src="../../assets/img/html-logo.png" alt="HTML" />
+                </div>
+                <h3>Maitrise du Front-End</h3>
+                <p>Deviens developpeur Front-End en maitrisant la creation de sites modernes avec HTML, CSS et JS.</p>
+              </div>
+
+              <div class="card">
+                <div class="card-icon">
+                  <img src="../../assets/img/c-logo.png" alt="C" />
+                </div>
+                <h3>Algorithmique en C</h3>
+                <p>Maitrise les fondements de l'informatique : structures de donnees, algorithmes et gestion memoire.</p>
+              </div>
+
+              <div class="card">
+                <div class="card-icon">
+                  <svg width="48" height="48" viewBox="0 0 48 48"><rect width="48" height="48" rx="8" fill="#F7DF1E"/><text x="24" y="34" text-anchor="middle" font-size="22" font-weight="bold" fill="#000">JS</text></svg>
+                </div>
+                <h3>JavaScript Moderne</h3>
+                <p>Decouvre ES6+, les promesses, async/await et les APIs du navigateur pour creer des apps web.</p>
+              </div>
+
+              <div class="card">
+                <div class="card-icon">
+                  <svg width="48" height="48" viewBox="0 0 48 48"><rect width="48" height="48" rx="8" fill="#20232A"/><text x="24" y="34" text-anchor="middle" font-size="16" font-weight="bold" fill="#61DAFB">React</text></svg>
+                </div>
+                <h3>Frameworks Front-End</h3>
+                <p>Apprends a construire des interfaces modernes et reactives avec React, Vue ou Angular.</p>
+              </div>
+
+              <div class="card">
+                <div class="card-icon">
+                  <svg width="48" height="48" viewBox="0 0 48 48"><rect width="48" height="48" rx="8" fill="#336791"/><text x="24" y="34" text-anchor="middle" font-size="16" font-weight="bold" fill="#FFF">SQL</text></svg>
+                </div>
+                <h3>Bases de Donnees</h3>
+                <p>Comprends les bases de donnees relationnelles, le SQL et les principes de modelisation.</p>
+              </div>
+
+              <div class="card">
+                <div class="card-icon">
+                  <svg width="48" height="48" viewBox="0 0 48 48"><rect width="48" height="48" rx="8" fill="#F05032"/><text x="24" y="34" text-anchor="middle" font-size="16" font-weight="bold" fill="#FFF">Git</text></svg>
+                </div>
+                <h3>Git & Collaboration</h3>
+                <p>Maitrise le versioning avec Git et GitHub pour travailler en equipe comme un pro.</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Spacer apres -->
+    <section class="spacer">
+      Section suivante (scroll normal repris)
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>

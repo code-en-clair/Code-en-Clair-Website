@@ -50,7 +50,7 @@ header {
 
   text-transform: uppercase;
 
-  color: #FFFFFF;
+  color: var(--text-primary);
   text-decoration: none;
   opacity: 1;
   -webkit-font-smoothing: auto;
@@ -92,12 +92,6 @@ header {
     filter: blur(0);
     box-shadow: var(--shadow-panel-bottom);
     pointer-events: auto;
-}
-
-.header-container{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 /* Groupe droite = menu + switch */
