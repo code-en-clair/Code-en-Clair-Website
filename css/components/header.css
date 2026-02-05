@@ -8,7 +8,6 @@ header {
     z-index: var(--z-header);
     height: 80px;
     background-color: var(--bg-secondary);
-    position: relative;
 }
 
 .header-container {
@@ -44,11 +43,21 @@ header {
 }
 
 .nav-item > a {
-    font-size: 15px;
-    font-weight: 400;
-    color: var(--text-primary);
-    text-decoration: none;
-    transition: opacity var(--transition-fast);
+  font-family: "InterVar", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+
+  text-transform: uppercase;
+
+  color: #FFFFFF;
+  text-decoration: none;
+  opacity: 1;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  text-rendering: auto;
+
+  transition: opacity 0.2s ease;
 }
 
 .nav-item > a:hover {
