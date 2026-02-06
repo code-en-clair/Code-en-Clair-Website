@@ -6,6 +6,7 @@
     opacity: 0;
     transform: translateY(40px);
     pointer-events: none;
+    background-color: var(--bg-secondary);
     transition:
         max-height var(--transition-slow),
         opacity var(--transition-slow),
@@ -17,6 +18,8 @@
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
+    padding-top: var(--spacing-md);
+    padding-bottom: var(--spacing-xl);
 }
 
 /* ================= RESSOURCES PANEL ================= */
@@ -33,7 +36,7 @@
 .formations-column {
     display: flex;
     flex-direction: column;
-    padding-top: var(--spacing-md);
+    padding-top: var(--spacing-sm);
 }
 
 .formations-title {
@@ -42,7 +45,7 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--text-muted);
-    margin: 0;
+    margin: 0 0 var(--spacing-sm) 0;
 }
 
 .formations-list {
@@ -54,31 +57,57 @@
 }
 
 .formations-list li:first-child {
-    margin-top: var(--spacing-md);
+    margin-top: 0;
 }
 
 /* ========== COLONNE GAUCHE : APPRENDRE =============== */
 
 .formations-column:first-child .formations-list {
-    gap: 24px;
+    gap: 20px;
 }
 
-.formations-column:first-child .formations-list a {
-    display: inline-flex;
+/* Formation cards avec visuels (style Apple) */
+.formation-card {
+    display: flex;
     align-items: center;
-    font-size: 19px;
-    font-weight: 600;
-    line-height: 1.35;
-    letter-spacing: -0.01em;
-    color: var(--text-primary);
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
     text-decoration: none;
-    opacity: 0.95;
-    transition: opacity var(--transition-fast), transform var(--transition-fast);
+    border-radius: 8px;
+    transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.formations-column:first-child .formations-list a:hover {
-    opacity: 1;
-    transform: translateX(6px);
+.formation-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(4px);
+}
+
+.formation-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 10px rgba(91, 159, 239, 0.2));
+}
+
+.formation-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.formation-name {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+.formation-desc {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.4;
 }
 
 /* ========= COLONNE DROITE : PRATIQUER ================ */
@@ -117,7 +146,7 @@
 .support-column {
     display: flex;
     flex-direction: column;
-    padding-top: var(--spacing-md);
+    padding-top: var(--spacing-sm);
 }
 
 .support-title {
@@ -126,7 +155,7 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--text-muted);
-    margin: 0;
+    margin: 0 0 var(--spacing-sm) 0;
 }
 
 .support-list {
@@ -138,7 +167,7 @@
 }
 
 .support-list li:first-child {
-    margin-top: var(--spacing-md);
+    margin-top: 0;
 }
 
 /* ========== COLONNE GAUCHE : NOUS CONTACTER =============== */
