@@ -13,8 +13,8 @@
 
 .learning-paths-title {
     font-size: clamp(24px, 8vw, 53px);
-    font-weight: 700;
-    font-family: 'Organetto', sans-serif;
+    font-weight: 400;
+    font-family: 'OrganettoSemiExt', sans-serif;
     color: var(--text-primary);
     letter-spacing: 0.02em;
     line-height: 1.1;

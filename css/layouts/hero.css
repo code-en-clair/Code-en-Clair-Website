@@ -38,10 +38,11 @@
 }
 
 .hero-title {
-    font-size: clamp(48px, 8vw, 96px);
-    font-family: "Organetto", sans-serif;
-    font-weight: 200;
+    font-size: clamp(48px, 8vw, 90px);
+    font-family: "OrganettoSemiExp", sans-serif;
+    font-weight: 400;
     letter-spacing: 0.02em;
+    text-align: center;
 
     /* Fallback pour éviter un texte invisible si la variable change */
     color: var(--text-primary, #0b0d12);
@@ -61,7 +62,7 @@
 
 .hero-subtitle {
     font-size: clamp(18px, 2.5vw, 28px);
-    font-family: "Organetto", sans-serif;
+    font-family: "OrganettoSemiExt", sans-serif;
 
     /*
       AVANT: font-weight: 300 (n'existe plus chez toi)
@@ -72,6 +73,7 @@
     */
     font-weight: 200;
     letter-spacing: 0.06em;
+    text-align: center;
 
     /* Fallback + rendu "light" proche du 300 d'avant */
     color: var(--text-secondary, rgba(11, 13, 18, 0.72));

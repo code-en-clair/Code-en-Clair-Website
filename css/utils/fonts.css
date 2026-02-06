@@ -3,6 +3,7 @@
 /* ===================================================== */
 
 /* ===================== INTER VARIABLE ===================== */
+
 @font-face {
   font-family: "InterVar";
   src: url("/assets/fonts/inter/Inter-Variable.ttf") format("truetype");
@@ -11,10 +12,19 @@
   font-display: swap;
 }
 
-/* ======================= ORGANETTO ======================== */
+/* ======================= ORGANETTO (NORMAL) ======================== */
+
 @font-face {
   font-family: "Organetto";
-  src: url("/assets/fonts/organetto/Organetto-Thin.woff2") format("woff2");
+  src: url("/assets/fonts/organetto/normal/Organetto-Hair.woff2") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Organetto";
+  src: url("/assets/fonts/organetto/normal/Organetto-Thin.woff2") format("woff2");
   font-weight: 200;
   font-style: normal;
   font-display: swap;
@@ -22,15 +32,15 @@
 
 @font-face {
   font-family: "Organetto";
-  src: url("/assets/fonts/organetto/Organetto-Ext-Light.woff2") format("woff2");
-  font-weight: 200;
+  src: url("/assets/fonts/organetto/normal/Organetto-Ultra-Light.woff2") format("woff2");
+  font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
   font-family: "Organetto";
-  src: url("/assets/fonts/organetto/Organetto-Regular.woff2") format("woff2");
+  src: url("/assets/fonts/organetto/normal/Organetto-Light.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -38,24 +48,372 @@
 
 @font-face {
   font-family: "Organetto";
-  src: url("/assets/fonts/organetto/Organetto-Bold.woff2") format("woff2");
-  font-weight: 700;
+  src: url("/assets/fonts/organetto/normal/Organetto-Regular.woff2") format("woff2");
+  font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
   font-family: "Organetto";
-  src: url("/assets/fonts/organetto/Organetto-Ext-Light.woff2") format("woff2");
-  font-weight: 700;
+  src: url("/assets/fonts/organetto/normal/Organetto-Bold.woff2") format("woff2");
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
   font-family: "Organetto";
-  src: url("/assets/fonts/organetto/Organetto-ExtraBold.woff2") format("woff2");
-  font-weight: 800;
+  src: url("/assets/fonts/organetto/normal/Organetto-Ultra-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ======================= ORGANETTO (CONDENSED) ======================== */
+
+@font-face {
+  font-family: "OrganettoCnd";
+  src: url("/assets/fonts/organetto/condensed/Organetto-Cnd-Hair.woff2") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoCnd";
+  src: url("/assets/fonts/organetto/condensed/Organetto-Cnd-Thin.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoCnd";
+  src: url("/assets/fonts/organetto/condensed/Organetto-Cnd-Ultra-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoCnd";
+  src: url("/assets/fonts/organetto/condensed/Organetto-Cnd-Light.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoCnd";
+  src: url("/assets/fonts/organetto/condensed/Organetto-Cnd-Regular.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoCnd";
+  src: url("/assets/fonts/organetto/condensed/Organetto-Cnd-Bold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoCnd";
+  src: url("/assets/fonts/organetto/condensed/Organetto-Cnd-Ultra-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ======================= ORGANETTO (EXPANDED) ======================== */
+
+@font-face {
+  font-family: "OrganettoExp";
+  src: url("/assets/fonts/organetto/expanded/Organetto-Exp-Hair.woff2") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoExp";
+  src: url("/assets/fonts/organetto/expanded/Organetto-Exp-Thin.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoExp";
+  src: url("/assets/fonts/organetto/expanded/Organetto-Exp-Ultra-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoExp";
+  src: url("/assets/fonts/organetto/expanded/Organetto-Exp-Light.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoExp";
+  src: url("/assets/fonts/organetto/expanded/Organetto-Exp-Regular.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoExp";
+  src: url("/assets/fonts/organetto/expanded/Organetto-Exp-Bold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoExp";
+  src: url("/assets/fonts/organetto/expanded/Organetto-Exp-Ultra-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ======================= ORGANETTO (EXTRA) ======================== */
+
+@font-face {
+  font-family: "OrganettoExt";
+  src: url("/assets/fonts/organetto/extra/Organetto-Ext-Hair.woff2") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoExt";
+  src: url("/assets/fonts/organetto/extra/Organetto-Ext-Thin.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoExt";
+  src: url("/assets/fonts/organetto/extra/Organetto-Ext-Ultra-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoExt";
+  src: url("/assets/fonts/organetto/extra/Organetto-Ext-Light.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoExt";
+  src: url("/assets/fonts/organetto/extra/Organetto-Ext-Regular.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoExt";
+  src: url("/assets/fonts/organetto/extra/Organetto-Ext-Bold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoExt";
+  src: url("/assets/fonts/organetto/extra/Organetto-Ext-Ultra-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ======================= ORGANETTO (SEMI-EXPANDED) ======================== */
+
+@font-face {
+  font-family: "OrganettoSemiExp";
+  src: url("/assets/fonts/organetto/semi-expanded/Organetto-SemiExp-Hair.woff2") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoSemiExp";
+  src: url("/assets/fonts/organetto/semi-expanded/Organetto-SemiExp-Thin.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoSemiExp";
+  src: url("/assets/fonts/organetto/semi-expanded/Organetto-SemiExp-Ultra-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoSemiExp";
+  src: url("/assets/fonts/organetto/semi-expanded/Organetto-SemiExp-Light.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoSemiExp";
+  src: url("/assets/fonts/organetto/semi-expanded/Organetto-SemiExp-Regular.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoSemiExp";
+  src: url("/assets/fonts/organetto/semi-expanded/Organetto-SemiExp-Bold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoSemiExp";
+  src: url("/assets/fonts/organetto/semi-expanded/Organetto-SemiExp-Ultra-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ======================= ORGANETTO (SEMI-EXTRA) ======================== */
+
+@font-face {
+  font-family: "OrganettoSemiExt";
+  src: url("/assets/fonts/organetto/semi-extra/Organetto-SemiExt-Hair.woff2") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoSemiExt";
+  src: url("/assets/fonts/organetto/semi-extra/Organetto-SemiExt-Thin.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoSemiExt";
+  src: url("/assets/fonts/organetto/semi-extra/Organetto-SemiExt-Ultra-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoSemiExt";
+  src: url("/assets/fonts/organetto/semi-extra/Organetto-SemiExt-Light.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoSemiExt";
+  src: url("/assets/fonts/organetto/semi-extra/Organetto-SemiExt-Regular.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoSemiExt";
+  src: url("/assets/fonts/organetto/semi-extra/Organetto-SemiExt-Bold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoSemiExt";
+  src: url("/assets/fonts/organetto/semi-extra/Organetto-SemiExt-Ultra-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ======================= ORGANETTO (ULTRA-CONDENSED) ======================== */
+
+@font-face {
+  font-family: "OrganettoUltraCnd";
+  src: url("/assets/fonts/organetto/ultra-condensed/Organetto-UltraCnd-Hair.woff2") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoUltraCnd";
+  src: url("/assets/fonts/organetto/ultra-condensed/Organetto-UltraCnd-Thin.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoUltraCnd";
+  src: url("/assets/fonts/organetto/ultra-condensed/Organetto-UltraCnd-Ultra-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoUltraCnd";
+  src: url("/assets/fonts/organetto/ultra-condensed/Organetto-UltraCnd-Light.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoUltraCnd";
+  src: url("/assets/fonts/organetto/ultra-condensed/Organetto-UltraCnd-Regular.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoUltraCnd";
+  src: url("/assets/fonts/organetto/ultra-condensed/Organetto-UltraCnd-Bold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OrganettoUltraCnd";
+  src: url("/assets/fonts/organetto/ultra-condensed/Organetto-UltraCnd-Ultra-Bold.woff2") format("woff2");
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
