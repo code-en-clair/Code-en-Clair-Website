@@ -23,7 +23,7 @@ header {
 /* ======================= LOGO ======================== */
 
 .header-logo img {
-    height: 96px;
+    height: 40px;
     display: block;
 }
 
@@ -425,7 +425,7 @@ header.is-scrolled {
 }
 
 header.is-scrolled .header-logo img {
-  height: 72px;
+  height: 30px;
   transition: height 0.3s ease;
 }
 
@@ -465,3 +465,18 @@ header.is-scrolled ~ .mobile-menu {
   }
 }
 
+@media (max-width: 768px) {
+    header {
+        position: fixed;
+        width: 100%;
+    }
+    
+    body {
+        padding-top: 80px;
+    }
+  
+    body.header-scrolled {
+        padding-top: 60px;
+        transition: padding-top 0.3s ease;
+    }
+}
