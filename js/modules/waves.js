@@ -66,14 +66,14 @@ class WaveLine {
     draw(ctx) {
         ctx.beginPath();
         ctx.moveTo(this.points[0].x, this.points[0].y);
-        
+
         // Utilisation de courbes de Bézier pour un rendu fluide
         for (let i = 1; i < this.points.length - 2; i++) {
             const xc = (this.points[i].x + this.points[i + 1].x) / 2;
             const yc = (this.points[i].y + this.points[i + 1].y) / 2;
             ctx.quadraticCurveTo(this.points[i].x, this.points[i].y, xc, yc);
         }
-        
+
         // Derniers points
         ctx.quadraticCurveTo(
             this.points[this.numPoints - 2].x,
@@ -81,9 +81,15 @@ class WaveLine {
             this.points[this.numPoints - 1].x,
             this.points[this.numPoints - 1].y
         );
-        
-        // Couleur violette pour correspondre au thème
-        ctx.strokeStyle = `rgba(70, 10, 174, ${this.opacity})`;
+
+        // Couleur adaptée au thème
+        const isDarkTheme = !document.documentElement.hasAttribute('data-theme') ||
+                           document.documentElement.getAttribute('data-theme') === 'dark';
+        const color = isDarkTheme
+            ? `rgba(70, 10, 174, ${this.opacity})`  // Violet pour mode sombre
+            : `rgba(255, 200, 140, ${this.opacity})`; // Violet plus clair pour mode clair
+
+        ctx.strokeStyle = color;
         ctx.lineWidth = this.lineWidth;
         ctx.stroke();
     }

@@ -2,10 +2,11 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  background: #141619;
-  color: #fff;
+  background: var(--bg-primary);
+  color: var(--text-primary);
   font-family: Arial, sans-serif;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* ============ SPACERS ============ */

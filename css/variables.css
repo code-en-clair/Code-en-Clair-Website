@@ -3,14 +3,14 @@
 /* ===================================================== */
 
 :root {
-    /* Couleurs */
+    /* Couleurs - Mode Sombre (défaut) */
     --bg-primary: #141619;
     --bg-secondary: #191C20;
     --text-primary: #FFFFFF;
     --text-secondary: #B0B8C1;
     --text-muted: #9AA0A6;
     --shadow-panel-bottom: 0 24px 48px rgba(0, 0, 0, 0.45);
-    
+
     /* Terminal */
     --terminal-bg: #1e1e1e;
     --terminal-border: #2d2d2d;
@@ -26,7 +26,7 @@
     --terminal-warn: #ce9178;
     --terminal-run: #f48771;
     --terminal-done: #c586c0;
-    
+
     /* Espacements */
     --spacing-xs: 8px;
     --spacing-sm: 16px;
@@ -35,20 +35,37 @@
     --spacing-xl: 48px;
     --spacing-2xl: 60px;
     --spacing-3xl: 96px;
-    
+
     /* Transitions */
     --transition-fast: 0.2s ease;
     --transition-normal: 0.35s ease;
     --transition-slow: 0.8s ease;
-    
+
     /* Z-index */
     --z-header: 1000;
     --z-modal: 2000;
-    
+
     /* Border radius */
     --radius-sm: 8px;
     --radius-md: 12px;
-    
+
     /* Shadows */
     --shadow-md: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* ===================================================== */
+/* ============== MODE CLAIR (Light Theme) ============ */
+/* ===================================================== */
+
+[data-theme="light"] {
+    /* Couleurs - Mode Clair */
+    --bg-primary: #ffffff;
+    --bg-secondary: #e9e9e9;
+    --text-primary: #1A1D21;
+    --text-secondary: #4A5568;
+    --text-muted: #718096;
+    --shadow-panel-bottom: 0 24px 48px rgba(0, 0, 0, 0.08);
+
+    /* Shadows - Mode Clair */
+    --shadow-md: 0 20px 60px rgba(0, 0, 0, 0.12);
 }
