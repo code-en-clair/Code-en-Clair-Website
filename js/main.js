@@ -4,6 +4,7 @@
  */
 
 import { initHeader } from './modules/header.js';
+import { initHorizontalScroll } from './modules/horizontal-scroll.js';
 import { initTerminal } from './modules/terminal.js';
 import { initWaves } from './modules/waves.js';
 import { initScrollReveal } from './modules/scroll-reveal.js';
@@ -13,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("🎯 Initializing Code en Clair...");
     
     initHeader();
+    initHorizontalScroll();
     initTerminal();
     initWaves();
     initScrollReveal();
