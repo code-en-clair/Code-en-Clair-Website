@@ -249,134 +249,235 @@
 
           <!-- =========================================================
                CANVAS 1 — PYTHON
-               Composition : logo grand en haut a droite,
-               titre massif en bas a gauche, texte au centre-droit
                ========================================================= -->
-          <div class="canvas">
+          <div class="canvas canvas--python">
             <!-- Decorative -->
-            <div class="section-number" style="top: 5%; left: 6%;">01</div>
-            <div class="deco-circle" style="width: 400px; height: 400px; bottom: -10%; right: 15%;"></div>
-            <div class="deco-line" style="width: 1px; height: 180px; top: 12%; left: 52%;"></div>
+            <div class="section-number" style="top: 5%; left: 4%;">01</div>
+            <div class="deco-circle" style="width: 500px; height: 500px; bottom: -15%; right: 20%;"></div>
+            <div class="deco-circle" style="width: 200px; height: 200px; top: 8%; left: 45%;"></div>
+            <div class="deco-line" style="width: 1px; height: 220px; top: 10%; left: 40%;"></div>
+            <div class="deco-line" style="width: 180px; height: 1px; bottom: 30%; right: 25%;"></div>
 
-            <!-- Logo — grand, haut-droite -->
-            <div class="floating-logo" style="top: 8%; right: 12%;">
-              <img src="../../assets/img/python-logo.png" alt="Python" style="width: 200px; height: 200px;" />
+            <!-- Logo — grand, centre-haut -->
+            <div class="floating-logo" style="top: 6%; right: 18%;">
+              <img src="assets/img/python-logo.png" alt="Python" style="width: 220px; height: 220px;" />
             </div>
 
-            <!-- Tagline -->
-            <div class="tagline" style="top: 15%; left: 8%;">Formation 01</div>
-
             <!-- Huge title — bas-gauche -->
-            <div class="display-title" style="bottom: 12%; left: 8%; font-size: clamp(60px, 10vw, 130px);">
+            <div class="display-title" style="bottom: 10%; left: 5%; font-size: clamp(60px, 8vw, 130px);">
               PYTHON
             </div>
 
-            <!-- Body text — centre-droit -->
-            <p class="body-text" style="top: 40%; left: 54%;">
-              Apprends a coder avec Python, le langage polyvalent ideal pour debuter en programmation et creer tes premieres applications.
-            </p>
+            <!-- Glass panel — contenu textuel -->
+            <div class="glass-panel" style="top: 12%; left: 5%; width: 400px;">
+              <div class="tagline">Formation 01</div>
+              <p class="body-text">
+                Apprends a coder avec Python, le langage polyvalent ideal pour debuter en programmation et creer tes premieres applications.
+              </p>
+              <ul class="topic-list">
+                <li>Variables, boucles et fonctions</li>
+                <li>Listes, dictionnaires, tuples</li>
+                <li>Programmation orientee objet</li>
+                <li>Manipulation de fichiers</li>
+                <li>Mini-projets concrets</li>
+              </ul>
+            </div>
 
-            <!-- Topics — centre-gauche -->
-            <ul class="topic-list" style="top: 42%; left: 8%;">
-              <li>Variables, boucles et fonctions</li>
-              <li>Listes, dictionnaires, tuples</li>
-              <li>Programmation orientee objet</li>
-              <li>Manipulation de fichiers</li>
-              <li>Mini-projets concrets</li>
-            </ul>
+            <!-- Code snippet — droite -->
+            <div class="code-snippet" style="bottom: 18%; right: 8%;">
+              <div class="code-snippet__header">
+                <span class="code-snippet__dot code-snippet__dot--red"></span>
+                <span class="code-snippet__dot code-snippet__dot--yellow"></span>
+                <span class="code-snippet__dot code-snippet__dot--green"></span>
+                <span class="code-snippet__filename">main.py</span>
+              </div><span class="comment"># Mon premier programme</span>
+<span class="keyword">def</span> <span class="function">saluer</span>(nom):
+    <span class="keyword">return</span> <span class="string">f"Bienvenue, {nom} !"</span>
+
+message = <span class="function">saluer</span>(<span class="string">"Code en Clair"</span>)
+<span class="function">print</span>(message)</div>
+
+            <!-- Stat labels — disperses -->
+            <div class="stat-label" style="top: 10%; right: 8%;">
+              <span class="stat-label__value">12</span>
+              <span class="stat-label__text">Chapitres</span>
+            </div>
+            <div class="stat-label" style="bottom: 8%; left: 42%;">
+              <span class="stat-label__value">+20H</span>
+              <span class="stat-label__text">De cours</span>
+            </div>
+
+            <!-- Catchphrases -->
+            <div class="catchphrase" style="bottom: 35%; right: 30%;">
+              <p class="catchphrase__text">Le langage <strong>le plus demande</strong> pour debuter dans la tech.</p>
+            </div>
+            <div class="catchphrase" style="top: 50%; left: 42%;">
+              <p class="catchphrase__text">De zero a <strong>ton premier projet</strong> en quelques semaines.</p>
+            </div>
 
             <!-- Level tag -->
-            <div class="level-tag" style="bottom: 10%; right: 10%;">Debutant</div>
+            <div class="level-tag" style="top: 8%; left: 42%;">Debutant</div>
 
             <div class="canvas-separator"></div>
           </div>
 
           <!-- =========================================================
                CANVAS 2 — WEB / FRONT-END
-               Composition : logo petit en bas-gauche,
-               titre massif en haut-droite, texte au centre-gauche
                ========================================================= -->
-          <div class="canvas">
+          <div class="canvas canvas--frontend">
             <!-- Decorative -->
-            <div class="section-number" style="bottom: 5%; right: 6%;">02</div>
-            <div class="deco-circle" style="width: 300px; height: 300px; top: 5%; left: 30%;"></div>
-            <div class="deco-line" style="width: 200px; height: 1px; bottom: 35%; left: 8%;"></div>
-            <div class="deco-line" style="width: 1px; height: 120px; top: 20%; right: 38%;"></div>
+            <div class="section-number" style="bottom: 5%; right: 4%;">02</div>
+            <div class="deco-circle" style="width: 350px; height: 350px; top: 5%; left: 25%;"></div>
+            <div class="deco-circle" style="width: 250px; height: 250px; bottom: 10%; right: 30%;"></div>
+            <div class="deco-line" style="width: 200px; height: 1px; bottom: 32%; left: 6%;"></div>
+            <div class="deco-line" style="width: 1px; height: 150px; top: 15%; right: 42%;"></div>
+            <div class="deco-line" style="width: 1px; height: 100px; bottom: 20%; left: 35%;"></div>
 
-            <!-- Logo — petit, bas-gauche -->
-            <div class="floating-logo" style="bottom: 12%; left: 8%;">
-              <img src="../../assets/img/html-logo.png" alt="HTML" style="width: 120px; height: 120px;" />
+            <!-- Logo — bas-gauche -->
+            <div class="floating-logo" style="bottom: 10%; left: 6%;">
+              <img src="assets/img/html-logo.png" alt="HTML" style="width: 140px; height: 140px;" />
             </div>
 
-            <!-- Tagline -->
-            <div class="tagline" style="top: 10%; right: 8%;">Formation 02</div>
-
             <!-- Huge title — haut-droite -->
-            <div class="display-title" style="top: 14%; right: 8%; font-size: clamp(50px, 9vw, 110px); text-align: right;">
+            <div class="display-title" style="top: 12%; right: 6%; font-size: clamp(50px, 7vw, 110px); text-align: right;">
               FRONT<br>END
             </div>
 
-            <!-- Body text — centre-gauche -->
-            <p class="body-text" style="top: 35%; left: 8%;">
-              Deviens developpeur Front-End en maitrisant la creation de sites modernes avec HTML, CSS et JavaScript.
-            </p>
+            <!-- Glass panel — centre-gauche -->
+            <div class="glass-panel" style="top: 25%; left: 6%; width: 380px;">
+              <div class="tagline">Formation 02</div>
+              <p class="body-text">
+                Deviens developpeur Front-End en maitrisant la creation de sites modernes avec HTML, CSS et JavaScript.
+              </p>
+              <ul class="topic-list">
+                <li>HTML semantique et accessibilite</li>
+                <li>CSS Flexbox, Grid, responsive</li>
+                <li>Animations et transitions</li>
+                <li>JavaScript DOM et events</li>
+                <li>Projet : portfolio interactif</li>
+              </ul>
+            </div>
 
-            <!-- Topics — droite, milieu-bas -->
-            <ul class="topic-list" style="top: 55%; right: 8%; text-align: right;">
-              <li>HTML semantique et accessibilite</li>
-              <li>CSS Flexbox, Grid, responsive</li>
-              <li>Animations et transitions</li>
-              <li>JavaScript DOM et events</li>
-              <li>Projet : portfolio interactif</li>
-            </ul>
+            <!-- Code snippet — centre-droit -->
+            <div class="code-snippet" style="top: 28%; right: 12%;">
+              <div class="code-snippet__header">
+                <span class="code-snippet__dot code-snippet__dot--red"></span>
+                <span class="code-snippet__dot code-snippet__dot--yellow"></span>
+                <span class="code-snippet__dot code-snippet__dot--green"></span>
+                <span class="code-snippet__filename">index.html</span>
+              </div><span class="tag">&lt;section</span> <span class="attr">class</span>=<span class="value">"hero"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;h1&gt;</span>Code en Clair<span class="tag">&lt;/h1&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Apprends le dev web<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="value">"cta"</span><span class="tag">&gt;</span>
+    Commencer
+  <span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;/section&gt;</span></div>
+
+            <!-- Stat labels -->
+            <div class="stat-label" style="top: 8%; left: 40%;">
+              <span class="stat-label__value">15</span>
+              <span class="stat-label__text">Chapitres</span>
+            </div>
+            <div class="stat-label" style="bottom: 12%; right: 8%;">
+              <span class="stat-label__value">+25H</span>
+              <span class="stat-label__text">De cours</span>
+            </div>
+            <div class="stat-label" style="bottom: 30%; left: 40%;">
+              <span class="stat-label__value">1</span>
+              <span class="stat-label__text">Portfolio</span>
+            </div>
+
+            <!-- Catchphrases -->
+            <div class="catchphrase" style="bottom: 15%; left: 35%;">
+              <p class="catchphrase__text">Cree des sites que <strong>les gens veulent utiliser.</strong></p>
+            </div>
+            <div class="catchphrase" style="top: 55%; right: 6%;">
+              <p class="catchphrase__text">HTML, CSS, JS : <strong>les 3 piliers</strong> du web moderne.</p>
+            </div>
 
             <!-- Level tag -->
-            <div class="level-tag" style="bottom: 14%; left: 42%;">Debutant / Intermediaire</div>
+            <div class="level-tag" style="top: 10%; right: 35%;">Debutant / Intermediaire</div>
 
             <div class="canvas-separator"></div>
           </div>
 
           <!-- =========================================================
                CANVAS 3 — ALGORITHMIQUE EN C
-               Composition : logo moyen au centre-haut,
-               titre massif split gauche, texte bas-droite
                ========================================================= -->
-          <div class="canvas">
+          <div class="canvas canvas--algo">
             <!-- Decorative -->
-            <div class="section-number" style="top: 10%; right: 10%;">03</div>
-            <div class="deco-circle" style="width: 500px; height: 500px; top: -15%; left: -8%;"></div>
-            <div class="deco-line" style="width: 1px; height: 250px; bottom: 10%; right: 25%;"></div>
-            <div class="deco-line" style="width: 140px; height: 1px; top: 48%; left: 5%;"></div>
+            <div class="section-number" style="top: 8%; right: 5%;">03</div>
+            <div class="deco-circle" style="width: 550px; height: 550px; top: -18%; left: -6%;"></div>
+            <div class="deco-circle" style="width: 180px; height: 180px; bottom: 15%; right: 15%;"></div>
+            <div class="deco-line" style="width: 1px; height: 280px; bottom: 8%; right: 30%;"></div>
+            <div class="deco-line" style="width: 160px; height: 1px; top: 45%; left: 4%;"></div>
+            <div class="deco-line" style="width: 1px; height: 120px; top: 12%; left: 55%;"></div>
 
-            <!-- Logo — moyen, centre-haut decale droite -->
-            <div class="floating-logo" style="top: 10%; left: 50%; transform: translateX(-50%);">
-              <img src="../../assets/img/c-logo.png" alt="C" style="width: 160px; height: 160px;" />
+            <!-- Logo — centre-haut -->
+            <div class="floating-logo" style="top: 8%; left: 42%;">
+              <img src="assets/img/c-logo.png" alt="C" style="width: 180px; height: 180px;" />
             </div>
 
-            <!-- Tagline -->
-            <div class="tagline" style="bottom: 18%; left: 8%;">Formation 03</div>
-
             <!-- Huge title — gauche, milieu -->
-            <div class="display-title" style="top: 38%; left: 5%; font-size: clamp(45px, 8vw, 100px);">
+            <div class="display-title" style="top: 35%; left: 4%; font-size: clamp(45px, 6vw, 100px);">
               ALGO<br>RITHMIQUE
             </div>
 
-            <!-- Body text — bas-droite -->
-            <p class="body-text" style="bottom: 18%; right: 8%;">
-              Maitrise les fondements de l'informatique : structures de donnees, algorithmes et gestion memoire avec le langage C.
-            </p>
+            <!-- Glass panel — droite -->
+            <div class="glass-panel" style="top: 12%; right: 6%; width: 380px;">
+              <div class="tagline">Formation 03</div>
+              <p class="body-text">
+                Maitrise les fondements de l'informatique : structures de donnees, algorithmes et gestion memoire avec le langage C.
+              </p>
+              <ul class="topic-list">
+                <li>Pointeurs et allocation memoire</li>
+                <li>Listes chainees, piles, files</li>
+                <li>Algorithmes de tri et recherche</li>
+                <li>Recursivite et complexite</li>
+                <li>Projet : mini-shell</li>
+              </ul>
+            </div>
 
-            <!-- Topics — haut-droite -->
-            <ul class="topic-list" style="top: 15%; right: 8%;">
-              <li>Pointeurs et allocation memoire</li>
-              <li>Listes chainees, piles, files</li>
-              <li>Algorithmes de tri et recherche</li>
-              <li>Recursivite et complexite</li>
-              <li>Projet : mini-shell</li>
-            </ul>
+            <!-- Code snippet — bas-gauche -->
+            <div class="code-snippet" style="bottom: 12%; left: 5%;">
+              <div class="code-snippet__header">
+                <span class="code-snippet__dot code-snippet__dot--red"></span>
+                <span class="code-snippet__dot code-snippet__dot--yellow"></span>
+                <span class="code-snippet__dot code-snippet__dot--green"></span>
+                <span class="code-snippet__filename">main.c</span>
+              </div><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="type">int</span> <span class="function">main</span>(<span class="type">void</span>) {
+    <span class="type">int</span> *tab = <span class="function">malloc</span>(<span class="number">5</span> * <span class="keyword">sizeof</span>(<span class="type">int</span>));
+    <span class="function">printf</span>(<span class="string">"Hello, World!\n"</span>);
+    <span class="function">free</span>(tab);
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <!-- Stat labels -->
+            <div class="stat-label" style="top: 10%; left: 8%;">
+              <span class="stat-label__value">10</span>
+              <span class="stat-label__text">Chapitres</span>
+            </div>
+            <div class="stat-label" style="bottom: 8%; right: 35%;">
+              <span class="stat-label__value">+15H</span>
+              <span class="stat-label__text">De cours</span>
+            </div>
+            <div class="stat-label" style="top: 55%; right: 6%;">
+              <span class="stat-label__value">1</span>
+              <span class="stat-label__text">Mini-shell</span>
+            </div>
+
+            <!-- Catchphrases -->
+            <div class="catchphrase" style="top: 18%; left: 25%;">
+              <p class="catchphrase__text">Comprendre la machine, c'est <strong>penser comme un ingenieur.</strong></p>
+            </div>
+            <div class="catchphrase" style="bottom: 15%; right: 8%;">
+              <p class="catchphrase__text">Le C ne pardonne pas : tu apprendras <strong>la rigueur.</strong></p>
+            </div>
 
             <!-- Level tag -->
-            <div class="level-tag" style="top: 52%; right: 12%;">Intermediaire</div>
+            <div class="level-tag" style="bottom: 10%; right: 8%;">Intermediaire</div>
           </div>
 
         </div>

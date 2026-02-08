@@ -13,12 +13,14 @@ export function initHorizontalScroll() {
     return;
   }
 
-  let canvasCount = strip.querySelectorAll(".canvas").length;
-  let totalWidth = canvasCount * window.innerWidth;
+  let totalWidth = strip.scrollWidth;
 
   window.addEventListener("resize", function () {
-    totalWidth = canvasCount * window.innerWidth;
+    totalWidth = strip.scrollWidth;
+    onScroll();
   });
+
+  let ticking = false;
 
   function onScroll() {
     const rect = track.getBoundingClientRect();
@@ -38,18 +40,18 @@ export function initHorizontalScroll() {
     const tx = -progress * maxScroll + initialOffset;
 
     strip.style.transform = `translateX(${tx}px)`;
-
-    if (debug) {
-      debug.textContent =
-        `canvases: ${canvasCount} | totalW: ${totalWidth}px\n` +
-        `maxScroll: ${maxScroll}px\n` +
-        `rect.top: ${Math.round(rect.top)} | trackH: ${Math.round(trackHeight)}\n` +
-        `progress: ${progress.toFixed(3)} | translateX: ${Math.round(tx)}px\n` +
-        `offsets: ${Math.round(initialOffset)}px (init) / ${Math.round(finalOffset)}px (final)`;
-    }
-
-    requestAnimationFrame(onScroll);
   }
 
-  requestAnimationFrame(onScroll);
+  window.addEventListener("scroll", function () {
+    if (!ticking) {
+      requestAnimationFrame(function () {
+        onScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  // Position initiale au chargement
+  onScroll();
 }

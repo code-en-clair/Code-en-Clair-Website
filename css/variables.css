@@ -54,6 +54,34 @@
 }
 
 /* ===================================================== */
+/* ============ COULEURS PAR FORMATION ================= */
+/* ===================================================== */
+
+/* Python — jaune / bleu fonce */
+.canvas--python {
+    --accent: #FFD43B;
+    --accent-rgb: 255, 212, 59;
+    --accent-secondary: #306998;
+    --accent-secondary-rgb: 48, 105, 152;
+}
+
+/* Front-End — orange / jaune */
+.canvas--frontend {
+    --accent: #E44D26;
+    --accent-rgb: 228, 77, 38;
+    --accent-secondary: #F7DF1E;
+    --accent-secondary-rgb: 247, 223, 30;
+}
+
+/* Algorithmique C — bleu / violet */
+.canvas--algo {
+    --accent: #005697;
+    --accent-rgb: 0, 86, 151;
+    --accent-secondary: #7B68EE;
+    --accent-secondary-rgb: 123, 104, 238;
+}
+
+/* ===================================================== */
 /* ============== MODE CLAIR (Light Theme) ============ */
 /* ===================================================== */
 
