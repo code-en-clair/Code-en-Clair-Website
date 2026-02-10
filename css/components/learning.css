@@ -423,3 +423,139 @@
 [data-theme="light"] .catchphrase__text {
   color: var(--text-muted);
 }
+
+/* ============ MOBILE STACK VERTICAL (≤ 768px) ============ */
+@media (max-width: 768px) {
+
+  /* --- Neutraliser le mecanisme desktop --- */
+  .horizontal-scroll-track {
+    height: auto;
+    position: relative;
+  }
+
+  .pinned-section {
+    position: relative;
+    height: auto;
+    overflow: visible;
+  }
+
+  .horizontal-strip {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    transform: none !important;
+  }
+
+  /* --- Canvas : pleine largeur, layout vertical --- */
+  .canvas {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 48px 20px;
+    overflow: visible;
+  }
+
+  /* Separateur entre les formations */
+  .canvas + .canvas {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  [data-theme="light"] .canvas + .canvas {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  /* --- Override des positions absolues inline --- */
+  .canvas .display-title,
+  .canvas .glass-panel,
+  .canvas .code-snippet,
+  .canvas .floating-logo,
+  .canvas .stat-label,
+  .canvas .catchphrase,
+  .canvas .level-tag,
+  .canvas .section-number {
+    position: relative !important;
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+  }
+
+  /* --- Ordre d'affichage mobile --- */
+  .canvas .floating-logo   { order: 1; }
+  .canvas .level-tag        { order: 2; }
+  .canvas .display-title    { order: 3; }
+  .canvas .glass-panel      { order: 4; }
+  .canvas .code-snippet     { order: 5; }
+  .canvas .stat-label       { order: 6; }
+  .canvas .catchphrase      { order: 7; }
+  .canvas .section-number   { order: 8; }
+
+  /* --- Redimensionnement des elements --- */
+  .canvas .display-title {
+    font-size: clamp(36px, 10vw, 56px) !important;
+    text-align: center;
+    width: 100% !important;
+    line-height: 0.9;
+  }
+
+  .canvas .glass-panel {
+    width: calc(100vw - 40px) !important;
+    max-width: 400px;
+    padding: 24px 20px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .canvas .code-snippet {
+    max-width: calc(100vw - 40px);
+    width: auto !important;
+    font-size: 11px;
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  .canvas .floating-logo img {
+    width: 100px !important;
+    height: 100px !important;
+  }
+
+  .canvas .section-number {
+    display: none !important;
+  }
+
+  .canvas .stat-label {
+    text-align: center;
+  }
+
+  .canvas .catchphrase {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .canvas .level-tag {
+    align-self: center;
+  }
+
+  /* --- Cacher les decorations inutiles sur mobile --- */
+  .canvas .deco-circle,
+  .canvas .deco-line,
+  .canvas .canvas-separator {
+    display: none !important;
+  }
+
+  /* --- Reveal : opacity only (evite conflit avec translateX) --- */
+  .pinned-section.reveal {
+    transform: none;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  .pinned-section.reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}

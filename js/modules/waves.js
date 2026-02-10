@@ -7,27 +7,38 @@
 const MAX_WIDTH = 1920;
 const MAX_HEIGHT = 2731;
 
+const IS_MOBILE = window.innerWidth <= 768;
+
 class WaveLine {
     constructor(canvasWidth, canvasHeight) {
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
         this.points = [];
         this.numPoints = 150;
-        this.amplitude = Math.random() * 150 + 100;
+        this.amplitude = IS_MOBILE
+            ? Math.random() * 60 + 40
+            : Math.random() * 150 + 100;
         this.frequency = Math.random() * 0.008 + 0.002;
         this.speed = 0.15;
         this.offset = Math.random() * Math.PI * 2;
-        this.yBase = Math.random() * canvasHeight;
-        this.opacity = Math.random() * 0.35 + 0.15; 
+        // Positions en ratio (0-1) pour eviter le re-random au resize
+        this.yRatio = Math.random();
+        this.xRatio = Math.random();
+        this.yBase = this.yRatio * canvasHeight;
+        this.opacity = IS_MOBILE
+            ? Math.random() * 0.25 + 0.15
+            : Math.random() * 0.35 + 0.15;
         this.direction = Math.random() > 0.5 ? 1 : -1;
-        this.lineWidth = Math.random() * 2 + 0.5;
-        
+        this.lineWidth = IS_MOBILE
+            ? Math.random() * 1 + 0.3
+            : Math.random() * 2 + 0.5;
+
         // Type de ligne: horizontal ou vertical
         this.isHorizontal = Math.random() > 0.3;
-        
+
         // Position de base pour lignes verticales
-        this.xBase = Math.random() * canvasWidth;
-        
+        this.xBase = this.xRatio * canvasWidth;
+
         this.initPoints();
     }
     
@@ -97,9 +108,9 @@ class WaveLine {
     resize(canvasWidth, canvasHeight) {
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
-        this.yBase = Math.random() * canvasHeight;
-        this.xBase = Math.random() * canvasWidth;
-        this.initPoints();
+        // Garder les memes ratios pour eviter un "saut" visuel
+        this.yBase = this.yRatio * canvasHeight;
+        this.xBase = this.xRatio * canvasWidth;
     }
 }
 
@@ -113,9 +124,9 @@ export function initWaves() {
     canvas.width = Math.min(window.innerWidth, MAX_WIDTH);
     canvas.height = Math.min(pageHeight, MAX_HEIGHT);
 
-    // Création de nombreuses lignes
+    // Moins de lignes sur mobile pour la performance et la lisibilite
     const lines = [];
-    const numLines = 30;
+    const numLines = IS_MOBILE ? 12 : 30;
     
     for (let i = 0; i < numLines; i++) {
         lines.push(new WaveLine(canvas.width, canvas.height));
@@ -140,14 +151,17 @@ export function initWaves() {
 
     animate();
 
-    // Gestion du redimensionnement
+    // Gestion du redimensionnement (debounce 200ms)
+    let resizeTimer;
     window.addEventListener('resize', () => {
-        canvas.width = Math.min(window.innerWidth, MAX_WIDTH);
-        canvas.height = Math.min(document.documentElement.scrollHeight, MAX_HEIGHT);
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            canvas.width = Math.min(window.innerWidth, MAX_WIDTH);
+            canvas.height = Math.min(document.documentElement.scrollHeight, MAX_HEIGHT);
 
-        // Réinitialisation des lignes avec les nouvelles dimensions
-        lines.forEach(line => {
-            line.resize(canvas.width, canvas.height);
-        });
+            lines.forEach(line => {
+                line.resize(canvas.width, canvas.height);
+            });
+        }, 200);
     });
 }

@@ -31,22 +31,9 @@ const CODE_SEQUENCES = [
 ];
 
 let currentSequence = 0;
-let loopCount = 0;
 
 function typeNextLine(terminalOutput) {
     if (currentSequence >= CODE_SEQUENCES.length) {
-        loopCount++;
-        
-        if (loopCount >= 1) {
-            setTimeout(() => {
-                terminalOutput.innerHTML = "";
-                currentSequence = 0;
-                loopCount = 0;
-                typeNextLine(terminalOutput);
-            }, 3000);
-            return;
-        }
-        
         setTimeout(() => {
             terminalOutput.innerHTML = "";
             currentSequence = 0;
@@ -71,7 +58,6 @@ export function initTerminal() {
     if (!terminalOutput) return;
     
     currentSequence = 0;
-    loopCount = 0;
     
     setTimeout(() => typeNextLine(terminalOutput), 1000);
 }

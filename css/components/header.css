@@ -470,11 +470,19 @@ header.is-scrolled ~ .mobile-menu {
         position: fixed;
         width: 100%;
     }
-    
+
+    .header-logo img {
+        height: 30px;
+    }
+
+    header.is-scrolled .header-logo img {
+        height: 24px;
+    }
+
     body {
         padding-top: 80px;
     }
-  
+
     body.header-scrolled {
         padding-top: 60px;
         transition: padding-top 0.3s ease;
