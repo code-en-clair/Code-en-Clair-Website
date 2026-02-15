@@ -473,10 +473,12 @@ header.is-scrolled ~ .mobile-menu {
 
     .header-logo img {
         height: 30px;
+        margin-left: 20px;
     }
 
     header.is-scrolled .header-logo img {
         height: 24px;
+        margin-left: 20px;
     }
 
     body {

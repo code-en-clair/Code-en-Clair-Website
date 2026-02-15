@@ -19,7 +19,7 @@ class WaveLine {
             ? Math.random() * 60 + 40
             : Math.random() * 150 + 100;
         this.frequency = Math.random() * 0.008 + 0.002;
-        this.speed = 0.15;
+        this.speed = 0.10;
         this.offset = Math.random() * Math.PI * 2;
         // Positions en ratio (0-1) pour eviter le re-random au resize
         this.yRatio = Math.random();
