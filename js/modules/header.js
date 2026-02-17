@@ -58,6 +58,7 @@ export function initHeader() {
         panelItems.forEach(panel => {
             panel.classList.remove("is-active");
         });
+
     });
 
     headerPanel.addEventListener("mouseenter", () => {

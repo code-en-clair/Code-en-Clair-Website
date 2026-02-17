@@ -126,7 +126,7 @@ export function initWaves() {
 
     // Moins de lignes sur mobile pour la performance et la lisibilite
     const lines = [];
-    const numLines = IS_MOBILE ? 12 : 30;
+    const numLines = IS_MOBILE ? 15 : 30;
     
     for (let i = 0; i < numLines; i++) {
         lines.push(new WaveLine(canvas.width, canvas.height));

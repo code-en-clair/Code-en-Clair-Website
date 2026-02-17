@@ -350,9 +350,9 @@
 
 /* Glass panel : ombre classique, pas de glow */
 [data-theme="light"] .glass-panel {
-  background: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(7px);
 }
 
 [data-theme="light"] .display-title {
