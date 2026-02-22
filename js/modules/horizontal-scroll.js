@@ -1,95 +1,75 @@
 /**
  * Pinned Horizontal Scroll — V2 Editorial
- * Desktop : 3 canvases defilent horizontalement via scroll vertical
- * Mobile (≤ 768px) : Carousel swipe tactile avec dots de navigation
+ * Desktop : 3 canvases défilent horizontalement via scroll vertical
+ * Mobile (≤ 768px) : stack vertical, CSS gère tout
  */
 
 const MOBILE_BREAKPOINT = 768;
 
-export function initHorizontalScroll() {
-  const track = document.getElementById("track");
-  const strip = document.getElementById("strip");
-
-  if (!track || !strip) {
-    console.warn("Horizontal scroll: elements non trouves");
-    return;
-  }
-
-  let currentMode = null; // 'desktop' | 'mobile'
-  let desktopCleanup = null;
-  let mobileCleanup = null;
-
-  function isMobile() {
+function isMobile() {
     return window.innerWidth <= MOBILE_BREAKPOINT;
-  }
+}
 
-  // ============ MODE DESKTOP (logique existante) ============
-  function initDesktop() {
-    let totalWidth = strip.scrollWidth;
+function computeTranslateX(track, strip) {
+    const rect = track.getBoundingClientRect();
+    const trackHeight = track.offsetHeight - window.innerHeight;
+    const initialOffset = window.innerWidth * 0.4;
+    const finalOffset = window.innerWidth * 0.2;
+    const maxScroll = strip.scrollWidth - window.innerWidth + initialOffset + finalOffset;
+    const adjustedTop = -rect.top + window.innerHeight / 2;
+    const progress = Math.min(Math.max(adjustedTop / trackHeight, 0), 1);
+    return -progress * maxScroll + initialOffset;
+}
+
+function initDesktop(track, strip) {
     let ticking = false;
 
     function onScroll() {
-      const rect = track.getBoundingClientRect();
-      const trackHeight = track.offsetHeight - window.innerHeight;
-      const initialOffset = window.innerWidth * 0.4;
-      const finalOffset = window.innerWidth * 0.2;
-      const maxScroll = totalWidth - window.innerWidth + initialOffset + finalOffset;
-      const startOffset = window.innerHeight / 2;
-      const adjustedTop = -rect.top + startOffset;
-      const progress = Math.min(Math.max(adjustedTop / trackHeight, 0), 1);
-      const tx = -progress * maxScroll + initialOffset;
-      strip.style.transform = `translateX(${tx}px)`;
+        strip.style.transform = `translateX(${computeTranslateX(track, strip)}px)`;
     }
 
     function scrollHandler() {
-      if (!ticking) {
-        requestAnimationFrame(function () {
-          onScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }
-
-    function resizeHandler() {
-      totalWidth = strip.scrollWidth;
-      onScroll();
+        if (!ticking) {
+            requestAnimationFrame(() => { onScroll(); ticking = false; });
+            ticking = true;
+        }
     }
 
     window.addEventListener("scroll", scrollHandler);
-    window.addEventListener("resize", resizeHandler);
+    window.addEventListener("resize", onScroll);
     onScroll();
-  }
+}
 
-  // ============ MODE MOBILE (stack vertical, pas de JS) ============
-  function initMobileStack() {
-    // CSS gere tout : flex-direction column, transform: none
-    // On s'assure juste que le strip n'a pas de transform residuel
+function initMobileStack(strip) {
+    // CSS gère tout : flex-direction column, transform: none
+    // On s'assure juste que le strip n'a pas de transform résiduel
     strip.style.transform = "";
-  }
+}
 
-  // ============ GESTIONNAIRE DE MODE ============
-  function setMode() {
-    const newMode = isMobile() ? "mobile" : "desktop";
-    if (newMode === currentMode) return;
+export function initHorizontalScroll() {
+    const track = document.getElementById("track");
+    const strip = document.getElementById("strip");
 
-    if (currentMode === "desktop" && desktopCleanup) desktopCleanup();
-    if (currentMode === "mobile" && mobileCleanup) mobileCleanup();
-
-    if (newMode === "desktop") {
-      desktopCleanup = initDesktop();
-    } else {
-      mobileCleanup = initMobileStack();
+    if (!track || !strip) {
+        console.warn("Horizontal scroll: elements non trouves");
+        return;
     }
 
-    currentMode = newMode;
-  }
+    let currentMode = null;
+    let resizeTimer;
 
-  let resizeTimer;
-  window.addEventListener("resize", function () {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(setMode, 150);
-  });
+    function setMode() {
+        const newMode = isMobile() ? "mobile" : "desktop";
+        if (newMode === currentMode) return;
+        if (newMode === "desktop") initDesktop(track, strip);
+        else initMobileStack(strip);
+        currentMode = newMode;
+    }
 
-  setMode();
+    window.addEventListener("resize", () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(setMode, 150);
+    });
+
+    setMode();
 }

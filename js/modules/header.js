@@ -4,35 +4,14 @@
  * + Search overlay + Mobile menu + Shrink on scroll + Accessibilité clavier
  */
 
-export function initHeader() {
-    const header = document.querySelector("header");
-    const headerPanel = document.querySelector(".header-panel");
-    const navItems = document.querySelectorAll(".nav-item");
-    const panelItems = document.querySelectorAll(".panel-item");
-    const pageContent = document.querySelector(".page-content");
-
-    // Nouveaux éléments
-    const searchButton = document.querySelector(".search-button");
-    const searchOverlay = document.getElementById("searchOverlay");
-    const searchClose = document.querySelector(".search-close");
-    const searchInput = document.querySelector(".search-input");
-    const burgerMenu = document.querySelector(".burger-menu");
-    const mobileMenu = document.getElementById("mobileMenu");
-
-    if (!headerPanel || !navItems.length) return;
-
-    /* ===== DROPDOWN PANELS (DESKTOP) ===== */
+/* ===== DROPDOWN PANELS (DESKTOP) ===== */
+function setupDropdownPanels(navItems, panelItems, headerPanel, pageContent, closePanel) {
     navItems.forEach(item => {
         item.addEventListener("mouseenter", () => {
             const target = item.getAttribute("data-panel");
-
-            panelItems.forEach(panel => {
-                panel.classList.remove("is-active");
-            });
-
+            panelItems.forEach(panel => panel.classList.remove("is-active"));
             headerPanel.classList.add("is-open");
             if (pageContent) pageContent.classList.add("is-blurred");
-
             requestAnimationFrame(() => {
                 panelItems.forEach(panel => {
                     if (panel.getAttribute("data-panel") === target) {
@@ -51,53 +30,78 @@ export function initHeader() {
         });
     });
 
-    headerPanel.addEventListener("mouseleave", () => {
-        headerPanel.classList.remove("is-open");
-        if (pageContent) pageContent.classList.remove("is-blurred");
-
-        panelItems.forEach(panel => {
-            panel.classList.remove("is-active");
-        });
-
-    });
-
+    headerPanel.addEventListener("mouseleave", closePanel);
     headerPanel.addEventListener("mouseenter", () => {
         headerPanel.classList.add("is-open");
         if (pageContent) pageContent.classList.add("is-blurred");
     });
+}
 
-    /* ===== SEARCH OVERLAY ===== */
-    if (searchButton && searchOverlay) {
-        searchButton.addEventListener("click", () => {
-            searchOverlay.classList.add("is-open");
-            document.body.style.overflow = "hidden";
-            setTimeout(() => searchInput?.focus(), 100);
-        });
+/* ===== SEARCH OVERLAY ===== */
+function setupSearchOverlay(searchButton, searchOverlay, searchInput, searchClose, closeSearch) {
+    if (!searchButton || !searchOverlay) return;
 
-        searchClose?.addEventListener("click", closeSearch);
+    searchButton.addEventListener("click", () => {
+        searchOverlay.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+        setTimeout(() => searchInput?.focus(), 100);
+    });
 
-        // Fermeture par Escape
-        document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && searchOverlay.classList.contains("is-open")) {
-                closeSearch();
-            }
-        });
+    searchClose?.addEventListener("click", closeSearch);
 
-        // Fermeture par clic sur le fond
-        searchOverlay.addEventListener("click", (e) => {
-            if (e.target === searchOverlay) {
-                closeSearch();
-            }
-        });
+    // Fermeture par clic sur le fond
+    searchOverlay.addEventListener("click", (e) => {
+        if (e.target === searchOverlay) closeSearch();
+    });
+}
+
+/* ===== MOBILE MENU ===== */
+function setupMobileMenu(burgerMenu, mobileMenu, mobileBackdrop, openMobileMenu, closeMobileMenu) {
+    if (!burgerMenu || !mobileMenu) return;
+
+    burgerMenu.addEventListener("click", () => {
+        if (mobileMenu.classList.contains("is-open")) closeMobileMenu();
+        else openMobileMenu();
+    });
+
+    // Fermeture par clic sur le backdrop
+    mobileBackdrop?.addEventListener("click", closeMobileMenu);
+}
+
+/* ===== GESTIONNAIRE ESCAPE UNIFIÉ ===== */
+function setupEscapeHandler(searchOverlay, mobileMenu, headerPanel, closeSearch, closeMobileMenu, closePanel) {
+    document.addEventListener("keydown", (e) => {
+        if (e.key !== "Escape") return;
+        if (searchOverlay?.classList.contains("is-open")) closeSearch();
+        if (mobileMenu?.classList.contains("is-open")) closeMobileMenu();
+        if (headerPanel.classList.contains("is-open")) closePanel();
+    });
+}
+
+export function initHeader() {
+    const header = document.querySelector("header");
+    const headerPanel = document.querySelector(".header-panel");
+    const navItems = document.querySelectorAll(".nav-item");
+    const panelItems = document.querySelectorAll(".panel-item");
+    const pageContent = document.querySelector(".page-content");
+
+    if (!headerPanel || !navItems.length) return;
+
+    const searchOverlay = document.getElementById("searchOverlay");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const mobileBackdrop = document.getElementById("mobileBackdrop");
+    const burgerMenu = document.querySelector(".burger-menu");
+
+    function closePanel() {
+        headerPanel.classList.remove("is-open");
+        if (pageContent) pageContent.classList.remove("is-blurred");
+        panelItems.forEach(panel => panel.classList.remove("is-active"));
     }
 
     function closeSearch() {
         searchOverlay?.classList.remove("is-open");
         document.body.style.overflow = "";
     }
-
-    /* ===== MOBILE MENU ===== */
-    const mobileBackdrop = document.getElementById("mobileBackdrop");
 
     function openMobileMenu() {
         mobileMenu.classList.add("is-open");
@@ -113,47 +117,20 @@ export function initHeader() {
         document.body.style.overflow = "";
     }
 
-    if (burgerMenu && mobileMenu) {
-        // Toggle via burger button
-        burgerMenu.addEventListener("click", () => {
-            if (mobileMenu.classList.contains("is-open")) {
-                closeMobileMenu();
-            } else {
-                openMobileMenu();
-            }
-        });
-
-        // Fermeture par clic sur le backdrop
-        mobileBackdrop?.addEventListener("click", closeMobileMenu);
-
-        // Fermeture par Escape
-        document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && mobileMenu.classList.contains("is-open")) {
-                closeMobileMenu();
-            }
-        });
-    }
+    setupDropdownPanels(navItems, panelItems, headerPanel, pageContent, closePanel);
+    setupSearchOverlay(
+        document.querySelector(".search-button"),
+        searchOverlay,
+        document.querySelector(".search-input"),
+        document.querySelector(".search-close"),
+        closeSearch
+    );
+    setupMobileMenu(burgerMenu, mobileMenu, mobileBackdrop, openMobileMenu, closeMobileMenu);
 
     /* ===== SHRINK ON SCROLL (APPLE STYLE) ===== */
     window.addEventListener("scroll", () => {
-        const currentScroll = window.pageYOffset;
-
-        if (currentScroll > 100) {
-            header?.classList.add("is-scrolled");
-        } else {
-            header?.classList.remove("is-scrolled");
-        }
+        header?.classList.toggle("is-scrolled", window.pageYOffset > 100);
     });
 
-    /* ===== ACCESSIBILITÉ CLAVIER GLOBALE ===== */
-    // Fermeture des panels avec Escape
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && headerPanel.classList.contains("is-open")) {
-            headerPanel.classList.remove("is-open");
-            if (pageContent) pageContent.classList.remove("is-blurred");
-            panelItems.forEach(panel => {
-                panel.classList.remove("is-active");
-            });
-        }
-    });
+    setupEscapeHandler(searchOverlay, mobileMenu, headerPanel, closeSearch, closeMobileMenu, closePanel);
 }
