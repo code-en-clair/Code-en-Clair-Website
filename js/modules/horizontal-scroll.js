@@ -59,12 +59,6 @@ export function initHorizontalScroll() {
     window.addEventListener("scroll", scrollHandler);
     window.addEventListener("resize", resizeHandler);
     onScroll();
-
-    return function cleanup() {
-      window.removeEventListener("scroll", scrollHandler);
-      window.removeEventListener("resize", resizeHandler);
-      strip.style.transform = "";
-    };
   }
 
   // ============ MODE MOBILE (stack vertical, pas de JS) ============
@@ -72,10 +66,6 @@ export function initHorizontalScroll() {
     // CSS gere tout : flex-direction column, transform: none
     // On s'assure juste que le strip n'a pas de transform residuel
     strip.style.transform = "";
-
-    return function cleanup() {
-      strip.style.transform = "";
-    };
   }
 
   // ============ GESTIONNAIRE DE MODE ============
