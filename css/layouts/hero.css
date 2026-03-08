@@ -3,12 +3,11 @@
 /* ===================================================== */
 
 .hero-section {
-    min-height: calc(100vh - 80px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 120px var(--spacing-lg) var(--spacing-2xl);
+    padding: 120px var(--spacing-lg) var(--spacing-xl);
     position: relative;
     overflow: hidden;
 
@@ -28,13 +27,107 @@
     position: relative;
 }
 
-/* Reset text-align pour le terminal */
-.terminal-container {
-    text-align: left;
+/* ===== DESCRIPTION HERO ===== */
+.hero-description {
+    max-width: 640px;
+    font-family: "InterVar", Arial, sans-serif;
+    font-size: clamp(16px, 1.5vw, 18px);
+    line-height: 1.75;
+    color: var(--text-secondary);
+    text-align: center;
+    margin: var(--spacing-xl) auto 0;
+    opacity: 0;
+    transition: opacity 0.1s;
+}
 
-    /* Important pour rester au-dessus des backgrounds */
-    position: relative;
-    z-index: 1;
+.hero-description.typed-active {
+    opacity: 1;
+}
+
+.hero-description code {
+    font-family: "Courier New", monospace;
+    font-size: 0.9em;
+    color: #5b9fef;
+}
+
+.typed-cursor {
+    display: inline-block;
+    width: 1.5px;
+    height: 0.9em;
+    background: var(--text-secondary);
+    margin-left: 1px;
+    vertical-align: text-bottom;
+    animation: typed-blink 0.7s step-end infinite;
+}
+
+@keyframes typed-blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+}
+
+/* ===== BANDEAU LANGAGES DÉFILANTS ===== */
+.lang-ticker {
+    width: 100%;
+    overflow: hidden;
+    padding: var(--spacing-xl) 0;
+    background: rgba(0, 0, 0, 0.15);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="light"] .lang-ticker {
+    border-top-color: rgba(0, 0, 0, 0.08);
+    border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+/*
+ * Calcul du défilement :
+ * logo 72px + gap 120px = période 192px par item
+ * 5 items par set → set width = 5 × 192 = 960px
+ * Animation : 0 → -960px (RTL, 1 set exact, boucle parfaitement fluide)
+ * 5 sets dans le HTML → track total ≈ 4680px → couvre écrans jusqu'à 4K
+ */
+.lang-ticker__track {
+    display: flex;
+    gap: 120px;
+    width: max-content;
+    animation: lang-ticker-scroll 25s linear infinite;
+    will-change: transform;
+}
+
+.lang-ticker__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.lang-ticker__item img {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    opacity: 0.8;
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.lang-ticker__item:hover img {
+    opacity: 1;
+    transform: translateY(-4px);
+}
+
+.lang-ticker__label {
+    font-family: "InterVar", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+@keyframes lang-ticker-scroll {
+    from { transform: translateX(-960px); }
+    to   { transform: translateX(0); }
 }
 
 .hero-title {

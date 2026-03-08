@@ -98,7 +98,7 @@ class WaveLine {
                            document.documentElement.getAttribute('data-theme') === 'dark';
         const color = isDarkTheme
             ? `rgba(70, 10, 174, ${this.opacity})`  // Violet pour mode sombre
-            : `rgba(255, 200, 140, ${this.opacity})`; // Violet plus clair pour mode clair
+            : `rgba(255, 200, 170, ${this.opacity})`; // Violet plus clair pour mode clair
 
         ctx.strokeStyle = color;
         ctx.lineWidth = this.lineWidth;

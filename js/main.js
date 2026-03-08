@@ -4,8 +4,8 @@
  */
 
 import { initHeader } from './modules/header.js';
+import { initTyped } from './modules/typed.js';
 import { initHorizontalScroll } from './modules/horizontal-scroll.js';
-import { initTerminal } from './modules/terminal.js';
 import { initWaves } from './modules/waves.js';
 import { initScrollReveal } from './modules/scroll-reveal.js';
 import { initTheme } from './modules/theme.js';
@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     initTheme();
     initHeader();
+    initTyped();
     initHorizontalScroll();
-    initTerminal();
     initWaves();
     initScrollReveal();
 
