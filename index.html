@@ -202,78 +202,152 @@
     <main class="page-content">
       <!-- HERO SECTION -->
       <section class="hero-section">
-        <div class="hero-content">
-          <h1 class="hero-title">CODE EN CLAIR</h1>
-          <p class="hero-subtitle">APPRENDS A CODER, GRATUITEMENT</p>
-
-          <!-- Description -->
-          <p class="hero-description">
-            Code en Clair t'apprend les langages de programmation les plus utilises,
-            avec des cours <strong>clairs, progressifs et entierement gratuits.</strong>
-            Du premier <code>print()</code> jusqu'a tes propres projets
-            on te guide pas a pas, en t'expliquant vraiment ce que tu fais.
-          </p>
+        <!-- Blobs décoratifs ambiants -->
+        <div class="hero-ambient" aria-hidden="true">
+          <div class="hero-amb-1"></div>
+          <div class="hero-amb-2"></div>
+          <div class="hero-amb-3"></div>
         </div>
+
+        <!-- Contenu bento -->
+        <div class="hero-bento">
+          <div class="hero-top">
+            <!-- Texte principal -->
+            <div class="hero-text">
+              <div class="hero-tag-row">
+                <span class="hero-tag hero-tag--active">✦ Gratuit</span>
+                <span class="hero-tag">Progressif</span>
+                <span class="hero-tag">Aucun prerequis</span>
+                <span class="hero-tag">5 langages</span>
+              </div>
+
+              <h1 class="hero-h1">
+                Apprends a<br>
+                <span class="hero-highlight">vraiment coder.</span>
+              </h1>
+
+              <p class="hero-desc">
+                Code en Clair t'apprend les langages les plus utilises avec des cours clairs et entierement gratuits.
+                Du premier <code>print()</code> jusqu'a tes propres projets.
+              </p>
+
+              <div class="hero-cta-row">
+                <a href="#" class="hero-cta-a">Voir les formations</a>
+                <a href="#" class="hero-cta-b">En savoir plus</a>
+              </div>
+            </div>
+
+            <!-- Mini bento : formations disponibles -->
+            <div class="hero-side-card">
+              <div class="hero-bento-mini">
+                <div class="hero-bento-label">Formations disponibles</div>
+                <div class="hero-lang-grid">
+                  <div class="hero-lang-card hero-lang-card--active">
+                    <span class="hero-lang-icon">🐍</span>
+                    <span class="hero-lang-name">Python</span>
+                  </div>
+                  <div class="hero-lang-card">
+                    <span class="hero-lang-icon">⚡</span>
+                    <span class="hero-lang-name">JavaScript</span>
+                  </div>
+                  <div class="hero-lang-card">
+                    <span class="hero-lang-icon">🌐</span>
+                    <span class="hero-lang-name">HTML</span>
+                  </div>
+                  <div class="hero-lang-card">
+                    <span class="hero-lang-icon">🎨</span>
+                    <span class="hero-lang-name">CSS</span>
+                  </div>
+                  <div class="hero-lang-card hero-lang-card--wide">
+                    <span class="hero-lang-icon">⚙️</span>
+                    <span class="hero-lang-name">Langage C</span>
+                  </div>
+                </div>
+                <div class="hero-free-badge">
+                  <span class="hero-free-icon">🔓</span>
+                  Acces 100% gratuit · Sans compte
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rangée de statistiques clés -->
+          <div class="hero-stats-row">
+            <div class="hero-stat">
+              <span class="hero-stat-num">5</span>
+              <span class="hero-stat-label">Langages</span>
+            </div>
+            <div class="hero-stat-sep"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-num">30+</span>
+              <span class="hero-stat-label">Cours disponibles</span>
+            </div>
+            <div class="hero-stat-sep"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-num">100%</span>
+              <span class="hero-stat-label">Gratuit</span>
+            </div>
+            <div class="hero-stat-sep"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-num">0</span>
+              <span class="hero-stat-label">Prerequis</span>
+            </div>
+          </div>
+
+          <!-- Bandeau défilant — ancré en bas du bento -->
+          <div class="hero-ticker-section">
+          <div class="hero-ticker-label">Langages enseignes</div>
+          <div class="hero-ticker-box">
+            <div class="hero-ticker-inner">
+              <!-- Set 1 (accessible) -->
+              <div class="hero-t-chip"><span class="hero-t-dot" style="background:#3572A5"></span>Python</div>
+              <div class="hero-divider-chip">·</div>
+              <div class="hero-t-chip"><span class="hero-t-dot" style="background:#f7df1e"></span>JavaScript</div>
+              <div class="hero-divider-chip">·</div>
+              <div class="hero-t-chip"><span class="hero-t-dot" style="background:#e34c26"></span>HTML5</div>
+              <div class="hero-divider-chip">·</div>
+              <div class="hero-t-chip"><span class="hero-t-dot" style="background:#264de4"></span>CSS3</div>
+              <div class="hero-divider-chip">·</div>
+              <div class="hero-t-chip"><span class="hero-t-dot" style="background:#A8B9CC"></span>Langage C</div>
+              <div class="hero-divider-chip" style="padding:0 40px;opacity:.3">✦</div>
+              <!-- Set 2 -->
+              <div class="hero-t-chip" aria-hidden="true"><span class="hero-t-dot" style="background:#3572A5"></span>Python</div>
+              <div class="hero-divider-chip" aria-hidden="true">·</div>
+              <div class="hero-t-chip" aria-hidden="true"><span class="hero-t-dot" style="background:#f7df1e"></span>JavaScript</div>
+              <div class="hero-divider-chip" aria-hidden="true">·</div>
+              <div class="hero-t-chip" aria-hidden="true"><span class="hero-t-dot" style="background:#e34c26"></span>HTML5</div>
+              <div class="hero-divider-chip" aria-hidden="true">·</div>
+              <div class="hero-t-chip" aria-hidden="true"><span class="hero-t-dot" style="background:#264de4"></span>CSS3</div>
+              <div class="hero-divider-chip" aria-hidden="true">·</div>
+              <div class="hero-t-chip" aria-hidden="true"><span class="hero-t-dot" style="background:#A8B9CC"></span>Langage C</div>
+              <div class="hero-divider-chip" aria-hidden="true" style="padding:0 40px;opacity:.3">✦</div>
+              <!-- Set 3 (duplicate pour boucle seamless) -->
+              <div class="hero-t-chip" aria-hidden="true"><span class="hero-t-dot" style="background:#3572A5"></span>Python</div>
+              <div class="hero-divider-chip" aria-hidden="true">·</div>
+              <div class="hero-t-chip" aria-hidden="true"><span class="hero-t-dot" style="background:#f7df1e"></span>JavaScript</div>
+              <div class="hero-divider-chip" aria-hidden="true">·</div>
+              <div class="hero-t-chip" aria-hidden="true"><span class="hero-t-dot" style="background:#e34c26"></span>HTML5</div>
+              <div class="hero-divider-chip" aria-hidden="true">·</div>
+              <div class="hero-t-chip" aria-hidden="true"><span class="hero-t-dot" style="background:#264de4"></span>CSS3</div>
+              <div class="hero-divider-chip" aria-hidden="true">·</div>
+              <div class="hero-t-chip" aria-hidden="true"><span class="hero-t-dot" style="background:#A8B9CC"></span>Langage C</div>
+              <div class="hero-divider-chip" aria-hidden="true" style="padding:0 40px;opacity:.3">✦</div>
+              <!-- Set 4 -->
+              <div class="hero-t-chip" aria-hidden="true"><span class="hero-t-dot" style="background:#3572A5"></span>Python</div>
+              <div class="hero-divider-chip" aria-hidden="true">·</div>
+              <div class="hero-t-chip" aria-hidden="true"><span class="hero-t-dot" style="background:#f7df1e"></span>JavaScript</div>
+              <div class="hero-divider-chip" aria-hidden="true">·</div>
+              <div class="hero-t-chip" aria-hidden="true"><span class="hero-t-dot" style="background:#e34c26"></span>HTML5</div>
+              <div class="hero-divider-chip" aria-hidden="true">·</div>
+              <div class="hero-t-chip" aria-hidden="true"><span class="hero-t-dot" style="background:#264de4"></span>CSS3</div>
+              <div class="hero-divider-chip" aria-hidden="true">·</div>
+              <div class="hero-t-chip" aria-hidden="true"><span class="hero-t-dot" style="background:#A8B9CC"></span>Langage C</div>
+              <div class="hero-divider-chip" aria-hidden="true" style="padding:0 40px;opacity:.3">✦</div>
+            </div>
+          </div>
+          </div><!-- /.hero-ticker-section -->
+        </div><!-- /.hero-bento -->
       </section>
-
-      <!-- Bandeau langages défilants — 5 sets pour couvrir toute largeur d'écran -->
-      <div class="lang-ticker">
-        <div class="lang-ticker__track">
-          <!-- Set 1 (accessible) -->
-          <div class="lang-ticker__item">
-            <img src="assets/img/python-logo.png" alt="Python" />
-            <span class="lang-ticker__label">Python</span>
-          </div>
-          <div class="lang-ticker__item">
-            <img src="assets/img/html-logo.png" alt="HTML" />
-            <span class="lang-ticker__label">HTML</span>
-          </div>
-          <div class="lang-ticker__item">
-            <img src="assets/img/css-logo.png" alt="CSS" />
-            <span class="lang-ticker__label">CSS</span>
-          </div>
-          <div class="lang-ticker__item">
-            <img src="assets/img/javascript-logo.png" alt="JavaScript" />
-            <span class="lang-ticker__label">JavaScript</span>
-          </div>
-          <div class="lang-ticker__item">
-            <img src="assets/img/c-logo.png" alt="C" />
-            <span class="lang-ticker__label">C</span>
-          </div>
-          <!-- Sets 2–5 (duplicates aria-hidden) -->
-          <div class="lang-ticker__item" aria-hidden="true"><img src="assets/img/python-logo.png" alt="" /><span class="lang-ticker__label">Python</span></div>
-          <div class="lang-ticker__item" aria-hidden="true"><img src="assets/img/html-logo.png" alt="" /><span class="lang-ticker__label">HTML</span></div>
-          <div class="lang-ticker__item" aria-hidden="true"><img src="assets/img/css-logo.png" alt="" /><span class="lang-ticker__label">CSS</span></div>
-          <div class="lang-ticker__item" aria-hidden="true"><img src="assets/img/javascript-logo.png" alt="" /><span class="lang-ticker__label">JavaScript</span></div>
-          <div class="lang-ticker__item" aria-hidden="true"><img src="assets/img/c-logo.png" alt="" /><span class="lang-ticker__label">C</span></div>
-
-          <div class="lang-ticker__item" aria-hidden="true"><img src="assets/img/python-logo.png" alt="" /><span class="lang-ticker__label">Python</span></div>
-          <div class="lang-ticker__item" aria-hidden="true"><img src="assets/img/html-logo.png" alt="" /><span class="lang-ticker__label">HTML</span></div>
-          <div class="lang-ticker__item" aria-hidden="true"><img src="assets/img/css-logo.png" alt="" /><span class="lang-ticker__label">CSS</span></div>
-          <div class="lang-ticker__item" aria-hidden="true"><img src="assets/img/javascript-logo.png" alt="" /><span class="lang-ticker__label">JavaScript</span></div>
-          <div class="lang-ticker__item" aria-hidden="true"><img src="assets/img/c-logo.png" alt="" /><span class="lang-ticker__label">C</span></div>
-
-          <div class="lang-ticker__item" aria-hidden="true"><img src="assets/img/python-logo.png" alt="" /><span class="lang-ticker__label">Python</span></div>
-          <div class="lang-ticker__item" aria-hidden="true"><img src="assets/img/html-logo.png" alt="" /><span class="lang-ticker__label">HTML</span></div>
-          <div class="lang-ticker__item" aria-hidden="true"><img src="assets/img/css-logo.png" alt="" /><span class="lang-ticker__label">CSS</span></div>
-          <div class="lang-ticker__item" aria-hidden="true"><img src="assets/img/javascript-logo.png" alt="" /><span class="lang-ticker__label">JavaScript</span></div>
-          <div class="lang-ticker__item" aria-hidden="true"><img src="assets/img/c-logo.png" alt="" /><span class="lang-ticker__label">C</span></div>
-
-          <div class="lang-ticker__item" aria-hidden="true"><img src="assets/img/python-logo.png" alt="" /><span class="lang-ticker__label">Python</span></div>
-          <div class="lang-ticker__item" aria-hidden="true"><img src="assets/img/html-logo.png" alt="" /><span class="lang-ticker__label">HTML</span></div>
-          <div class="lang-ticker__item" aria-hidden="true"><img src="assets/img/css-logo.png" alt="" /><span class="lang-ticker__label">CSS</span></div>
-          <div class="lang-ticker__item" aria-hidden="true"><img src="assets/img/javascript-logo.png" alt="" /><span class="lang-ticker__label">JavaScript</span></div>
-          <div class="lang-ticker__item" aria-hidden="true"><img src="assets/img/c-logo.png" alt="" /><span class="lang-ticker__label">C</span></div>
-        </div>
-      </div>
-
-      <!-- Spacer hero -->
-    <section class="spacer reveal">
-      <h2 class="learning-title">
-            PLUSIEURS FORMATIONS ACCESSIBLE
-            <span class="learning-title-highlight">GRATUITEMENT</span>
-      </h2>
-    </section>
 
     <!-- HORIZONTAL SCROLL SECTION -->
     <div class="horizontal-scroll-track" id="track">

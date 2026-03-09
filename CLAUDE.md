@@ -44,9 +44,19 @@ Custom fonts in `assets/fonts/`:
 - **InterVar** - Variable font for body text (100-900 weights, TTF)
 - **Organetto** - Display font, 7 width variants (Normal, Condensed, Expanded, Extra, SemiExp, SemiExt, UltraCnd), each with weights 100-700 (WOFF2). **Does not support accented characters** (é, ç, à) — avoid accents in Organetto text.
 
+### Hero Section (`css/layouts/hero.css`)
+Bento-style layout intégré depuis le mockup `tests/hero_section/hero-v3-bento.html` :
+- `.hero-section` — flex column, `min-height: 100vh`, contient les blobs ambiants et `.hero-bento`
+- `.hero-bento` — `flex: 1`, padding `60px 64px 0`, max-width 1400px centré. Contient `.hero-top` + `.hero-ticker-section`
+- `.hero-top` — grille `1fr auto`, gap 64px. Colonne gauche : texte + CTAs. Colonne droite : `.hero-side-card` (360px)
+- `.hero-ticker-section` — bandeau défilant avec `margin: 48px -64px 0` pour casser le padding parent (pleine largeur)
+- Tokens locaux : `--hero-neon`, `--hero-cyan`, `--hero-card`, `--hero-border` (surchargés en mode clair)
+- **Header est `sticky` (pas `fixed`)** — pas besoin de `padding-top` de compensation dans le hero
+
 ### Tests
-Prototypes in `tests/`:
-- `tests/pinned-horizontal-scroll/` - Standalone prototypes (v1 card grid, v2 editorial canvas) for the horizontal scroll section. Self-contained HTML/CSS/JS, no dependency on main site CSS/JS.
+Prototypes dans `tests/` :
+- `tests/pinned-horizontal-scroll/` - Prototypes standalone (v1 card grid, v2 editorial canvas) pour la section horizontal scroll. HTML/CSS/JS autonomes, sans dépendance sur le CSS/JS principal.
+- `tests/hero_section/hero-v3-bento.html` - Mockup retenu pour le hero bento (désormais intégré dans `index.html`)
 
 ## Conventions
 

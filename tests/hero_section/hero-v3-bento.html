@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CEC — Hero V3 : Bento Grid</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #07090f;
+    --card: rgba(255,255,255,0.035);
+    --border: rgba(255,255,255,0.07);
+    --accent: #7b5ea7;
+    --neon: #a78bfa;
+    --cyan: #22d3ee;
+    --text: #e2e8f0;
+    --sub: #64748b;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Ambient background */
+  .bg-ambient {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .amb-1 {
+    position: absolute;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(123,94,167,0.12) 0%, transparent 65%);
+    top: -200px; left: -200px;
+  }
+  .amb-2 {
+    position: absolute;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(34,211,238,0.07) 0%, transparent 65%);
+    bottom: -100px; right: 0;
+  }
+  .amb-3 {
+    position: absolute;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(167,139,250,0.08) 0%, transparent 65%);
+    top: 40%; left: 55%;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 48px;
+    position: relative;
+    z-index: 10;
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+  }
+  .nav-logo { font-weight: 800; font-size: 22px; letter-spacing: -0.01em; }
+  .nav-logo .accent { color: var(--neon); }
+  .nav-right { display: flex; align-items: center; gap: 32px; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: var(--sub); text-decoration: none; font-size: 14px; font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: white; }
+  .nav-btn {
+    background: rgba(167,139,250,0.12);
+    border: 1px solid rgba(167,139,250,0.25);
+    color: var(--neon);
+    padding: 9px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s;
+    font-family: inherit;
+  }
+  .nav-btn:hover { background: rgba(167,139,250,0.2); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    padding: 70px 48px 0;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  /* Top row: text + card */
+  .hero-top {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: start;
+    margin-bottom: 24px;
+  }
+
+  .hero-text { }
+
+  .tag-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 5px 14px;
+    font-size: 12px;
+    color: var(--sub);
+    letter-spacing: 0.04em;
+    font-weight: 500;
+  }
+  .tag.active { border-color: rgba(167,139,250,0.3); color: var(--neon); background: rgba(167,139,250,0.08); }
+
+  .hero-h1 {
+    font-size: clamp(44px, 6vw, 84px);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+  .hero-h1 .highlight {
+    background: linear-gradient(135deg, var(--neon), var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-desc {
+    font-size: 17px;
+    color: var(--sub);
+    max-width: 520px;
+    line-height: 1.7;
+    font-weight: 400;
+    margin-bottom: 36px;
+  }
+  .hero-desc code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--cyan);
+    background: rgba(34,211,238,0.08);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .cta-a {
+    background: var(--neon);
+    color: #0a0812;
+    padding: 14px 32px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    transition: opacity .2s, box-shadow .2s;
+    box-shadow: 0 0 40px rgba(167,139,250,0.25);
+  }
+  .cta-a:hover { opacity: 0.88; box-shadow: 0 0 60px rgba(167,139,250,0.4); }
+  .cta-b {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 14px 32px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: border-color .2s;
+  }
+  .cta-b:hover { border-color: rgba(255,255,255,0.15); }
+
+  /* Side card — mini bento */
+  .side-card {
+    width: 280px;
+    flex-shrink: 0;
+  }
+  .bento-mini {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    backdrop-filter: blur(12px);
+  }
+  .bento-label { font-size: 11px; color: var(--sub); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; font-weight: 600; }
+  .lang-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .lang-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+  }
+  .lang-card:hover { border-color: rgba(167,139,250,0.3); background: rgba(167,139,250,0.06); }
+  .lang-card.active { border-color: rgba(167,139,250,0.4); background: rgba(167,139,250,0.08); }
+  .lang-icon { font-size: 24px; display: block; margin-bottom: 6px; }
+  .lang-name { font-size: 11px; color: var(--sub); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+
+  .free-badge {
+    background: rgba(34,211,238,0.08);
+    border: 1px solid rgba(34,211,238,0.2);
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--cyan);
+    font-weight: 600;
+  }
+  .free-icon { font-size: 16px; }
+
+  /* TICKER row */
+  .ticker-section {
+    position: relative;
+    margin-top: 40px;
+    padding: 0 48px;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+  }
+
+  .ticker-label {
+    font-size: 11px;
+    color: var(--sub);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+  }
+  .ticker-label::after { content:''; flex: 1; height: 1px; background: var(--border); }
+
+  .ticker-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+  }
+  .ticker-box::before,
+  .ticker-box::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 80px;
+    height: 100%;
+    z-index: 3;
+  }
+  .ticker-box::before { left: 0; background: linear-gradient(90deg, rgba(7,9,15,0.9), transparent); }
+  .ticker-box::after  { right: 0; background: linear-gradient(-90deg, rgba(7,9,15,0.9), transparent); }
+
+  .ticker-inner {
+    display: flex;
+    padding: 18px 0;
+    width: max-content;
+    animation: roll 22s linear infinite;
+  }
+  @keyframes roll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  .t-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 32px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--sub);
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+    transition: color .2s;
+  }
+  .t-chip:hover { color: white; }
+  .t-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .divider-chip { padding: 0 20px; color: rgba(255,255,255,0.1); font-size: 18px; }
+</style>
+</head>
+<body>
+
+<div class="bg-ambient">
+  <div class="amb-1"></div>
+  <div class="amb-2"></div>
+  <div class="amb-3"></div>
+</div>
+
+<nav>
+  <div class="nav-logo">CODE <span class="accent">EN</span> CLAIR</div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#">Formations</a></li>
+      <li><a href="#">Support</a></li>
+    </ul>
+    <button class="nav-btn">Commencer →</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="hero-text">
+      <div class="tag-row">
+        <div class="tag active">✦ Gratuit</div>
+        <div class="tag">Progressif</div>
+        <div class="tag">Aucun prérequis</div>
+        <div class="tag">5 langages</div>
+      </div>
+
+      <h1 class="hero-h1">
+        Apprends à<br>
+        <span class="highlight">vraiment coder.</span>
+      </h1>
+
+      <p class="hero-desc">
+        Code en Clair t'apprend les langages les plus utilisés avec des cours clairs et entièrement gratuits.
+        Du premier <code>print()</code> jusqu'à tes propres projets.
+      </p>
+
+      <div class="cta-row">
+        <a href="#" class="cta-a">Voir les formations</a>
+        <a href="#" class="cta-b">En savoir plus</a>
+      </div>
+    </div>
+
+    <div class="side-card">
+      <div class="bento-mini">
+        <div class="bento-label">Formations disponibles</div>
+        <div class="lang-grid">
+          <div class="lang-card active">
+            <span class="lang-icon">🐍</span>
+            <span class="lang-name">Python</span>
+          </div>
+          <div class="lang-card">
+            <span class="lang-icon">⚡</span>
+            <span class="lang-name">JavaScript</span>
+          </div>
+          <div class="lang-card">
+            <span class="lang-icon">🌐</span>
+            <span class="lang-name">HTML</span>
+          </div>
+          <div class="lang-card">
+            <span class="lang-icon">🎨</span>
+            <span class="lang-name">CSS</span>
+          </div>
+        </div>
+        <div class="free-badge">
+          <span class="free-icon">🔓</span>
+          Accès 100% gratuit · Sans compte
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ticker-section">
+  <div class="ticker-label">Langages enseignés</div>
+  <div class="ticker-box">
+    <div class="ticker-inner">
+      <div class="t-chip"><span class="t-dot" style="background:#3572A5"></span>Python</div>
+      <div class="divider-chip">·</div>
+      <div class="t-chip"><span class="t-dot" style="background:#f7df1e"></span>JavaScript</div>
+      <div class="divider-chip">·</div>
+      <div class="t-chip"><span class="t-dot" style="background:#e34c26"></span>HTML5</div>
+      <div class="divider-chip">·</div>
+      <div class="t-chip"><span class="t-dot" style="background:#264de4"></span>CSS3</div>
+      <div class="divider-chip">·</div>
+      <div class="t-chip"><span class="t-dot" style="background:#A8B9CC"></span>Langage C</div>
+      <div class="divider-chip" style="padding:0 40px;opacity:.3">✦</div>
+      <div class="t-chip"><span class="t-dot" style="background:#3572A5"></span>Python</div>
+      <div class="divider-chip">·</div>
+      <div class="t-chip"><span class="t-dot" style="background:#f7df1e"></span>JavaScript</div>
+      <div class="divider-chip">·</div>
+      <div class="t-chip"><span class="t-dot" style="background:#e34c26"></span>HTML5</div>
+      <div class="divider-chip">·</div>
+      <div class="t-chip"><span class="t-dot" style="background:#264de4"></span>CSS3</div>
+      <div class="divider-chip">·</div>
+      <div class="t-chip"><span class="t-dot" style="background:#A8B9CC"></span>Langage C</div>
+      <div class="divider-chip" style="padding:0 40px;opacity:.3">✦</div>
+      <!-- duplicate -->
+      <div class="t-chip"><span class="t-dot" style="background:#3572A5"></span>Python</div>
+      <div class="divider-chip">·</div>
+      <div class="t-chip"><span class="t-dot" style="background:#f7df1e"></span>JavaScript</div>
+      <div class="divider-chip">·</div>
+      <div class="t-chip"><span class="t-dot" style="background:#e34c26"></span>HTML5</div>
+      <div class="divider-chip">·</div>
+      <div class="t-chip"><span class="t-dot" style="background:#264de4"></span>CSS3</div>
+      <div class="divider-chip">·</div>
+      <div class="t-chip"><span class="t-dot" style="background:#A8B9CC"></span>Langage C</div>
+      <div class="divider-chip" style="padding:0 40px;opacity:.3">✦</div>
+      <div class="t-chip"><span class="t-dot" style="background:#3572A5"></span>Python</div>
+      <div class="divider-chip">·</div>
+      <div class="t-chip"><span class="t-dot" style="background:#f7df1e"></span>JavaScript</div>
+      <div class="divider-chip">·</div>
+      <div class="t-chip"><span class="t-dot" style="background:#e34c26"></span>HTML5</div>
+      <div class="divider-chip">·</div>
+      <div class="t-chip"><span class="t-dot" style="background:#264de4"></span>CSS3</div>
+      <div class="divider-chip">·</div>
+      <div class="t-chip"><span class="t-dot" style="background:#A8B9CC"></span>Langage C</div>
+      <div class="divider-chip" style="padding:0 40px;opacity:.3">✦</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

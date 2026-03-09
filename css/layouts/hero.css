@@ -2,177 +2,510 @@
 /* ===================== HERO SECTION ================== */
 /* ===================================================== */
 
+/* Tokens locaux hero — surchargés en mode clair */
 .hero-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 120px var(--spacing-lg) var(--spacing-xl);
+    --hero-neon: #a78bfa;
+    --hero-cyan: #22d3ee;
+    --hero-card: rgba(255, 255, 255, 0.035);
+    --hero-border: rgba(255, 255, 255, 0.07);
+}
+
+[data-theme="light"] .hero-section {
+    --hero-neon: #7c3aed;
+    --hero-cyan: #0891b2;
+    --hero-card: rgba(0, 0, 0, 0.04);
+    --hero-border: rgba(0, 0, 0, 0.1);
+}
+
+.hero-section {
     position: relative;
     overflow: hidden;
-
-    /* Assure un stacking propre au-dessus des backgrounds (waves/canvas) */
     isolation: isolate;
-}
-
-.hero-content {
-    text-align: center;
-    z-index: 1;
-    width: 100%;
+    min-height: calc(100vh - 80px);
     display: flex;
     flex-direction: column;
-    align-items: center;
+}
 
-    /* Important pour que le z-index prenne effet */
+/* ── Blobs ambiants décoratifs ── */
+.hero-ambient {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hero-amb-1 {
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(123, 94, 167, 0.12) 0%, transparent 65%);
+    top: -200px;
+    left: -200px;
+}
+
+.hero-amb-2 {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.07) 0%, transparent 65%);
+    bottom: -100px;
+    right: 0;
+}
+
+.hero-amb-3 {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(167, 139, 250, 0.08) 0%, transparent 65%);
+    top: 40%;
+    left: 55%;
+}
+
+[data-theme="light"] .hero-amb-1 {
+    background: radial-gradient(circle, rgba(123, 94, 167, 0.06) 0%, transparent 65%);
+}
+
+[data-theme="light"] .hero-amb-2 {
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.04) 0%, transparent 65%);
+}
+
+[data-theme="light"] .hero-amb-3 {
+    background: radial-gradient(circle, rgba(167, 139, 250, 0.05) 0%, transparent 65%);
+}
+
+/* ── Wrapper bento — grandit pour remplir le viewport ── */
+.hero-bento {
     position: relative;
-}
-
-/* ===== DESCRIPTION HERO ===== */
-.hero-description {
-    max-width: 640px;
-    font-family: "InterVar", Arial, sans-serif;
-    font-size: clamp(16px, 1.5vw, 18px);
-    line-height: 1.75;
-    color: var(--text-secondary);
-    text-align: center;
-    margin: var(--spacing-xl) auto 0;
-    opacity: 0;
-    transition: opacity 0.1s;
-}
-
-.hero-description.typed-active {
-    opacity: 1;
-}
-
-.hero-description code {
-    font-family: "Courier New", monospace;
-    font-size: 0.9em;
-    color: #5b9fef;
-}
-
-.typed-cursor {
-    display: inline-block;
-    width: 1.5px;
-    height: 0.9em;
-    background: var(--text-secondary);
-    margin-left: 1px;
-    vertical-align: text-bottom;
-    animation: typed-blink 0.7s step-end infinite;
-}
-
-@keyframes typed-blink {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0; }
-}
-
-/* ===== BANDEAU LANGAGES DÉFILANTS ===== */
-.lang-ticker {
+    z-index: 1;
+    padding: 32px 24px 0;
+    max-width: 1600px;
     width: 100%;
-    overflow: hidden;
-    padding: var(--spacing-xl) 0;
-    background: rgba(0, 0, 0, 0.15);
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-[data-theme="light"] .lang-ticker {
-    border-top-color: rgba(0, 0, 0, 0.08);
-    border-bottom-color: rgba(0, 0, 0, 0.08);
-}
-
-/*
- * Calcul du défilement :
- * logo 72px + gap 120px = période 192px par item
- * 5 items par set → set width = 5 × 192 = 960px
- * Animation : 0 → -960px (RTL, 1 set exact, boucle parfaitement fluide)
- * 5 sets dans le HTML → track total ≈ 4680px → couvre écrans jusqu'à 4K
- */
-.lang-ticker__track {
-    display: flex;
-    gap: 120px;
-    width: max-content;
-    animation: lang-ticker-scroll 25s linear infinite;
-    will-change: transform;
-}
-
-.lang-ticker__item {
+    margin: 0 auto;
+    flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 10px;
+}
+
+/* ── Grille : texte | carte côté ── */
+.hero-top {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 64px;
+    align-items: start;
+    margin-bottom: 0;
+}
+
+/* ── Tags ── */
+.hero-tag-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.hero-tag {
+    background: var(--hero-card);
+    border: 1px solid var(--hero-border);
+    border-radius: 100px;
+    padding: 5px 14px;
+    font-family: "InterVar", Arial, sans-serif;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    font-weight: 500;
+}
+
+.hero-tag--active {
+    border-color: rgba(167, 139, 250, 0.3);
+    color: var(--hero-neon);
+    background: rgba(167, 139, 250, 0.08);
+}
+
+/* ── Titre principal ── */
+.hero-h1 {
+    font-family: "InterVar", Arial, sans-serif;
+    font-size: clamp(64px, 8vw, 110px);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin: 0 0 16px;
+}
+
+.hero-highlight {
+    background: linear-gradient(135deg, var(--hero-neon), var(--hero-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ── Description ── */
+.hero-desc {
+    font-family: "InterVar", Arial, sans-serif;
+    font-size: 18px;
+    color: var(--text-secondary);
+    max-width: 560px;
+    line-height: 1.75;
+    font-weight: 400;
+    margin-bottom: 28px;
+}
+
+.hero-desc code {
+    font-family: "Courier New", monospace;
+    font-size: 14px;
+    color: var(--hero-cyan);
+    background: rgba(34, 211, 238, 0.08);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* ── CTAs ── */
+.hero-cta-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.hero-cta-a {
+    background: var(--hero-neon);
+    color: #0a0812;
+    padding: 14px 32px;
+    border-radius: 10px;
+    font-family: "InterVar", Arial, sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    transition: opacity var(--transition-fast), box-shadow var(--transition-fast);
+    box-shadow: 0 0 40px rgba(167, 139, 250, 0.25);
+}
+
+.hero-cta-a:hover {
+    opacity: 0.88;
+    box-shadow: 0 0 60px rgba(167, 139, 250, 0.4);
+}
+
+.hero-cta-b {
+    background: var(--hero-card);
+    border: 1px solid var(--hero-border);
+    color: var(--text-primary);
+    padding: 14px 32px;
+    border-radius: 10px;
+    font-family: "InterVar", Arial, sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: border-color var(--transition-fast);
+}
+
+.hero-cta-b:hover {
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+[data-theme="light"] .hero-cta-b:hover {
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* ── Carte latérale — s'étire sur toute la hauteur du hero-top ── */
+.hero-side-card {
+    width: 360px;
     flex-shrink: 0;
 }
 
-.lang-ticker__item img {
-    width: 72px;
-    height: 72px;
-    object-fit: contain;
-    opacity: 0.8;
-    transition: opacity var(--transition-fast), transform var(--transition-fast);
+.hero-bento-mini {
+    background: var(--hero-card);
+    border: 1px solid var(--hero-border);
+    border-radius: 20px;
+    padding: 28px;
+    backdrop-filter: blur(12px);
 }
 
-.lang-ticker__item:hover img {
-    opacity: 1;
-    transform: translateY(-4px);
-}
-
-.lang-ticker__label {
+.hero-bento-label {
     font-family: "InterVar", Arial, sans-serif;
-    font-size: 12px;
-    font-weight: 500;
+    font-size: 11px;
+    color: var(--text-muted);
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--text-muted);
+    margin-bottom: 16px;
+    font-weight: 600;
 }
 
-@keyframes lang-ticker-scroll {
-    from { transform: translateX(-960px); }
-    to   { transform: translateX(0); }
+/* ── Grille langages dans la carte ── */
+.hero-lang-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
 }
 
-.hero-title {
-    font-size: clamp(48px, 8vw, 90px);
-    font-family: "OrganettoSemiExp", sans-serif;
-    font-weight: 400;
-    letter-spacing: 0.02em;
+.hero-lang-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--hero-border);
+    border-radius: 12px;
+    padding: 20px 10px;
     text-align: center;
-
-    /* Fallback pour éviter un texte invisible si la variable change */
-    color: var(--text-primary, #0b0d12);
-
-    margin: 0;
-    margin-bottom: var(--spacing-md);
-    line-height: 1.1;
-    animation: fadeInUp 0.8s ease-out;
+    transition: border-color var(--transition-fast), background var(--transition-fast);
 }
 
-/* Titre sur une ligne uniquement sur desktop */
-@media (min-width: 768px) {
-    .hero-title {
-        white-space: nowrap;
+[data-theme="light"] .hero-lang-card {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.hero-lang-card:hover {
+    border-color: rgba(167, 139, 250, 0.3);
+    background: rgba(167, 139, 250, 0.06);
+}
+
+.hero-lang-card--active {
+    border-color: rgba(167, 139, 250, 0.4);
+    background: rgba(167, 139, 250, 0.08);
+}
+
+.hero-lang-icon {
+    font-size: 32px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.hero-lang-name {
+    font-family: "InterVar", Arial, sans-serif;
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* ── Badge gratuit ── */
+.hero-free-badge {
+    background: rgba(34, 211, 238, 0.08);
+    border: 1px solid rgba(34, 211, 238, 0.2);
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "InterVar", Arial, sans-serif;
+    font-size: 12px;
+    color: var(--hero-cyan);
+    font-weight: 600;
+}
+
+.hero-free-icon {
+    font-size: 16px;
+}
+
+/* ── 5e langage : pleine largeur ── */
+.hero-lang-card--wide {
+    grid-column: 1 / -1;
+}
+
+/* ── Rangée de statistiques ── */
+.hero-stats-row {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 40px;
+    padding: 20px 0;
+}
+
+[data-theme="light"] .hero-stats-row {
+    border-top-color: rgba(0, 0, 0, 0.1);
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+.hero-stat {
+    flex: 1;
+    text-align: center;
+}
+
+.hero-stat-num {
+    display: block;
+    font-family: "InterVar", Arial, sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.hero-stat-label {
+    font-family: "InterVar", Arial, sans-serif;
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+}
+
+.hero-stat-sep {
+    width: 1px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+}
+
+[data-theme="light"] .hero-stat-sep {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* ── Bandeau défilant — juste sous le contenu ── */
+.hero-ticker-section {
+    position: relative;
+    z-index: 1;
+    margin: auto -24px 0;
+    padding: 12px 64px 40px;
+}
+
+.hero-ticker-label {
+    font-family: "InterVar", Arial, sans-serif;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.hero-ticker-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--hero-border);
+}
+
+.hero-ticker-box {
+    background: var(--hero-card);
+    border: 1px solid var(--hero-border);
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Fondu sur les bords */
+.hero-ticker-box::before,
+.hero-ticker-box::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 80px;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.hero-ticker-box::before {
+    left: 0;
+    background: linear-gradient(90deg, var(--bg-primary), transparent);
+}
+
+.hero-ticker-box::after {
+    right: 0;
+    background: linear-gradient(-90deg, var(--bg-primary), transparent);
+}
+
+.hero-ticker-inner {
+    display: flex;
+    padding: 18px 0;
+    width: max-content;
+    animation: hero-ticker-roll 22s linear infinite;
+    will-change: transform;
+}
+
+/*
+ * 4 sets identiques dans le HTML.
+ * -50% = 2 sets → la moitié droite est identique à la moitié gauche : boucle parfaite.
+ */
+@keyframes hero-ticker-roll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+.hero-t-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 32px;
+    font-family: "InterVar", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+    transition: color var(--transition-fast);
+}
+
+.hero-t-chip:hover {
+    color: var(--text-primary);
+}
+
+.hero-t-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.hero-divider-chip {
+    padding: 0 20px;
+    color: rgba(255, 255, 255, 0.1);
+    font-size: 18px;
+}
+
+[data-theme="light"] .hero-divider-chip {
+    color: rgba(0, 0, 0, 0.12);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1200px) {
+    .hero-side-card {
+        width: 320px;
+    }
+
+    .hero-top {
+        gap: 40px;
     }
 }
 
-.hero-subtitle {
-    font-size: clamp(18px, 2.5vw, 28px);
-    font-family: "OrganettoSemiExt", sans-serif;
+@media (max-width: 900px) {
+    .hero-top {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
 
-    /*
-      AVANT: font-weight: 300 (n'existe plus chez toi)
-      => On recrée le même rendu "léger" sans dépendre de la synthèse:
-      - on utilise 400 (dispo)
-      - on baisse légèrement l'opacité
-      - on augmente un peu le letter-spacing
-    */
-    font-weight: 200;
-    letter-spacing: 0.06em;
-    text-align: center;
+    .hero-side-card {
+        width: 100%;
+    }
 
-    /* Fallback + rendu "light" proche du 300 d'avant */
-    color: var(--text-secondary, rgba(11, 13, 18, 0.72));
-    opacity: 0.85;
+    .hero-lang-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
 
-    margin: 0;
-    line-height: 1.5;
-    animation: fadeInUp 0.8s ease-out 0.2s backwards;
+    .hero-bento {
+        padding: 48px 40px 0;
+        flex: 1;
+    }
+
+    .hero-ticker-section {
+        margin: 40px -40px 0;
+        padding: 12px 40px 36px;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-bento {
+        padding: 36px 24px 0;
+    }
+
+    .hero-ticker-section {
+        margin: 32px -24px 0;
+        padding: 12px 24px 32px;
+    }
+
+    .hero-lang-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
