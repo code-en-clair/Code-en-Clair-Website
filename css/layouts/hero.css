@@ -244,6 +244,10 @@
     padding: 20px 10px;
     text-align: center;
     transition: border-color var(--transition-fast), background var(--transition-fast);
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    cursor: pointer;
 }
 
 [data-theme="light"] .hero-lang-card {
@@ -261,9 +265,11 @@
 }
 
 .hero-lang-icon {
-    font-size: 32px;
+    width: 32px;
+    height: 32px;
     display: block;
-    margin-bottom: 10px;
+    margin: 0 auto 10px;
+    object-fit: contain;
 }
 
 .hero-lang-name {

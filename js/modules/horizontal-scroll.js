@@ -46,6 +46,29 @@ function initMobileStack(strip) {
     strip.style.transform = "";
 }
 
+function scrollToCanvas(canvas, track, strip) {
+    const initialOffset = window.innerWidth * 0.4;
+    const finalOffset = window.innerWidth * 0.2;
+    const maxScroll = strip.scrollWidth - window.innerWidth + initialOffset + finalOffset;
+    const trackHeight = track.offsetHeight - window.innerHeight;
+
+    const progress = Math.min(Math.max((canvas.offsetLeft + initialOffset) / maxScroll, 0), 1);
+    const scrollY = track.offsetTop - window.innerHeight / 2 + progress * trackHeight;
+
+    window.scrollTo({ top: scrollY, behavior: "smooth" });
+}
+
+function setupCanvasLinks(track, strip) {
+    document.querySelectorAll("[data-canvas-target]").forEach(link => {
+        link.addEventListener("click", e => {
+            e.preventDefault();
+            if (isMobile()) return;
+            const canvas = document.getElementById(link.dataset.canvasTarget);
+            if (canvas) scrollToCanvas(canvas, track, strip);
+        });
+    });
+}
+
 export function initHorizontalScroll() {
     const track = document.getElementById("track");
     const strip = document.getElementById("strip");
@@ -72,4 +95,5 @@ export function initHorizontalScroll() {
     });
 
     setMode();
+    setupCanvasLinks(track, strip);
 }
