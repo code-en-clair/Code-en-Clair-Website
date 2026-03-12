@@ -9,6 +9,7 @@ import { initHorizontalScroll } from './modules/horizontal-scroll.js';
 import { initWaves } from './modules/waves.js';
 import { initScrollReveal } from './modules/scroll-reveal.js';
 import { initTheme } from './modules/theme.js';
+import { initHeroCarousel } from './modules/hero-carousel.js';
 
 // Initialiser au chargement du DOM
 document.addEventListener("DOMContentLoaded", () => {
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     initTheme();
     initHeader();
+    initHeroCarousel();
     initTyped();
     initHorizontalScroll();
     initWaves();
