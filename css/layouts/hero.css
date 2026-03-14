@@ -189,42 +189,128 @@
   margin-bottom: 36px;
 }
 
-/* CTA Principal */
+/* CTA Principal — Shiny Effect */
 .cta-primary {
+  --shiny-highlight: #a78bfa;
+  --shiny-highlight-subtle: #c4b5fd;
+  --shiny-duration: 3s;
+  --shiny-shadow-size: 2px;
+  --shiny-transition: 800ms cubic-bezier(0.25, 1, 0.5, 1);
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(135deg, var(--hero-purple), #6d28d9);
   color: white;
   padding: 20px 28px;
   border-radius: 14px;
   text-decoration: none;
-  box-shadow: 0 4px 30px rgba(139, 92, 246, 0.35);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  isolation: isolate;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+  outline-offset: 4px;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(135deg, #7c3aed, #5b21b6) padding-box,
+    conic-gradient(
+      from calc(var(--gradient-angle) - var(--gradient-angle-offset)),
+      transparent,
+      var(--shiny-highlight) var(--gradient-percent),
+      var(--gradient-shine) calc(var(--gradient-percent) * 2),
+      var(--shiny-highlight) calc(var(--gradient-percent) * 3),
+      transparent calc(var(--gradient-percent) * 4)
+    ) border-box;
+  box-shadow: 0 4px 30px rgba(139, 92, 246, 0.35), inset 0 0 0 1px rgba(124, 58, 237, 0.2);
+  transition: var(--shiny-transition);
+  transition-property: --gradient-angle-offset, --gradient-percent, --gradient-shine, transform, box-shadow;
+  animation:
+    shiny-rotate linear infinite var(--shiny-duration),
+    shiny-rotate linear infinite calc(var(--shiny-duration) / 0.4) reverse paused;
+  animation-composition: add;
 }
 
-.cta-primary::before {
-  content: '';
+.cta-primary::before,
+.cta-primary::after {
+  content: "";
+  pointer-events: none;
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent);
-  opacity: 0;
-  transition: opacity var(--transition-fast);
+  inset-inline-start: 50%;
+  inset-block-start: 50%;
+  translate: -50% -50%;
+  z-index: -1;
 }
 
-.cta-primary:hover {
+.cta-primary:active {
+  translate: 0 1px;
+}
+
+/* Dots pattern */
+.cta-primary::before {
+  --size: calc(100% - var(--shiny-shadow-size) * 3);
+  --dot-pos: 2px;
+  --dot-space: calc(var(--dot-pos) * 2);
+  width: var(--size);
+  height: var(--size);
+  background:
+    radial-gradient(
+      circle at var(--dot-pos) var(--dot-pos),
+      white calc(var(--dot-pos) / 4),
+      transparent 0
+    ) padding-box;
+  background-size: var(--dot-space) var(--dot-space);
+  background-repeat: space;
+  mask-image: conic-gradient(
+    from calc(var(--gradient-angle) + 45deg),
+    black,
+    transparent 10% 90%,
+    black
+  );
+  border-radius: inherit;
+  opacity: 0.4;
+  animation:
+    shiny-rotate linear infinite var(--shiny-duration),
+    shiny-rotate linear infinite calc(var(--shiny-duration) / 0.4) reverse paused;
+  animation-composition: add;
+}
+
+/* Inner shimmer */
+.cta-primary::after {
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(
+    -50deg,
+    transparent,
+    var(--shiny-highlight),
+    transparent
+  );
+  mask-image: radial-gradient(circle at bottom, transparent 40%, black);
+  opacity: 0.6;
+  animation:
+    shiny-shimmer linear infinite var(--shiny-duration),
+    shiny-shimmer linear infinite calc(var(--shiny-duration) / 0.4) reverse paused;
+  animation-composition: add;
+}
+
+.cta-primary:is(:hover, :focus-visible) {
+  --gradient-percent: 20%;
+  --gradient-angle-offset: 95deg;
+  --gradient-shine: var(--shiny-highlight-subtle);
   transform: translateY(-2px);
   box-shadow: 0 10px 40px rgba(139, 92, 246, 0.5);
 }
 
-.cta-primary:hover::before { opacity: 1; }
+.cta-primary:is(:hover, :focus-visible),
+.cta-primary:is(:hover, :focus-visible)::before,
+.cta-primary:is(:hover, :focus-visible)::after {
+  animation-play-state: running;
+}
 
 .cta-primary-left {
   display: flex;
   flex-direction: column;
   gap: 3px;
+  position: relative;
+  z-index: 1;
 }
 
 .cta-primary-label {
@@ -254,6 +340,8 @@
   font-size: 18px;
   transition: transform var(--transition-fast);
   flex-shrink: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .cta-primary:hover .cta-primary-icon { transform: translateX(4px); }

@@ -2,6 +2,40 @@
 /* =================== ANIMATIONS ===================== */
 /* ===================================================== */
 
+/* ============= SHINY CTA BUTTON ===================== */
+
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --gradient-angle-offset {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --gradient-percent {
+  syntax: "<percentage>";
+  initial-value: 5%;
+  inherits: false;
+}
+
+@property --gradient-shine {
+  syntax: "<color>";
+  initial-value: white;
+  inherits: false;
+}
+
+@keyframes shiny-rotate {
+  to { --gradient-angle: 360deg; }
+}
+
+@keyframes shiny-shimmer {
+  to { rotate: 360deg; }
+}
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
