@@ -345,6 +345,71 @@
   font-style: normal;
 }
 
+/* Effet highlight — sweep coloré sur les <strong> au scroll */
+.catchphrase__text strong[data-highlight] {
+  display: inline;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-size: 0% 1.05em;
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding: 0 5px;
+  margin: 0 -2px;
+  transition: background-size 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0s linear 0.28s;
+}
+
+.catchphrase__text strong[data-highlight].highlight-active {
+  background-size: 100% 1.05em;
+  color: var(--bg-primary);
+  transition: background-size 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0s linear 0s;
+}
+
+/* --- display-title : wipe reveal en deux phases ---
+   Phase 1 (0→45%) : bloc sweep gauche → droite (couvre la zone)
+   Phase 2 (55→100%) : bloc sweep droite (s'efface), texte révélé dessous
+*/
+.display-title[data-highlight] {
+  color: transparent;
+  text-shadow: none;
+  isolation: isolate;
+}
+
+.display-title[data-highlight]::after {
+  content: '';
+  position: absolute;
+  inset: -0.05em -0.1em;
+  background-color: var(--accent);
+  clip-path: inset(0 100% 0 0);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.display-title[data-highlight].highlight-active {
+  color: #fff;
+  text-shadow:
+    0 0 80px rgba(var(--accent-rgb), 0.15),
+    0 0 120px rgba(var(--accent-rgb), 0.05);
+  /* Le texte snap au moment où le bloc commence à s'effacer (~55% de 1.1s) */
+  transition: color 0s linear 0.61s, text-shadow 0s linear 0.61s;
+}
+
+.display-title[data-highlight].highlight-active::after {
+  animation: display-title-wipe 1.1s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+@keyframes display-title-wipe {
+  0%   { clip-path: inset(0 100% 0 0); }   /* invisible, bord droit clipé     */
+  45%  { clip-path: inset(0 0%   0 0); }   /* plein écran                      */
+  55%  { clip-path: inset(0 0%   0 0); }   /* pause                            */
+  100% { clip-path: inset(0 0%   0 100%);} /* invisible, bord gauche clipé     */
+}
+
+[data-theme="light"] .display-title[data-highlight].highlight-active {
+  color: var(--text-primary);
+  text-shadow: none;
+}
+
 /* ============ LIGHT THEME OVERRIDES ============ */
 /* Approche clean : ombres douces, pas de lueurs colorees */
 

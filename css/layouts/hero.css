@@ -22,7 +22,7 @@
 }
 
 .hero-section {
-    height: calc(100vh - 68px);
+    height: calc(113vh - 0px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;

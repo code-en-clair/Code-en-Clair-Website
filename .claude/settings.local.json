@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(powershell -Command \"Select-String -Path ''d:\\\\Users\\\\Hamid\\\\Documents\\\\Code-en-Clair-Website\\\\index.html'' -Pattern ''data-scramble'' | Measure-Object | Select-Object -ExpandProperty Count\")"
     ]
   }
 }

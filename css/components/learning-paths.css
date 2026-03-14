@@ -12,18 +12,17 @@
 }
 
 .learning-paths-title {
-    font-size: clamp(24px, 8vw, 53px);
-    font-weight: 400;
-    font-family: 'OrganettoSemiExt', sans-serif;
+    font-size: clamp(42px, 4.5vw, 64px);
+    font-family: "InterVar", Arial, sans-serif;
     color: var(--text-primary);
     letter-spacing: 0.02em;
     line-height: 1.1;
     margin-bottom: 32px;
-    text-transform: uppercase;
+    text-transform: uppercase;  
 }
 
 .learning-paths-highlight {
-    color: #5b9fef;
+    color: #a78bfa;
     display: inline-block;
 }
 
@@ -51,20 +50,20 @@
     -moz-osx-font-smoothing: auto;
     text-rendering: auto;
 
-    background: linear-gradient(135deg, #2376d4 0%, #0d3563 100%);
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
     padding: 18px 42px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    box-shadow: 0 4px 16px rgba(91, 159, 239, 0.3);
+    box-shadow: 0 4px 16px rgba(195, 91, 239, 0.3);
     transition: all 0.3s ease;
     animation: cta-glow 3s ease-in-out infinite;
 }
 
 .learning-paths-cta:hover {
-    background: linear-gradient(135deg, #3a8be6 0%, #1a4a8a 100%);
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
     transform: translateY(-2px) scale(1.03);
-    box-shadow: 0 6px 24px rgba(91, 159, 239, 0.5);
+    box-shadow: 0 6px 24px rgba(197, 91, 239, 0.5);
     animation: none;
 }
 

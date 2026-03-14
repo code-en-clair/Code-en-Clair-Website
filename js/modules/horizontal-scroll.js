@@ -4,7 +4,53 @@
  * Mobile (≤ 768px) : stack vertical, CSS gère tout
  */
 
+import { checkScrambleTriggers, checkHighlightTriggers, scrambleFlat } from './text-scramble.js';
+
 const MOBILE_BREAKPOINT = 768;
+
+/**
+ * Pour chaque .code-snippet :
+ * — wrappe le contenu code (hors header) dans un .code-snippet__body
+ * — stocke l'innerHTML original sur l'élément
+ * — affiche immédiatement du texte encrypté (même longueur, même espaces)
+ * — tague le body pour le décodage au scroll
+ */
+function scrambleTextNodesInPlace(element) {
+    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null);
+    const nodes = [];
+    let node;
+    while ((node = walker.nextNode())) nodes.push(node);
+    nodes.forEach(n => {
+        n._originalText = n.textContent;
+        n.textContent = scrambleFlat(n.textContent);
+    });
+}
+
+function setupCodeSnippetScramble(strip) {
+    strip.querySelectorAll('.code-snippet').forEach(snippet => {
+        const header = snippet.querySelector('.code-snippet__header');
+
+        // Wrapper pour le corps du code
+        const body = document.createElement('div');
+        body.className = 'code-snippet__body';
+
+        // Déplacer tous les nœuds non-header dans le wrapper
+        Array.from(snippet.childNodes).forEach(node => {
+            if (node !== header) body.appendChild(node);
+        });
+        snippet.appendChild(body);
+
+        // Stocker l'HTML original AVANT encryption (préserve la coloration)
+        body._scrambleOriginalHtml = body.innerHTML;
+
+        // Encrypter les nœuds texte en place (préserve la structure des spans et les couleurs)
+        scrambleTextNodesInPlace(body);
+
+        // Tagger pour le décodage au scroll
+        body.dataset.scramble         = '';
+        body.dataset.scrambleDuration = '1.2';
+    });
+}
 
 function isMobile() {
     return window.innerWidth <= MOBILE_BREAKPOINT;
@@ -23,9 +69,19 @@ function computeTranslateX(track, strip) {
 
 function initDesktop(track, strip) {
     let ticking = false;
+    setupCodeSnippetScramble(strip);
+    const scrambleEls  = strip.querySelectorAll("[data-scramble]");
+    const highlightEls = strip.querySelectorAll("[data-highlight]");
 
     function onScroll() {
         strip.style.transform = `translateX(${computeTranslateX(track, strip)}px)`;
+
+        const rect   = track.getBoundingClientRect();
+        const inView = rect.top < window.innerHeight && rect.bottom > 0;
+        if (inView) {
+            if (scrambleEls.length)  checkScrambleTriggers(scrambleEls);
+            if (highlightEls.length) checkHighlightTriggers(highlightEls);
+        }
     }
 
     function scrollHandler() {
@@ -37,7 +93,7 @@ function initDesktop(track, strip) {
 
     window.addEventListener("scroll", scrollHandler);
     window.addEventListener("resize", onScroll);
-    onScroll();
+    onScroll(); // positionne le strip sans vérifier le scramble (track hors viewport au chargement)
 }
 
 function initMobileStack(strip) {
