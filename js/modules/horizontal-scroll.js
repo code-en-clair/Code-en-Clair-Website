@@ -79,8 +79,8 @@ function initDesktop(track, strip) {
         const rect   = track.getBoundingClientRect();
         const inView = rect.top < window.innerHeight && rect.bottom > 0;
         if (inView) {
-            if (scrambleEls.length)  checkScrambleTriggers(scrambleEls);
-            if (highlightEls.length) checkHighlightTriggers(highlightEls);
+            if (scrambleEls.length)  checkScrambleTriggers(scrambleEls, 1.0);
+            if (highlightEls.length) checkHighlightTriggers(highlightEls, 1.0);
         }
     }
 
