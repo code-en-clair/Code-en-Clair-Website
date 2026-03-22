@@ -70,13 +70,22 @@ function computeTranslateX(track, strip) {
 function initDesktop(track, strip) {
     let ticking = false;
     setupCodeSnippetScramble(strip);
-    const scrambleEls  = strip.querySelectorAll("[data-scramble]");
-    const highlightEls = strip.querySelectorAll("[data-highlight]");
+    const scrambleEls   = strip.querySelectorAll("[data-scramble]");
+    const highlightEls  = strip.querySelectorAll("[data-highlight]");
+    const pinnedSection = track.querySelector('.pinned-section');
 
     function onScroll() {
         strip.style.transform = `translateX(${computeTranslateX(track, strip)}px)`;
 
-        const rect   = track.getBoundingClientRect();
+        const rect = track.getBoundingClientRect();
+
+        // Dès que le bas du track remonte au-dessus du bas du viewport, la .pinned-section
+        // se décolle (position sticky libérée) et reste visible dans la zone de sortie (100vh).
+        // On la masque immédiatement pour éviter tout débordement visuel sur la section suivante.
+        if (pinnedSection) {
+            pinnedSection.style.visibility = rect.bottom <= window.innerHeight ? 'hidden' : '';
+        }
+
         const inView = rect.top < window.innerHeight && rect.bottom > 0;
         if (inView) {
             if (scrambleEls.length)  checkScrambleTriggers(scrambleEls, 1.0);
