@@ -10,6 +10,7 @@ import { initWaves } from './modules/waves.js';
 import { initScrollReveal } from './modules/scroll-reveal.js';
 import { initTheme } from './modules/theme.js';
 import { initHeroCarousel } from './modules/hero-carousel.js';
+import { initRoadmapHover } from './modules/roadmap-hover.js';
 
 // Initialiser au chargement du DOM
 document.addEventListener("DOMContentLoaded", () => {
@@ -22,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initHorizontalScroll();
     initWaves();
     initScrollReveal();
+    initRoadmapHover();
 
     console.log("✅ All modules initialized");
 });
