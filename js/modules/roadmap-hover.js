@@ -98,24 +98,31 @@ function initRoadmapHover() {
 
   // État initial sans transition
   initAllInactive(steps);
-  // Petite temporisation pour laisser le DOM se stabiliser avant le premier cycle
-  setTimeout(() => activateStep(steps[currentIndex], TRANSITION_IN), 100);
+
+  // Active une étape puis programme le passage à la suivante après STEP_DURATION.
+  // Le timer part du moment de l'activation → chaque étape reste active exactement STEP_DURATION ms.
+  function activateAndSchedule(index) {
+    activateStep(steps[index]);
+    cycleTimer = setTimeout(nextStep, STEP_DURATION);
+  }
 
   function nextStep() {
+    cycleTimer = null;
     deactivateStep(steps[currentIndex]);
     currentIndex = (currentIndex + 1) % steps.length;
     // Démarre l'activation pendant que la désactivation se termine — pas de gap visible
-    setTimeout(() => activateStep(steps[currentIndex]), 200);
-  }
-
-  function startCycle() {
-    cycleTimer = setInterval(nextStep, STEP_DURATION);
+    setTimeout(() => {
+      if (!isHovering) activateAndSchedule(currentIndex);
+    }, 200);
   }
 
   function stopCycle() {
-    clearInterval(cycleTimer);
+    clearTimeout(cycleTimer);
     cycleTimer = null;
   }
+
+  // Petite temporisation pour laisser le DOM se stabiliser avant le premier cycle
+  setTimeout(() => activateAndSchedule(currentIndex), 100);
 
   // ── Hover ──────────────────────────────────────────────────────────────────
   roadmap.addEventListener('mouseenter', () => {
@@ -140,8 +147,7 @@ function initRoadmapHover() {
 
     // Reprend le cycle après la transition de sortie
     leaveTimer = setTimeout(() => {
-      activateStep(steps[currentIndex], TRANSITION_IN);
-      setTimeout(startCycle, TRANSITION_IN);
+      activateAndSchedule(currentIndex);
       leaveTimer = null;
     }, TRANSITION_OUT);
   });
@@ -153,9 +159,6 @@ function initRoadmapHover() {
       activateStep(step, TRANSITION_IN);
     });
   });
-
-  // Lance le cycle
-  startCycle();
 }
 
 export { initRoadmapHover };
