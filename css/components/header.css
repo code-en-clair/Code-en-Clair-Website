@@ -7,8 +7,8 @@ header {
     top: 0;
     z-index: var(--z-header);
     height: 80px;
-    background-color: color-mix(in srgb, var(--bg-secondary) 30%, transparent);
-    backdrop-filter: blur(8px);
+    background-color: var(--glass-bg-heavy);
+    backdrop-filter: var(--glass-blur);
 }
 
 .header-container {
@@ -94,7 +94,8 @@ header {
     margin: 0;
     padding: 0;
     list-style: none;
-    background-color: var(--bg-secondary);
+    background-color: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
 
     opacity: 0;
     transform: translateY(-8px);

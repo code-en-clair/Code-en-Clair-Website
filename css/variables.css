@@ -11,6 +11,11 @@
     --text-muted: #9AA0A6;
     --shadow-panel-bottom: 0 24px 48px rgba(0, 0, 0, 0.45);
 
+    /* Glass morphism */
+    --glass-bg: color-mix(in srgb, var(--bg-secondary) 50%, transparent);
+    --glass-bg-heavy: color-mix(in srgb, var(--bg-secondary) 90%, transparent);
+    --glass-blur: blur(8px);
+
     /* Terminal */
     --terminal-bg: #1e1e1e;
     --terminal-border: #2d2d2d;

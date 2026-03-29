@@ -1,5 +1,6 @@
 .site-footer {
-  background: #09090e;
+  background-color: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
   padding: 52px max(40px, calc(50% - 700px)) 28px;
   font-family: 'Inter', 'Helvetica Neue', sans-serif;
 }
@@ -12,18 +13,15 @@
 }
 
 .footer-brand {
-  font-size: 96px;
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  color: transparent;
-  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.9);
-  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin-left: 155px;
 }
 
-.footer-brand span {
-  color: #6B46C1;
-  -webkit-text-stroke: 0;
+.footer-logo {
+  height: 64px;
+  width: auto;
 }
 
 .footer-newsletter-block {
