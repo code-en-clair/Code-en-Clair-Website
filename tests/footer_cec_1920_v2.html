@@ -1,0 +1,66 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.wrap{width:1920px;transform-origin:top left;background:#09090e;font-family:'Inter','Helvetica Neue',sans-serif}
+.footer{padding:52px 120px 28px}
+.top{display:flex;justify-content:space-between;align-items:flex-start}
+.brand{font-size:96px;font-weight:900;letter-spacing:-.03em;line-height:1;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,0.9);white-space:nowrap}
+.brand span{color:#6B46C1;-webkit-text-stroke:0}
+.newsletter-block{display:flex;flex-direction:column;align-items:flex-end;gap:10px;padding-top:8px}
+.block-label{font-size:11px;color:rgba(255,255,255,0.28);text-transform:uppercase;letter-spacing:.1em}
+.newsletter-row{display:flex;gap:10px}
+.newsletter-input{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:11px 18px;font-size:13px;color:rgba(255,255,255,0.7);outline:none;width:280px;font-family:inherit}
+.newsletter-btn{background:#6B46C1;border:none;border-radius:8px;padding:11px 24px;font-size:13px;color:#fff;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap}
+.mid{display:flex;justify-content:space-between;align-items:center;margin-top:32px}
+.nav{display:flex;gap:40px;align-items:center}
+.nav a{font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;cursor:pointer}
+.socials-block{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.socials{display:flex;gap:12px}
+.soc{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.soc svg{width:16px;height:16px;stroke:rgba(255,255,255,0.6);stroke-width:1.8;fill:none}
+.div{height:1px;background:rgba(255,255,255,0.07);margin:28px 0 16px}
+.copy{font-size:11px;color:rgba(255,255,255,0.2);letter-spacing:.04em;text-transform:uppercase;text-align:center}
+</style>
+<script>
+function scale(){
+  const w=document.querySelector('.wrap');
+  const r=document.documentElement.clientWidth/1920;
+  w.style.transform=`scale(${r})`;
+  w.parentElement.style.height=(w.offsetHeight*r)+'px';
+}
+window.addEventListener('load',scale);
+window.addEventListener('resize',scale);
+</script>
+
+<div class="wrap">
+  <div class="footer">
+    <div class="top">
+      <div class="brand">CODE EN <span>CLAIR.</span></div>
+      <div class="newsletter-block">
+        <div class="block-label">Reçois les nouvelles formations</div>
+        <div class="newsletter-row">
+          <input class="newsletter-input" placeholder="ton@email.com" type="email">
+          <button class="newsletter-btn">S'inscrire →</button>
+        </div>
+      </div>
+    </div>
+    <div class="mid">
+      <nav class="nav">
+        <a>À propos</a>
+        <a>Rejoindre l'équipe</a>
+        <a>F.A.Q</a>
+        <a>Mentions légales</a>
+      </nav>
+      <div class="socials-block">
+        <div class="block-label">Retrouve-nous sur les réseaux</div>
+        <div class="socials">
+          <div class="soc"><svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></div>
+          <div class="soc"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
+          <div class="soc"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+        </div>
+      </div>
+    </div>
+    <div class="div"></div>
+    <div class="copy">© 2026 Code en Clair — Tous droits réservés.</div>
+  </div>
+</div>
