@@ -7,7 +7,7 @@ header {
     top: 0;
     z-index: var(--z-header);
     height: 80px;
-    background-color: var(--glass-bg-heavy);
+    background-color: var(--glass-bg);
     backdrop-filter: var(--glass-blur);
 }
 

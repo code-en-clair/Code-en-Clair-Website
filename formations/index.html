@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formations — Code en Clair</title>
+    <meta
+      name="description"
+      content="Toutes les formations Code en Clair — Python, Web, Algorithmique. Des cours progressifs pour apprendre à programmer en français."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link
+      rel="shortcut icon"
+      href="../assets/img/webicon_logo_cec.png"
+      type="image/x-icon"
+    />
+    <style>
+      .page-hero {
+        padding: 80px max(40px, calc(50% - 700px)) 64px;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+      }
+      [data-theme="light"] .page-hero {
+        border-bottom-color: rgba(0,0,0,0.07);
+      }
+      .page-hero-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #a78bfa;
+        margin-bottom: 16px;
+      }
+      .page-hero-title {
+        font-family: 'InterVar', 'Inter', sans-serif;
+        font-size: clamp(36px, 5vw, 64px);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        color: var(--text-primary);
+        line-height: 1.1;
+        margin-bottom: 16px;
+      }
+      .page-hero-sub {
+        font-size: clamp(15px, 1.4vw, 18px);
+        color: var(--text-muted);
+        max-width: 560px;
+        line-height: 1.7;
+      }
+      .formations-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 24px;
+        padding: 64px max(40px, calc(50% - 700px));
+      }
+      .fcard {
+        background: var(--glass-bg);
+        backdrop-filter: var(--glass-blur);
+        border: 1px solid rgba(255,255,255,0.07);
+        border-radius: 16px;
+        padding: 32px;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        transition: transform 0.2s ease, border-color 0.2s ease;
+      }
+      [data-theme="light"] .fcard {
+        border-color: rgba(0,0,0,0.08);
+      }
+      .fcard:hover {
+        transform: translateY(-4px);
+        border-color: rgba(167,139,250,0.4);
+      }
+      .fcard-icon {
+        width: 64px;
+        height: 64px;
+        object-fit: contain;
+      }
+      .fcard-name {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--text-primary);
+        letter-spacing: -0.02em;
+      }
+      .fcard-desc {
+        font-size: 14px;
+        color: var(--text-muted);
+        line-height: 1.65;
+        flex: 1;
+      }
+      .fcard-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .fcard-tag {
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border-radius: 100px;
+        background: rgba(107,70,193,0.12);
+        border: 1px solid rgba(107,70,193,0.25);
+        color: #c4b5fd;
+      }
+      .fcard-cta {
+        font-size: 13px;
+        font-weight: 600;
+        color: #a78bfa;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="wavesCanvas" class="waves-background"></canvas>
+    <header>
+      <div class="header-container">
+        <div class="header-logo">
+          <a href="/">
+            <img src="/assets/img/white_logo_cec.png" alt="Code en Clair" class="theme-logo" />
+          </a>
+        </div>
+        <div class="header-right">
+          <nav aria-label="Navigation principale" class="desktop-nav">
+            <ul class="nav-list">
+              <li class="nav-item" data-panel="formations">
+                <a href="#">Formations</a>
+              </li>
+              <li class="nav-item" data-panel="support">
+                <a href="#">Support</a>
+              </li>
+            </ul>
+          </nav>
+          <button class="search-button" aria-label="Rechercher">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor" />
+            </svg>
+          </button>
+          <label class="theme-switch" aria-label="Theme toggle">
+            <input class="theme-switch__input" type="checkbox" />
+          </label>
+          <button class="burger-menu" aria-label="Menu" aria-expanded="false">
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+          </button>
+        </div>
+      </div>
+
+      <ul class="header-panel">
+        <li class="panel-item" data-panel="formations">
+          <div class="formations-panel">
+            <div class="formations-column">
+              <h4 class="formations-title">Apprendre</h4>
+              <ul class="formations-list">
+                <li>
+                  <a href="/formations/python" class="formation-card">
+                    <img src="../assets/img/python-logo-outlines.png" alt="Python" class="formation-icon" />
+                    <div class="formation-content">
+                      <span class="formation-name">Développement Python</span>
+                      <span class="formation-desc">Variables, boucles, POO et projets</span>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="/formations/javascript" class="formation-card">
+                    <img src="../assets/img/front-end-outlines.png" alt="Web" class="formation-icon" />
+                    <div class="formation-content">
+                      <span class="formation-name">Fondamentaux du Web</span>
+                      <span class="formation-desc">HTML, CSS, JavaScript moderne</span>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="/formations/algorithmique-c" class="formation-card">
+                    <img src="../assets/img/c-logo-outlines.png" alt="C" class="formation-icon" />
+                    <div class="formation-content">
+                      <span class="formation-name">Algorithmique (C)</span>
+                      <span class="formation-desc">Structures de données et algorithmes</span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="formations-column">
+              <h4 class="formations-title">Pratiquer</h4>
+              <ul class="formations-list">
+                <li><a href="/exercices">Exercices</a></li>
+                <li><a href="/projets">Projets guidés</a></li>
+                <li><a href="#">Challenges</a></li>
+                <li><a href="#">Katas & entraînement</a></li>
+                <li><a href="#">Ressources externes</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li class="panel-item" data-panel="support">
+          <div class="support-panel">
+            <div class="support-column">
+              <h4 class="support-title">Nous contacter</h4>
+              <ul class="support-list">
+                <li><a href="mailto:codeenclair.contact@gmail.com">Email</a></li>
+                <li><a href="#">Formulaire</a></li>
+              </ul>
+            </div>
+            <div class="support-column">
+              <h4 class="support-title">Aide & communauté</h4>
+              <ul class="support-list">
+                <li><a href="#">Tiktok</a></li>
+                <li><a href="#">Discord</a></li>
+                <li><a href="#">FAQ</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </header>
+
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-overlay-content">
+        <button class="search-close" aria-label="Fermer la recherche">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+        <div class="search-input-wrapper">
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 18 18" fill="none">
+            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor" />
+          </svg>
+          <input type="text" class="search-input" placeholder="Rechercher des cours, exercices..." />
+        </div>
+        <div class="search-results">
+          <p class="search-placeholder">Commencez à taper pour rechercher...</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-backdrop" id="mobileBackdrop"></div>
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-content">
+        <nav class="mobile-nav">
+          <div class="mobile-nav-section">
+            <h3 class="mobile-nav-title">Formations</h3>
+            <ul class="mobile-nav-list">
+              <li><a href="/formations/python">Développement Python</a></li>
+              <li><a href="/formations/javascript">Fondamentaux du Web</a></li>
+              <li><a href="/formations/algorithmique-c">Algorithmique (C)</a></li>
+            </ul>
+          </div>
+          <div class="mobile-nav-section">
+            <h3 class="mobile-nav-title">Pratiquer</h3>
+            <ul class="mobile-nav-list">
+              <li><a href="/exercices">Exercices</a></li>
+              <li><a href="/projets">Projets guidés</a></li>
+              <li><a href="#">Challenges</a></li>
+            </ul>
+          </div>
+          <div class="mobile-nav-section">
+            <h3 class="mobile-nav-title">Support</h3>
+            <ul class="mobile-nav-list">
+              <li><a href="mailto:codeenclair.contact@gmail.com">Email</a></li>
+              <li><a href="#">Discord</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="mobile-theme-row">
+          <span class="mobile-theme-label">Mode clair</span>
+          <label class="theme-switch" aria-label="Theme toggle">
+            <input class="theme-switch__input" type="checkbox" />
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <main class="page-content">
+      <section class="page-hero">
+        <div class="page-hero-label">Formations</div>
+        <h1 class="page-hero-title">Apprends à programmer,<br>à ton rythme.</h1>
+        <p class="page-hero-sub">Des cours structurés, progressifs et gratuits. Choisis ton langage et commence dès aujourd'hui.</p>
+      </section>
+
+      <div class="formations-grid">
+        <a href="/formations/python" class="fcard">
+          <img src="../assets/img/python-logo-outlines.png" alt="Python" class="fcard-icon" />
+          <div class="fcard-name">Développement Python</div>
+          <div class="fcard-desc">Commence par les bases — variables, conditions, boucles — puis progresse jusqu'à la programmation orientée objet et les projets concrets.</div>
+          <div class="fcard-tags">
+            <span class="fcard-tag">Débutant</span>
+            <span class="fcard-tag">0 prérequis</span>
+          </div>
+          <div class="fcard-cta">Voir la formation →</div>
+        </a>
+
+        <a href="/formations/javascript" class="fcard">
+          <img src="../assets/img/front-end-outlines.png" alt="Web" class="fcard-icon" />
+          <div class="fcard-name">Fondamentaux du Web</div>
+          <div class="fcard-desc">HTML pour structurer, CSS pour styliser, JavaScript pour animer. Construis tes premières pages et interfaces interactives.</div>
+          <div class="fcard-tags">
+            <span class="fcard-tag">Débutant</span>
+            <span class="fcard-tag">0 prérequis</span>
+          </div>
+          <div class="fcard-cta">Voir la formation →</div>
+        </a>
+
+        <a href="/formations/algorithmique-c" class="fcard">
+          <img src="../assets/img/c-logo-outlines.png" alt="C" class="fcard-icon" />
+          <div class="fcard-name">Algorithmique (C)</div>
+          <div class="fcard-desc">Comprends comment les programmes fonctionnent vraiment. Pointeurs, structures de données, complexité algorithmique avec le langage C.</div>
+          <div class="fcard-tags">
+            <span class="fcard-tag">Intermédiaire</span>
+            <span class="fcard-tag">Bases recommandées</span>
+          </div>
+          <div class="fcard-cta">Voir la formation →</div>
+        </a>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="/assets/img/white_logo_cec.png" alt="Code en Clair" class="theme-logo footer-logo" />
+        </div>
+        <div class="footer-newsletter-block">
+          <div class="footer-block-label">Reçois les nouvelles formations</div>
+          <div class="footer-newsletter-row">
+            <input class="footer-newsletter-input" placeholder="ton@email.com" type="email" />
+            <button class="footer-newsletter-btn">S'inscrire →</button>
+          </div>
+        </div>
+      </div>
+      <div class="footer-mid">
+        <nav class="footer-nav">
+          <a href="/a-propos">À propos</a>
+          <a href="/rejoindre">Rejoindre l'équipe</a>
+          <a href="/faq">F.A.Q</a>
+          <a href="/mentions-legales">Mentions légales</a>
+        </nav>
+        <div class="footer-socials-block">
+          <div class="footer-block-label">Retrouve-nous sur les réseaux</div>
+          <div class="footer-socials">
+            <a href="https://tiktok.com/@codeenclair6" target="_blank" class="footer-soc" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+            </a>
+            <a href="https://github.com" target="_blank" class="footer-soc" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="footer-soc" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-copy">© 2026 Code en Clair — Tous droits réservés.</div>
+    </footer>
+
+    <script type="module" src="../js/main.js"></script>
+  </body>
+</html>

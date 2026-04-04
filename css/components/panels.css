@@ -120,6 +120,17 @@
     line-height: 1.4;
 }
 
+/* ── MODE CLAIR ── */
+[data-theme="light"] .formation-card {
+    border-color: rgba(0, 0, 0, 0.08);
+    background: linear-gradient(110deg, #f0f0f0 40%, #e2e8f0 50%, #f0f0f0 60%);
+    background-size: 200% 100%;
+}
+
+[data-theme="light"] .formation-card:hover {
+    border-color: rgba(0, 0, 0, 0.18);
+}
+
 /* ========= COLONNE DROITE : PRATIQUER ================ */
 
 .formations-column:last-child .formations-list {

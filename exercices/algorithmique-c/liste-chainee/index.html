@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Liste chainee — Exercices Algorithmique (C) — Code en Clair</title>
+    <meta name="description" content="Exercice Algorithmique (C) : Liste chainee. Implémente une liste chainee simple en C avec insertion et affichage." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../css/main.css" />
+    <link rel="shortcut icon" href="/assets/img/webicon_logo_cec.png" type="image/x-icon" />
+    <style>
+      .exo-page { padding: 48px max(40px, calc(50% - 760px)) 80px; display: flex; flex-direction: column; gap: 40px; }
+
+      /* ── Breadcrumb ── */
+      .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-muted); }
+      .breadcrumb a { color: var(--text-muted); text-decoration: none; }
+      .breadcrumb a:hover { color: var(--text-primary); }
+      .breadcrumb-sep { opacity: 0.4; }
+
+      /* ── En-tête exercice ── */
+      .exo-header { display: flex; flex-direction: column; gap: 12px; }
+      .exo-meta { display: flex; align-items: center; gap: 12px; }
+      .exo-lang-badge { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.25); color: #93c5fd; }
+      .exo-difficulty { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; }
+      .exo-difficulty--facile { background: rgba(52,211,153,0.12); border: 1px solid rgba(52,211,153,0.25); color: #6ee7b7; }
+      .exo-difficulty--moyen  { background: rgba(251,191,36,0.12);  border: 1px solid rgba(251,191,36,0.25);  color: #fcd34d; }
+      .exo-difficulty--difficile { background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.25); color: #fca5a5; }
+      .exo-title { font-family: 'InterVar', 'Inter', sans-serif; font-size: clamp(28px, 4vw, 48px); font-weight: 800; letter-spacing: -0.03em; color: var(--text-primary); line-height: 1.1; }
+
+      /* ── Blocs contenu ── */
+      .exo-block { background: var(--glass-bg); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 28px 32px; }
+      [data-theme="light"] .exo-block { border-color: rgba(0,0,0,0.08); }
+      .exo-block-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #a78bfa; margin-bottom: 14px; }
+      .exo-block p { font-size: 15px; color: var(--text-muted); line-height: 1.75; margin: 0 0 12px; }
+      .exo-block p:last-child { margin-bottom: 0; }
+      .exo-block ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+      .exo-block li { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+      /* ── Bloc code ── */
+      .exo-code { background: #0d0d14; border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; overflow: hidden; }
+      [data-theme="light"] .exo-code { background: #1e1e2e; }
+      .exo-code-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .exo-code-filename { font-size: 12px; font-family: 'Fira Code', monospace; color: rgba(255,255,255,0.35); }
+      .exo-code-copy { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.3); background: none; border: none; cursor: pointer; padding: 4px 8px; border-radius: 6px; transition: color 0.15s, background 0.15s; }
+      .exo-code-copy:hover { color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.06); }
+      .exo-code pre { margin: 0; padding: 24px; font-family: 'Fira Code', monospace; font-size: 13px; line-height: 1.7; overflow-x: auto; }
+
+      /* ── Correction ── */
+      .exo-correction-toggle { display: flex; align-items: center; gap: 10px; background: none; border: 1px solid rgba(167,139,250,0.3); border-radius: 10px; padding: 14px 20px; color: #a78bfa; font-size: 14px; font-weight: 600; cursor: pointer; width: 100%; transition: background 0.2s, border-color 0.2s; }
+      .exo-correction-toggle:hover { background: rgba(167,139,250,0.07); border-color: rgba(167,139,250,0.5); }
+      .exo-correction-toggle svg { flex-shrink: 0; transition: transform 0.25s ease; }
+      .exo-correction-toggle.is-open svg { transform: rotate(180deg); }
+      .exo-correction-body { display: none; margin-top: 12px; }
+      .exo-correction-body.is-open { display: block; }
+
+      /* ── Nav entre exercices ── */
+      .exo-nav { display: flex; justify-content: space-between; padding-top: 8px; }
+      .exo-nav-btn { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted); text-decoration: none; padding: 10px 16px; border: 1px solid rgba(255,255,255,0.07); border-radius: 8px; transition: color 0.2s, border-color 0.2s; }
+      [data-theme="light"] .exo-nav-btn { border-color: rgba(0,0,0,0.08); }
+      .exo-nav-btn:hover { color: var(--text-primary); border-color: rgba(167,139,250,0.4); }
+    </style>
+  </head>
+  <body>
+    <canvas id="wavesCanvas" class="waves-background"></canvas>
+    <header>
+      <div class="header-container">
+        <div class="header-logo">
+          <a href="/"><img src="/assets/img/white_logo_cec.png" alt="Code en Clair" class="theme-logo" /></a>
+        </div>
+        <div class="header-right">
+          <nav aria-label="Navigation principale" class="desktop-nav">
+            <ul class="nav-list">
+              <li class="nav-item" data-panel="formations"><a href="#">Formations</a></li>
+              <li class="nav-item" data-panel="support"><a href="#">Support</a></li>
+            </ul>
+          </nav>
+          <button class="search-button" aria-label="Rechercher">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor" /></svg>
+          </button>
+          <label class="theme-switch" aria-label="Theme toggle"><input class="theme-switch__input" type="checkbox" /></label>
+          <button class="burger-menu" aria-label="Menu" aria-expanded="false">
+            <span class="burger-line"></span><span class="burger-line"></span><span class="burger-line"></span>
+          </button>
+        </div>
+      </div>
+      <ul class="header-panel">
+        <li class="panel-item" data-panel="formations">
+          <div class="formations-panel">
+            <div class="formations-column">
+              <h4 class="formations-title">Apprendre</h4>
+              <ul class="formations-list">
+                <li><a href="/formations/python" class="formation-card"><img src="/assets/img/python-logo-outlines.png" alt="Python" class="formation-icon" /><div class="formation-content"><span class="formation-name">Développement Python</span><span class="formation-desc">Variables, boucles, POO et projets</span></div></a></li>
+                <li><a href="/formations/javascript" class="formation-card"><img src="/assets/img/front-end-outlines.png" alt="Web" class="formation-icon" /><div class="formation-content"><span class="formation-name">Fondamentaux du Web</span><span class="formation-desc">HTML, CSS, JavaScript moderne</span></div></a></li>
+                <li><a href="/formations/algorithmique-c" class="formation-card"><img src="/assets/img/c-logo-outlines.png" alt="C" class="formation-icon" /><div class="formation-content"><span class="formation-name">Algorithmique (C)</span><span class="formation-desc">Structures de données et algorithmes</span></div></a></li>
+              </ul>
+            </div>
+            <div class="formations-column">
+              <h4 class="formations-title">Pratiquer</h4>
+              <ul class="formations-list">
+                <li><a href="/exercices">Exercices</a></li>
+                <li><a href="/projets">Projets guidés</a></li>
+                <li><a href="#">Challenges</a></li>
+                <li><a href="#">Katas &amp; entraînement</a></li>
+                <li><a href="#">Ressources externes</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li class="panel-item" data-panel="support">
+          <div class="support-panel">
+            <div class="support-column"><h4 class="support-title">Nous contacter</h4><ul class="support-list"><li><a href="mailto:codeenclair.contact@gmail.com">Email</a></li><li><a href="#">Formulaire</a></li></ul></div>
+            <div class="support-column"><h4 class="support-title">Aide &amp; communauté</h4><ul class="support-list"><li><a href="#">Tiktok</a></li><li><a href="#">Discord</a></li><li><a href="#">FAQ</a></li></ul></div>
+          </div>
+        </li>
+      </ul>
+    </header>
+
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-overlay-content">
+        <button class="search-close" aria-label="Fermer la recherche"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg></button>
+        <div class="search-input-wrapper">
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 18 18" fill="none"><path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor" /></svg>
+          <input type="text" class="search-input" placeholder="Rechercher des cours, exercices..." />
+        </div>
+        <div class="search-results"><p class="search-placeholder">Commencez à taper pour rechercher...</p></div>
+      </div>
+    </div>
+
+    <div class="mobile-backdrop" id="mobileBackdrop"></div>
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-content">
+        <nav class="mobile-nav">
+          <div class="mobile-nav-section"><h3 class="mobile-nav-title">Formations</h3><ul class="mobile-nav-list"><li><a href="/formations/python">Développement Python</a></li><li><a href="/formations/javascript">Fondamentaux du Web</a></li><li><a href="/formations/algorithmique-c">Algorithmique (C)</a></li></ul></div>
+          <div class="mobile-nav-section"><h3 class="mobile-nav-title">Pratiquer</h3><ul class="mobile-nav-list"><li><a href="/exercices">Exercices</a></li><li><a href="/projets">Projets guidés</a></li></ul></div>
+          <div class="mobile-nav-section"><h3 class="mobile-nav-title">Support</h3><ul class="mobile-nav-list"><li><a href="mailto:codeenclair.contact@gmail.com">Email</a></li><li><a href="#">Discord</a></li><li><a href="#">FAQ</a></li></ul></div>
+        </nav>
+        <div class="mobile-theme-row"><span class="mobile-theme-label">Mode clair</span><label class="theme-switch" aria-label="Theme toggle"><input class="theme-switch__input" type="checkbox" /></label></div>
+      </div>
+    </div>
+
+    <main class="page-content">
+      <div class="exo-page">
+
+        <nav class="breadcrumb" aria-label="Fil d'Ariane">
+          <a href="/exercices">Exercices</a>
+          <span class="breadcrumb-sep">›</span>
+          <a href="/exercices/algorithmique-c">Algorithmique (C)</a>
+          <span class="breadcrumb-sep">›</span>
+          <span>Liste chainee</span>
+        </nav>
+
+        <div class="exo-header">
+          <div class="exo-meta">
+            <span class="exo-lang-badge">C</span>
+            <span class="exo-difficulty exo-difficulty--difficile">Difficile</span>
+          </div>
+          <h1 class="exo-title">Liste chainee</h1>
+        </div>
+
+        <div class="exo-block">
+          <div class="exo-block-label">Énoncé</div>
+          <p>Implémente une liste chainee simple en C. Tu dois écrire trois fonctions :</p>
+          <ul>
+            <li><code style="font-family:'Fira Code',monospace;color:#c4b5fd">creer_noeud(valeur)</code> — alloue dynamiquement un nouveau nœud avec la valeur donnée et retourne un pointeur vers ce nœud.</li>
+            <li><code style="font-family:'Fira Code',monospace;color:#c4b5fd">inserer_debut(liste, valeur)</code> — insère un nouveau nœud en tête de liste et retourne le nouveau pointeur de tête.</li>
+            <li><code style="font-family:'Fira Code',monospace;color:#c4b5fd">afficher_liste(liste)</code> — parcourt la liste et affiche chaque valeur séparée par <code style="font-family:'Fira Code',monospace;color:#ce9178">" -> "</code>.</li>
+          </ul>
+        </div>
+
+        <div class="exo-block">
+          <div class="exo-block-label">Code de départ</div>
+          <div class="exo-code">
+            <div class="exo-code-header">
+              <span class="exo-code-filename">liste_chainee.c</span>
+              <button class="exo-code-copy" onclick="navigator.clipboard.writeText(this.closest('.exo-code').querySelector('pre').innerText)">Copier</button>
+            </div>
+            <pre><span style="color:#c586c0">#include</span> <span style="color:#ce9178">&lt;stdio.h&gt;</span>
+<span style="color:#c586c0">#include</span> <span style="color:#ce9178">&lt;stdlib.h&gt;</span>
+
+<span style="color:#c586c0">typedef struct</span> <span style="color:#9cdcfe">Noeud</span> {
+    <span style="color:#9cdcfe">int</span> <span style="color:#9cdcfe">valeur</span>;
+    <span style="color:#c586c0">struct</span> <span style="color:#9cdcfe">Noeud</span> *<span style="color:#9cdcfe">suivant</span>;
+} <span style="color:#9cdcfe">Noeud</span>;
+
+<span style="color:#9cdcfe">Noeud</span> *<span style="color:#dcdcaa">creer_noeud</span>(<span style="color:#9cdcfe">int</span> <span style="color:#9cdcfe">valeur</span>) {
+    <span style="color:rgba(255,255,255,.35)">// ton code ici</span>
+    <span style="color:#c586c0">return</span> <span style="color:#b5cea8">NULL</span>;
+}
+
+<span style="color:#9cdcfe">Noeud</span> *<span style="color:#dcdcaa">inserer_debut</span>(<span style="color:#9cdcfe">Noeud</span> *<span style="color:#9cdcfe">liste</span>, <span style="color:#9cdcfe">int</span> <span style="color:#9cdcfe">valeur</span>) {
+    <span style="color:rgba(255,255,255,.35)">// ton code ici</span>
+    <span style="color:#c586c0">return</span> <span style="color:#9cdcfe">liste</span>;
+}
+
+<span style="color:#9cdcfe">void</span> <span style="color:#dcdcaa">afficher_liste</span>(<span style="color:#9cdcfe">Noeud</span> *<span style="color:#9cdcfe">liste</span>) {
+    <span style="color:rgba(255,255,255,.35)">// ton code ici</span>
+}
+
+<span style="color:#9cdcfe">int</span> <span style="color:#dcdcaa">main</span>() {
+    <span style="color:#9cdcfe">Noeud</span> *<span style="color:#9cdcfe">liste</span> = <span style="color:#b5cea8">NULL</span>;
+    <span style="color:#9cdcfe">liste</span> = <span style="color:#dcdcaa">inserer_debut</span>(<span style="color:#9cdcfe">liste</span>, <span style="color:#b5cea8">3</span>);
+    <span style="color:#9cdcfe">liste</span> = <span style="color:#dcdcaa">inserer_debut</span>(<span style="color:#9cdcfe">liste</span>, <span style="color:#b5cea8">2</span>);
+    <span style="color:#9cdcfe">liste</span> = <span style="color:#dcdcaa">inserer_debut</span>(<span style="color:#9cdcfe">liste</span>, <span style="color:#b5cea8">1</span>);
+    <span style="color:#dcdcaa">afficher_liste</span>(<span style="color:#9cdcfe">liste</span>);
+    <span style="color:#c586c0">return</span> <span style="color:#b5cea8">0</span>;
+}</pre>
+          </div>
+        </div>
+
+        <div>
+          <button class="exo-correction-toggle" id="correctionToggle">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Voir la correction
+          </button>
+          <div class="exo-correction-body" id="correctionBody">
+            <div class="exo-code">
+              <div class="exo-code-header">
+                <span class="exo-code-filename">liste_chainee_correction.c</span>
+                <button class="exo-code-copy" onclick="navigator.clipboard.writeText(this.closest('.exo-code').querySelector('pre').innerText)">Copier</button>
+              </div>
+              <pre><span style="color:#c586c0">#include</span> <span style="color:#ce9178">&lt;stdio.h&gt;</span>
+<span style="color:#c586c0">#include</span> <span style="color:#ce9178">&lt;stdlib.h&gt;</span>
+
+<span style="color:#c586c0">typedef struct</span> <span style="color:#9cdcfe">Noeud</span> {
+    <span style="color:#9cdcfe">int</span> <span style="color:#9cdcfe">valeur</span>;
+    <span style="color:#c586c0">struct</span> <span style="color:#9cdcfe">Noeud</span> *<span style="color:#9cdcfe">suivant</span>;
+} <span style="color:#9cdcfe">Noeud</span>;
+
+<span style="color:#9cdcfe">Noeud</span> *<span style="color:#dcdcaa">creer_noeud</span>(<span style="color:#9cdcfe">int</span> <span style="color:#9cdcfe">valeur</span>) {
+    <span style="color:#9cdcfe">Noeud</span> *<span style="color:#9cdcfe">n</span> = (<span style="color:#9cdcfe">Noeud</span> *)<span style="color:#dcdcaa">malloc</span>(<span style="color:#c586c0">sizeof</span>(<span style="color:#9cdcfe">Noeud</span>));
+    <span style="color:#9cdcfe">n</span>-><span style="color:#9cdcfe">valeur</span> = <span style="color:#9cdcfe">valeur</span>;
+    <span style="color:#9cdcfe">n</span>-><span style="color:#9cdcfe">suivant</span> = <span style="color:#b5cea8">NULL</span>;
+    <span style="color:#c586c0">return</span> <span style="color:#9cdcfe">n</span>;
+}
+
+<span style="color:#9cdcfe">Noeud</span> *<span style="color:#dcdcaa">inserer_debut</span>(<span style="color:#9cdcfe">Noeud</span> *<span style="color:#9cdcfe">liste</span>, <span style="color:#9cdcfe">int</span> <span style="color:#9cdcfe">valeur</span>) {
+    <span style="color:#9cdcfe">Noeud</span> *<span style="color:#9cdcfe">nouveau</span> = <span style="color:#dcdcaa">creer_noeud</span>(<span style="color:#9cdcfe">valeur</span>);
+    <span style="color:#9cdcfe">nouveau</span>-><span style="color:#9cdcfe">suivant</span> = <span style="color:#9cdcfe">liste</span>;
+    <span style="color:#c586c0">return</span> <span style="color:#9cdcfe">nouveau</span>;
+}
+
+<span style="color:#9cdcfe">void</span> <span style="color:#dcdcaa">afficher_liste</span>(<span style="color:#9cdcfe">Noeud</span> *<span style="color:#9cdcfe">liste</span>) {
+    <span style="color:#9cdcfe">Noeud</span> *<span style="color:#9cdcfe">courant</span> = <span style="color:#9cdcfe">liste</span>;
+    <span style="color:#c586c0">while</span> (<span style="color:#9cdcfe">courant</span> != <span style="color:#b5cea8">NULL</span>) {
+        <span style="color:#dcdcaa">printf</span>(<span style="color:#ce9178">"%d"</span>, <span style="color:#9cdcfe">courant</span>-><span style="color:#9cdcfe">valeur</span>);
+        <span style="color:#c586c0">if</span> (<span style="color:#9cdcfe">courant</span>-><span style="color:#9cdcfe">suivant</span> != <span style="color:#b5cea8">NULL</span>)
+            <span style="color:#dcdcaa">printf</span>(<span style="color:#ce9178">" -> "</span>);
+        <span style="color:#9cdcfe">courant</span> = <span style="color:#9cdcfe">courant</span>-><span style="color:#9cdcfe">suivant</span>;
+    }
+    <span style="color:#dcdcaa">printf</span>(<span style="color:#ce9178">"\n"</span>);
+}
+
+<span style="color:#9cdcfe">int</span> <span style="color:#dcdcaa">main</span>() {
+    <span style="color:#9cdcfe">Noeud</span> *<span style="color:#9cdcfe">liste</span> = <span style="color:#b5cea8">NULL</span>;
+    <span style="color:#9cdcfe">liste</span> = <span style="color:#dcdcaa">inserer_debut</span>(<span style="color:#9cdcfe">liste</span>, <span style="color:#b5cea8">3</span>);
+    <span style="color:#9cdcfe">liste</span> = <span style="color:#dcdcaa">inserer_debut</span>(<span style="color:#9cdcfe">liste</span>, <span style="color:#b5cea8">2</span>);
+    <span style="color:#9cdcfe">liste</span> = <span style="color:#dcdcaa">inserer_debut</span>(<span style="color:#9cdcfe">liste</span>, <span style="color:#b5cea8">1</span>);
+    <span style="color:#dcdcaa">afficher_liste</span>(<span style="color:#9cdcfe">liste</span>);  <span style="color:rgba(255,255,255,.35)">// 1 -> 2 -> 3</span>
+    <span style="color:#c586c0">return</span> <span style="color:#b5cea8">0</span>;
+}</pre>
+            </div>
+          </div>
+        </div>
+
+        <nav class="exo-nav">
+          <a href="/exercices/algorithmique-c/factorielle-recursive" class="exo-nav-btn">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Précédent : Factorielle recursive
+          </a>
+          <span></span>
+        </nav>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-brand"><img src="/assets/img/white_logo_cec.png" alt="Code en Clair" class="theme-logo footer-logo" /></div>
+        <div class="footer-newsletter-block">
+          <div class="footer-block-label">Reçois les nouvelles formations</div>
+          <div class="footer-newsletter-row">
+            <input class="footer-newsletter-input" placeholder="ton@email.com" type="email" />
+            <button class="footer-newsletter-btn">S'inscrire →</button>
+          </div>
+        </div>
+      </div>
+      <div class="footer-mid">
+        <nav class="footer-nav">
+          <a href="/a-propos">À propos</a>
+          <a href="/rejoindre">Rejoindre l'équipe</a>
+          <a href="/faq">F.A.Q</a>
+          <a href="/mentions-legales">Mentions légales</a>
+        </nav>
+        <div class="footer-socials-block">
+          <div class="footer-block-label">Retrouve-nous sur les réseaux</div>
+          <div class="footer-socials">
+            <a href="https://tiktok.com/@codeenclair6" target="_blank" class="footer-soc" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+            <a href="https://github.com" target="_blank" class="footer-soc" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+            <a href="https://linkedin.com" target="_blank" class="footer-soc" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-copy">© 2026 Code en Clair — Tous droits réservés.</div>
+    </footer>
+
+    <script type="module" src="../../../js/main.js"></script>
+    <script>
+      const toggle = document.getElementById('correctionToggle');
+      const body = document.getElementById('correctionBody');
+      toggle.addEventListener('click', () => {
+        const open = body.classList.toggle('is-open');
+        toggle.classList.toggle('is-open', open);
+        toggle.querySelector('span') && (toggle.childNodes[1].textContent = open ? ' Masquer la correction' : ' Voir la correction');
+      });
+    </script>
+  </body>
+</html>

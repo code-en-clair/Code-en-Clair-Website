@@ -43,6 +43,9 @@ export function initTheme() {
         // Sauvegarder dans localStorage
         localStorage.setItem('theme', theme);
 
+        // Notifier les autres modules du changement de thème
+        document.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
+
         console.log(`🎨 Theme changed to: ${theme}`);
     }
 
@@ -53,8 +56,8 @@ export function initTheme() {
     function updateLogos(theme) {
         const logos = document.querySelectorAll('.theme-logo');
         const logoSrc = theme === 'light'
-            ? 'assets/img/black_logo_cec.png'
-            : 'assets/img/white_logo_cec.png';
+            ? '/assets/img/black_logo_cec.png'
+            : '/assets/img/white_logo_cec.png';
 
         logos.forEach(logo => {
             logo.src = logoSrc;

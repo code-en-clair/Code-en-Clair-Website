@@ -13,21 +13,29 @@ const TRANSITION_OUT  = 500;   // ms pour revenir à l'état inactif
 const EASING          = 'ease-in-out';
 
 // ── États visuels ─────────────────────────────────────────────────────────────
-const ACTIVE = {
-  dot:    { borderColor: '#6B46C1',              backgroundColor: '#6B46C1',  boxShadow: '0 0 16px rgba(107,70,193,0.6)' },
-  inner:  { backgroundColor: '#ffffff' },
-  number: { color: 'rgba(107,70,193,0.55)' },
-  title:  { color: '#ffffff' },
-  desc:   { color: 'rgba(255,255,255,0.55)' }
-};
+function isLight() {
+  return document.documentElement.getAttribute('data-theme') === 'light';
+}
 
-const INACTIVE = {
-  dot:    { borderColor: 'rgba(107,70,193,0.8)', backgroundColor: '#0d0d14', boxShadow: 'none' },
-  inner:  { backgroundColor: 'rgba(107,70,193,0.8)' },
-  number: { color: 'rgba(107,70,193,0.18)' },
-  title:  { color: 'rgba(255,255,255,0.2)' },
-  desc:   { color: 'rgba(255,255,255,0.15)' }
-};
+function ACTIVE() {
+  return {
+    dot:    { borderColor: '#6B46C1',              backgroundColor: '#6B46C1',  boxShadow: '0 0 16px rgba(107,70,193,0.6)' },
+    inner:  { backgroundColor: isLight() ? '#6B46C1' : '#ffffff' },
+    number: { color: 'rgba(107,70,193,0.55)' },
+    title:  { color: isLight() ? 'rgba(0,0,0,0.85)' : '#ffffff' },
+    desc:   { color: isLight() ? 'rgba(0,0,0,0.55)' : 'rgba(255,255,255,0.55)' }
+  };
+}
+
+function INACTIVE() {
+  return {
+    dot:    { borderColor: 'rgba(107,70,193,0.8)', backgroundColor: isLight() ? '#f5f5f5' : '#0d0d14', boxShadow: 'none' },
+    inner:  { backgroundColor: 'rgba(107,70,193,0.8)' },
+    number: { color: 'rgba(107,70,193,0.18)' },
+    title:  { color: isLight() ? 'rgba(0,0,0,0.75)' : 'rgba(255,255,255,0.2)' },
+    desc:   { color: isLight() ? 'rgba(0,0,0,0.50)' : 'rgba(255,255,255,0.15)' }
+  };
+}
 
 // ── Utilitaires ───────────────────────────────────────────────────────────────
 function camelToKebab(str) {
@@ -58,30 +66,33 @@ function getEls(step) {
 
 function activateStep(step, duration = TRANSITION_IN) {
   const { dot, inner, number, title, desc } = getEls(step);
-  applyWithTransition(dot,    ACTIVE.dot,    duration);
-  applyWithTransition(inner,  ACTIVE.inner,  duration);
-  applyWithTransition(number, ACTIVE.number, duration);
-  applyWithTransition(title,  ACTIVE.title,  duration);
-  applyWithTransition(desc,   ACTIVE.desc,   duration);
+  const state = ACTIVE();
+  applyWithTransition(dot,    state.dot,    duration);
+  applyWithTransition(inner,  state.inner,  duration);
+  applyWithTransition(number, state.number, duration);
+  applyWithTransition(title,  state.title,  duration);
+  applyWithTransition(desc,   state.desc,   duration);
 }
 
 function deactivateStep(step, duration = TRANSITION_OUT) {
   const { dot, inner, number, title, desc } = getEls(step);
-  applyWithTransition(dot,    INACTIVE.dot,    duration);
-  applyWithTransition(inner,  INACTIVE.inner,  duration);
-  applyWithTransition(number, INACTIVE.number, duration);
-  applyWithTransition(title,  INACTIVE.title,  duration);
-  applyWithTransition(desc,   INACTIVE.desc,   duration);
+  const state = INACTIVE();
+  applyWithTransition(dot,    state.dot,    duration);
+  applyWithTransition(inner,  state.inner,  duration);
+  applyWithTransition(number, state.number, duration);
+  applyWithTransition(title,  state.title,  duration);
+  applyWithTransition(desc,   state.desc,   duration);
 }
 
 function initAllInactive(steps) {
   steps.forEach(step => {
     const { dot, inner, number, title, desc } = getEls(step);
-    applyImmediate(dot,    INACTIVE.dot);
-    applyImmediate(inner,  INACTIVE.inner);
-    applyImmediate(number, INACTIVE.number);
-    applyImmediate(title,  INACTIVE.title);
-    applyImmediate(desc,   INACTIVE.desc);
+    const state = INACTIVE();
+    applyImmediate(dot,    state.dot);
+    applyImmediate(inner,  state.inner);
+    applyImmediate(number, state.number);
+    applyImmediate(title,  state.title);
+    applyImmediate(desc,   state.desc);
   });
 }
 
@@ -123,6 +134,24 @@ function initRoadmapHover() {
 
   // Petite temporisation pour laisser le DOM se stabiliser avant le premier cycle
   setTimeout(() => activateAndSchedule(currentIndex), 100);
+
+  // Réappliquer les couleurs quand le thème change
+  document.addEventListener('themechange', () => {
+    steps.forEach((step, i) => {
+      if (i === currentIndex && !isHovering) {
+        applyImmediate(getEls(step).title, ACTIVE().title);
+        applyImmediate(getEls(step).desc,  ACTIVE().desc);
+        applyImmediate(getEls(step).inner, ACTIVE().inner);
+      } else {
+        const els = getEls(step);
+        applyImmediate(els.title,  INACTIVE().title);
+        applyImmediate(els.desc,   INACTIVE().desc);
+        applyImmediate(els.dot,    INACTIVE().dot);
+        applyImmediate(els.inner,  INACTIVE().inner);
+        applyImmediate(els.number, INACTIVE().number);
+      }
+    });
+  });
 
   // ── Hover ──────────────────────────────────────────────────────────────────
   roadmap.addEventListener('mouseenter', () => {

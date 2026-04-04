@@ -393,3 +393,16 @@
         font-size: 36px;
       }
     }
+
+/* ── MODE CLAIR ── */
+[data-theme="light"] .step-title {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+[data-theme="light"] .step-desc {
+  color: rgba(0, 0, 0, 0.50);
+}
+
+[data-theme="light"] .pf-right-label {
+  color: rgba(0, 0, 0, 0.45);
+}
